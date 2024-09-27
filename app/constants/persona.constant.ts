@@ -15,6 +15,10 @@ export const PERSONA_MOCK: PersonaModel = {
     "Ler um livro",
     "Ouvir música",
     "Ficar em silêncio",
+    "Assistir TV",
+    "Jogar",
+    "Ficar no celular",
+    "Ficar no computador",
   ],
   atividades_estressam: [
     "Luzes altas",

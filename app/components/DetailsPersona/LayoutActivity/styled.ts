@@ -5,3 +5,4 @@ export const ActivityContainer = styled.div`
     border-bottom: 1px solid #d1d5db;
   }
 `;
+  
