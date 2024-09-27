@@ -8,12 +8,7 @@ import {
 } from "@mui/material";
 import { ImgContainer } from "./styled";
 import { useMemo, useState } from "react";
-import {
-  AUTISM_TYPES_LABEL,
-  AutismTypes,
-  LANGUAGE_TYPES_LABEL,
-  LanguageTypes,
-} from "./types";
+import { AutismTypes, LanguageTypes } from "../../../@types/persona.type";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/constants/steps.constant";
 
@@ -123,13 +118,13 @@ export default function GeneralCharacteristics(
               label="Linguagem da persona"
             >
               <MenuItem value={LanguageTypes.nonVerbal}>
-                {LANGUAGE_TYPES_LABEL[LanguageTypes.nonVerbal]}
+                {LanguageTypes.nonVerbal}
               </MenuItem>
               <MenuItem value={LanguageTypes.verbal}>
-                {LANGUAGE_TYPES_LABEL[LanguageTypes.verbal]}
+                {LanguageTypes.verbal}
               </MenuItem>
               <MenuItem value={LanguageTypes.verbalEco}>
-                {LANGUAGE_TYPES_LABEL[LanguageTypes.verbalEco]}
+                {LanguageTypes.verbalEco}
               </MenuItem>
             </Select>
 
@@ -148,14 +143,12 @@ export default function GeneralCharacteristics(
               onChange={(event) => handleAutismChange(event.target.value)}
               label="Nível do autismo"
             >
-              <MenuItem value={AutismTypes.soft}>
-                {AUTISM_TYPES_LABEL[AutismTypes.soft]}
-              </MenuItem>
+              <MenuItem value={AutismTypes.soft}>{AutismTypes.soft}</MenuItem>
               <MenuItem value={AutismTypes.moderate}>
-                {AUTISM_TYPES_LABEL[AutismTypes.moderate]}
+                {AutismTypes.moderate}
               </MenuItem>
               <MenuItem value={AutismTypes.severe}>
-                {AUTISM_TYPES_LABEL[AutismTypes.severe]}
+                {AutismTypes.severe}
               </MenuItem>
             </Select>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { NavbarButton } from "./button.navbar";
+import { NavbarButton } from "./NavbarButton";
 import { NAVBAR_ITEMS } from "@/app/constants/navbar.constant";
 
 export const Navbar = () => {

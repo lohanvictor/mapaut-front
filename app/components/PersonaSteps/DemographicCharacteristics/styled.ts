@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 export const ImgContainer = styled.div`
-  &:hover {
-    span.add {
-      display: block;
-    }
-  }
-
   position: relative;
 
   img#demographic-characteristics-img {
@@ -18,7 +12,7 @@ export const ImgContainer = styled.div`
   }
 
   span.add {
-    display: none;
+    /* display: none; */
     font-size: 14px;
     color: #fff;
   }

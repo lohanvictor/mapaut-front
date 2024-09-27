@@ -3,9 +3,9 @@ export type PersonaModel = {
   nome: string; // Passo 1
   idade: number; // Passo 1
   genero: string; // Passo 1
-  linguagem: string; // Passo 2
+  linguagem: string | LanguageTypes; // Passo 2
   sensibilidade_som: boolean; // Passo 2
-  nivel_autismo: string; // Passo 2
+  nivel_autismo: string | AutismTypes; // Passo 2
   modelo: string; // Passo 0
   atividades_estressam: string[]; // Passo 3
   atividades_acalmam: string[]; // Passo 4
@@ -14,3 +14,14 @@ export type PersonaModel = {
   aspectos_sociais: string[]; // Passo 7
   sobre: string; // Passo 3
 };
+export enum LanguageTypes {
+  verbal = "Verbal",
+  nonVerbal = "Não Verbal",
+  verbalEco = "Verbal Ecolálica",
+}
+
+export enum AutismTypes {
+  soft = "Leve",
+  moderate = "Moderado",
+  severe = "Severo",
+}

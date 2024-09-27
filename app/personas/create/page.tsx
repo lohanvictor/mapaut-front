@@ -7,8 +7,9 @@ import GeneralCharacteristics from "@/app/components/PersonaSteps/GeneralCharact
 import StressActivities from "@/app/components/PersonaSteps/StressActivities";
 import { PersonaModel } from "@/app/@types/persona.type";
 import CalmActivities from "@/app/components/PersonaSteps/CalmActivities";
+import ViewDetailsPersona from "@/app/components/DetailsPersona/ViewDetailsPersona";
 export default function PersonasCreate() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(8);
   const [totalSteps, setTotalSteps] = useState(2);
 
   const textStep = useMemo(() => {
@@ -96,9 +97,9 @@ export default function PersonasCreate() {
   }
 
   return (
-    <div className="flex-1 flex flex-col items-center">
+    <div className="flex-1 flex flex-col items-center p-6">
       {/* DEBUG DE SENIOR */}
-      <span className="text-black">{JSON.stringify(personaModel)}</span>
+      {/* <span className="text-black">{JSON.stringify(personaModel)}</span> */}
 
       {currentStep === 0 && <ChooseModel onChooseModel={onChooseModel} />}
       {currentStep === 1 && (
@@ -143,6 +144,7 @@ export default function PersonasCreate() {
           onNext={console.log}
         />
       )}
+      {currentStep > 7 && <ViewDetailsPersona />}
     </div>
   );
 }
