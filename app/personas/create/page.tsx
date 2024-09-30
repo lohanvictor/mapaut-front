@@ -1,14 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import ChooseModel from "./components/ChooseModel";
-import DemographicCharacteristics from "../../components/PersonaSteps/DemographicCharacteristics";
-import GeneralCharacteristics from "@/app/components/PersonaSteps/GeneralCharacteristics";
-import StressActivities from "@/app/components/PersonaSteps/StressActivities";
+import ChooseModel from "./_components/ChooseModel";
+import DemographicCharacteristics from "../../_components/PersonaSteps/DemographicCharacteristics";
+import GeneralCharacteristics from "@/app/_components/PersonaSteps/GeneralCharacteristics";
+import StressActivities from "@/app/_components/PersonaSteps/StressActivities";
 import { PersonaModel } from "@/app/@types/persona.type";
-import CalmActivities from "@/app/components/PersonaSteps/CalmActivities";
-import ViewDetailsPersona from "@/app/components/DetailsPersona/ViewDetailsPersona";
-import AboutPersona from "@/app/components/PersonaSteps/AboutPersona";
+import CalmActivities from "@/app/_components/PersonaSteps/CalmActivities";
+import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
+import AboutPersona from "@/app/_components/PersonaSteps/AboutPersona";
 export default function PersonasCreate() {
   const [currentStep, setCurrentStep] = useState(0);
   const [totalSteps, setTotalSteps] = useState(0);
