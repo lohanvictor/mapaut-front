@@ -8,9 +8,10 @@ import StressActivities from "@/app/components/PersonaSteps/StressActivities";
 import { PersonaModel } from "@/app/@types/persona.type";
 import CalmActivities from "@/app/components/PersonaSteps/CalmActivities";
 import ViewDetailsPersona from "@/app/components/DetailsPersona/ViewDetailsPersona";
+import AboutPersona from "@/app/components/PersonaSteps/AboutPersona";
 export default function PersonasCreate() {
-  const [currentStep, setCurrentStep] = useState(8);
-  const [totalSteps, setTotalSteps] = useState(2);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(0);
 
   const textStep = useMemo(() => {
     return `${currentStep}/${totalSteps}`;
@@ -96,10 +97,21 @@ export default function PersonasCreate() {
     setCurrentStep(3);
   }
 
+  function onReturnAboutPersona() {
+    setCurrentStep(2);
+  }
+
+  function onNextAboutPersona(text: string) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      sobre: text,
+    }));
+  }
+
   return (
     <div className="flex-1 flex flex-col items-center p-6">
       {/* DEBUG DE SENIOR */}
-      {/* <span className="text-black">{JSON.stringify(personaModel)}</span> */}
+      <span className="text-black">{JSON.stringify(personaModel)}</span>
 
       {currentStep === 0 && <ChooseModel onChooseModel={onChooseModel} />}
       {currentStep === 1 && (
@@ -135,6 +147,14 @@ export default function PersonasCreate() {
           activities={personaModel.atividades_estressam}
           onReturn={onReturnStressActivities}
           onNext={onNextStressActivites}
+        />
+      ) : null}
+      {currentStep === 3 && personaModel.modelo === "2" ? (
+        <AboutPersona
+          name={personaModel.nome}
+          step={textStep}
+          onReturn={onReturnAboutPersona}
+          onNext={onNextAboutPersona}
         />
       ) : null}
       {currentStep === 4 && (
