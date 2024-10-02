@@ -3,6 +3,7 @@
 import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 type PersonaViewProps = {
   params: {
@@ -11,10 +12,10 @@ type PersonaViewProps = {
 };
 
 export default function PersonaView(props: PersonaViewProps) {
-  console.log(props.params.id);
+  const router = useRouter();
 
   function handleBack() {
-    console.log("Back");
+    router.push('/personas')
   }
 
   return (

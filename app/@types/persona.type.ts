@@ -13,6 +13,7 @@ export type PersonaModel = {
   aspectos_software: string[]; // Passo 6
   aspectos_sociais: string[]; // Passo 7
   sobre: string; // Passo 3
+  id: string;
 };
 export enum LanguageTypes {
   verbal = "Verbal",
@@ -25,3 +26,12 @@ export enum AutismTypes {
   moderate = "Moderado",
   severe = "Severo",
 }
+
+export type PersonaModelList = {
+  items: PersonaModel[];
+  totalItems: number;
+  pagination: {
+    pages: number;
+    page: number;
+  };
+};

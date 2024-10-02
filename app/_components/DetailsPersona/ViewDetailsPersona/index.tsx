@@ -1,7 +1,7 @@
 import MainCharacteristics from "../MainCharacteristics";
 import { useState } from "react";
 import LayoutActivity from "../LayoutActivity";
-import { PERSONA_MOCK } from "@/app/mocks/persona.mock";
+import { PERSONA_MOCK } from "@/app/_mocks/persona.mock";
 
 export default function ViewDetailsPersona() {
   const [persona, setPersona] = useState(PERSONA_MOCK);

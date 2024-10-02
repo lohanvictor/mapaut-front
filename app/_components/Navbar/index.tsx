@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { NavbarButton } from "./NavbarButton";
-import { NAVBAR_ITEMS } from "@/app/constants/navbar.constant";
+import { NAVBAR_ITEMS } from "@/app/_constants/navbar.constant";
 
 export const Navbar = () => {
   const pathname = usePathname();

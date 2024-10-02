@@ -36,6 +36,7 @@ export default function PersonasCreate() {
     aspectos_sociais: [],
     sobre: "",
     foto: "",
+    id: "",
   });
 
   function onChooseModel(model: string) {

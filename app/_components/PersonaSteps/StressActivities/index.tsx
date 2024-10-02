@@ -5,7 +5,7 @@ import LayoutPersona from "../../LayoutPersona";
 import {
   STEPS_PERSONA_DATA,
   STRESS_ACTIVITIES_MOCK,
-} from "@/app/constants/steps.constant";
+} from "@/app/_constants/steps.constant";
 
 type StressActivitiesProps = {
   step: string;

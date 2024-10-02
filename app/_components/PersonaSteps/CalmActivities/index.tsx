@@ -5,7 +5,7 @@ import LayoutPersona from "../../LayoutPersona";
 import {
   CALM_ACTIVITIES_MOCK,
   STEPS_PERSONA_DATA,
-} from "@/app/constants/steps.constant";
+} from "@/app/_constants/steps.constant";
 
 type CalmActivitiesProps = {
   step: string;

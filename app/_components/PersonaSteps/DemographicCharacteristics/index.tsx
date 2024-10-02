@@ -12,7 +12,7 @@ import {
 import { ChangeEvent, useMemo, useState } from "react";
 import { ImgContainer } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
-import { STEPS_PERSONA_DATA } from "@/app/constants/steps.constant";
+import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
 
 const genderOptions = ["Masculino", "Feminino"];
 

@@ -10,7 +10,7 @@ import { ImgContainer } from "./styled";
 import { useMemo, useState } from "react";
 import { AutismTypes, LanguageTypes } from "../../../@types/persona.type";
 import LayoutPersona from "../../LayoutPersona";
-import { STEPS_PERSONA_DATA } from "@/app/constants/steps.constant";
+import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
 
 type GeneralCharacteristicsProps = {
   step: string;
