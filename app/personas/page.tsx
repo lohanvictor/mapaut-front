@@ -2,17 +2,7 @@
 
 import { useState } from "react";
 import { LIST_PERSONAS_MOCK } from "../_mocks/persona.mock";
-import {
-  Button,
-  FilledInput,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Pagination,
-  TextField,
-} from "@mui/material";
+import { Button, IconButton, Pagination, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import PersonaListItem from "../_components/PersonaIListItem";
 import { useRouter } from "next/navigation";
@@ -27,7 +17,7 @@ export default function PersonasList() {
   }
 
   function handlePagination(newPage: number) {
-    console.log(newPage)
+    console.log(newPage);
   }
 
   return (

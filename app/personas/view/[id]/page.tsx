@@ -1,9 +1,11 @@
 "use client";
 
 import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
+import DeleteModal from "@/app/_components/Modal/DeleteModal";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type PersonaViewProps = {
   params: {
@@ -12,10 +14,16 @@ type PersonaViewProps = {
 };
 
 export default function PersonaView(props: PersonaViewProps) {
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
   const router = useRouter();
 
   function handleBack() {
-    router.push('/personas')
+    router.push("/personas");
+  }
+
+  function toggleDeleteModal() {
+    setIsOpenDeleteModal((prev) => !prev);
   }
 
   return (
@@ -26,13 +34,19 @@ export default function PersonaView(props: PersonaViewProps) {
         </IconButton>
 
         <div className="flex flex-row gap-4">
-          <Button variant="contained" color="error">
+          <Button onClick={toggleDeleteModal} variant="contained" color="error">
             Excluir
           </Button>
           <Button variant="contained">Editar</Button>
         </div>
       </div>
       <ViewDetailsPersona />
+
+      <DeleteModal
+        isOpen={isOpenDeleteModal}
+        onCancel={toggleDeleteModal}
+        onProceed={() => null}
+      />
     </div>
   );
 }
