@@ -10,6 +10,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Pagination,
   TextField,
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
@@ -25,8 +26,12 @@ export default function PersonasList() {
     router.push(`/personas/view/${id}`);
   }
 
+  function handlePagination(newPage: number) {
+    console.log(newPage)
+  }
+
   return (
-    <div className="flex-1 flex flex-col items-center gap-4 p-6">
+    <div className="flex-1 flex flex-col items-center gap-4 p-6 overflow-y-auto">
       <div className="w-full flex flex-row justify-between">
         <div className="flex-1 flex flex-col gap-2">
           <span className="text-4xl text-slate-950">Personas</span>
@@ -51,7 +56,7 @@ export default function PersonasList() {
         </div>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-col gap-4 overflow-y-auto h-full">
         {personaList.items.map((persona) => (
           <PersonaListItem
             key={persona.id}
@@ -60,6 +65,13 @@ export default function PersonasList() {
           />
         ))}
       </div>
+
+      <Pagination
+        count={personaList.pagination.pages}
+        page={personaList.pagination.page}
+        onChange={(_, page) => handlePagination(page)}
+        color="primary"
+      />
     </div>
   );
 }
