@@ -165,7 +165,7 @@ export default function PersonasCreate() {
           onNext={console.log}
         />
       )}
-      {currentStep > 7 && <ViewDetailsPersona />}
+      {currentStep > 7 && <ViewDetailsPersona persona={personaModel} />}
     </div>
   );
 }

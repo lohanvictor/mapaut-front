@@ -1,11 +1,14 @@
 import MainCharacteristics from "../MainCharacteristics";
-import { useState } from "react";
 import LayoutActivity from "../LayoutActivity";
-import { PERSONA_MOCK } from "@/app/_mocks/persona.mock";
+import { PersonaModel } from "@/app/@types/persona.type";
 
-export default function ViewDetailsPersona() {
-  const [persona, setPersona] = useState(PERSONA_MOCK);
+type ViewDetailsPersonaProps = {
+  persona: PersonaModel;
+};
 
+export default async function ViewDetailsPersona({
+  persona,
+}: ViewDetailsPersonaProps) {
   return (
     <div className="w-full flex flex-col gap-8">
       <div className="w-full flex flex-row gap-2 items-center">

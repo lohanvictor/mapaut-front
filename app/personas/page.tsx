@@ -13,7 +13,7 @@ export default function PersonasList() {
   const router = useRouter();
 
   function handleClickPersona(id: string) {
-    router.push(`/personas/view/${id}`);
+    router.push(`/personas/${id}/view`);
   }
 
   function handlePagination(newPage: number) {
