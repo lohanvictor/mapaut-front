@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LIST_PERSONAS_MOCK } from "../_mocks/persona.mock";
 import { Button, IconButton, Pagination, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import PersonaListItem from "../_components/PersonaIListItem";
@@ -19,7 +18,7 @@ export default function PersonasList() {
   }
 
   function handlePagination(newPage: number) {
-    setPage(newPage)
+    setPage(newPage);
   }
 
   async function fetchPersonas() {
