@@ -2,11 +2,10 @@
 
 import { PersonaModel } from "@/app/@types/persona.type";
 import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
-import DeleteModal from "@/app/_components/Modal/DeleteModal";
-import { ArrowBack } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import BackButton from "./_components/BackButton";
+import DeleteButton from "./_components/DeleteButton";
+import EditButton from "./_components/EditButton";
 
 type PersonaViewProps = {
   params: {
@@ -15,18 +14,7 @@ type PersonaViewProps = {
 };
 
 export default function PersonaView(props: PersonaViewProps) {
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [persona, setPersona] = useState<PersonaModel | null>(null);
-
-  const router = useRouter();
-
-  function handleBack() {
-    router.push("/personas");
-  }
-
-  function toggleDeleteModal() {
-    setIsOpenDeleteModal((prev) => !prev);
-  }
 
   async function fetchPersona() {
     let response = await (
@@ -39,28 +27,20 @@ export default function PersonaView(props: PersonaViewProps) {
     fetchPersona();
   }, []);
 
+  if (persona === null) return null;
+
   return (
     <div className="flex-1 flex flex-col gap-8 p-6">
       <div className="flex flex-row justify-between items-center">
-        <IconButton onClick={handleBack} size="medium">
-          <ArrowBack />
-        </IconButton>
+        <BackButton />
 
         <div className="flex flex-row gap-4">
-          <Button onClick={toggleDeleteModal} variant="contained" color="error">
-            Excluir
-          </Button>
-          <Button variant="contained">Editar</Button>
+          <DeleteButton />
+          <EditButton persona={persona} />
         </div>
       </div>
 
-      {persona !== null ? <ViewDetailsPersona persona={persona} /> : null}
-
-      <DeleteModal
-        isOpen={isOpenDeleteModal}
-        onCancel={toggleDeleteModal}
-        onProceed={() => null}
-      />
+      <ViewDetailsPersona persona={persona} />
     </div>
   );
 }

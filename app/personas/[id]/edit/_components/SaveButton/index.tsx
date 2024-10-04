@@ -4,7 +4,7 @@ import Modal from "@/app/_components/Modal/Modal";
 import { Button } from "@mui/material";
 import { useState } from "react";
 
-export default function DeleteButton() {
+export default function SaveButton() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   function toggleModal() {
@@ -13,16 +13,16 @@ export default function DeleteButton() {
 
   return (
     <>
-      <Button onClick={toggleModal} variant="contained" color="error">
-        Excluir
+      <Button onClick={toggleModal} variant="contained" color="primary">
+        Salvar
       </Button>
 
       <Modal
         isOpen={isOpenModal}
         onCancel={toggleModal}
         onProceed={() => null}
-        text="Você realmente deseja excluir esta persona?"
-        type="danger"
+        text="Você realmente deseja salvar esta persona?"
+        type="normal"
       />
     </>
   );
