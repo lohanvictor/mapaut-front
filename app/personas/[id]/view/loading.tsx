@@ -33,18 +33,30 @@ export default function PersonasViewLoading() {
       </div>
 
       <div className="grid grid-cols-2 gap-3 pb-6">
-        <div>
-          <Skeleton animation="wave" variant="rectangular" />
-        </div>
-        <div>
-          <Skeleton animation="wave" variant="rectangular" />
-        </div>
-        <div>
-          <Skeleton animation="wave" variant="rectangular" />
-        </div>
-        <div>
-          <Skeleton animation="wave" variant="rectangular" />
-        </div>
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width="100%"
+          height={200}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width="100%"
+          height={200}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width="100%"
+          height={200}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width="100%"
+          height={200}
+        />
       </div>
     </div>
   );
