@@ -32,7 +32,7 @@ const Span = styledComponents.span`
 
 export default function AboutPersona(props: AboutProps) {
   const [openModal, setOpenModal] = useState(false);
-  const [about, setAbout] = useState("");
+  const [about, setAbout] = useState(props.form?.about || "");
   const [errors, setErrors] = useState({
     about: "",
   });

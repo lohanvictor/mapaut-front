@@ -112,6 +112,7 @@ export default function PersonasCreate() {
       ...prev,
       sobre: text,
     }));
+    nextStep();
   }
 
   function onNextStereotypes(activities: string[]) {
@@ -209,11 +210,12 @@ export default function PersonasCreate() {
         <AboutPersona
           name={personaModel.nome}
           step={textStep}
+          form={{ about: personaModel.sobre }}
           onReturn={previousStep}
           onNext={onNextAboutPersona}
         />
       ) : null}
-      {currentStep === 4 && (
+      {currentStep === 4 && personaModel.modelo === "1" && (
         <CalmActivities
           step={textStep}
           activities={personaModel.atividades_acalmam}
@@ -221,7 +223,7 @@ export default function PersonasCreate() {
           onNext={onNextCalmActivities}
         />
       )}
-      {currentStep === 5 && (
+      {currentStep === 5 && personaModel.modelo === "1" && (
         <Stereotypes
           step={textStep}
           activities={personaModel.manias}
@@ -229,7 +231,7 @@ export default function PersonasCreate() {
           onNext={onNextStereotypes}
         />
       )}
-      {currentStep === 6 && (
+      {currentStep === 6 && personaModel.modelo === "1" && (
         <SocialAspects
           step={textStep}
           activities={personaModel.aspectos_sociais}
@@ -237,7 +239,7 @@ export default function PersonasCreate() {
           onNext={onNextSocialAspects}
         />
       )}
-      {currentStep === 7 && (
+      {currentStep === 7 && personaModel.modelo === "1" && (
         <SoftwareAspects
           step={textStep}
           activities={personaModel.aspectos_software}
@@ -245,14 +247,15 @@ export default function PersonasCreate() {
           onNext={onNextSoftwareAspects}
         />
       )}
-      {currentStep > 7 && (
-        <ViewCreatedPersona
-          onBack={previousStep}
-          onCancel={onCancelCreation}
-          onSave={onSave}
-          persona={personaModel}
-        />
-      )}
+      {currentStep > 7 ||
+        (personaModel.modelo === "2" && currentStep === 4 && (
+          <ViewCreatedPersona
+            onBack={previousStep}
+            onCancel={onCancelCreation}
+            onSave={onSave}
+            persona={{ ...personaModel, foto: img.link }}
+          />
+        ))}
     </div>
   );
 }

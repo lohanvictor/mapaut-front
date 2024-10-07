@@ -25,7 +25,7 @@ export default function MainCharacteristics(props: MainCharacteristicsProps) {
   return (
     <div className="flex-1 flex flex-row gap-4 items-start">
       <img
-        className="aspect-square rounded-full bg-cover"
+        className="aspect-square object-cover rounded-full bg-cover"
         width={175}
         height={175}
         alt="Foto principal"
