@@ -7,6 +7,9 @@ type GetOptions = {
 
 const PAGES_PER_PAGE = 10;
 
+const mockFn = () =>
+  new Promise<string>((resolve) => setTimeout(() => resolve(""), 1000));
+
 export async function GET(request: NextRequest, options: GetOptions) {
   const searchParams = request.nextUrl.searchParams;
   const page = searchParams.get("page");
@@ -17,4 +20,12 @@ export async function GET(request: NextRequest, options: GetOptions) {
     } as typeof LIST_PERSONAS_MOCK);
   }
   return NextResponse.json(LIST_PERSONAS_MOCK);
+}
+
+export async function POST(request: NextRequest) {
+  await mockFn();
+  return NextResponse.json({
+    message: "Persona criada com sucesso",
+    id: "123",
+  });
 }

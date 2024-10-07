@@ -26,7 +26,7 @@ export default function EditButton({ persona }: EditButtonProps) {
 
   return (
     <>
-      <Button onClick={toggleModal} variant="contained" color="primary">
+      <Button onClick={onProceed} variant="contained" color="primary">
         Editar
       </Button>
 

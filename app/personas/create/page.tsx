@@ -252,7 +252,6 @@ export default function PersonasCreate() {
           <ViewCreatedPersona
             onBack={previousStep}
             onCancel={onCancelCreation}
-            onSave={onSave}
             persona={{ ...personaModel, foto: img.link }}
           />
         ))}
