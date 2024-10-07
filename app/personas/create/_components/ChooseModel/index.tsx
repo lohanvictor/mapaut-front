@@ -18,7 +18,6 @@ export default function ChooseModel(props: ChooseModelProps) {
     model: ModelType
   ) {
     event.stopPropagation();
-    console.log("Help button clicked");
   }
 
   function onClickModel(

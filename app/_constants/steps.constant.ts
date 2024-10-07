@@ -15,6 +15,18 @@ export const STEPS_PERSONA_DATA = {
     title: "Atividades que acalmam",
     description: "Informe as atividades que acalmam a persona",
   },
+  stereotypes: {
+    title: "Estereótipos/Manias",
+    description: "Informe os estereótipos ou manias da persona",
+  },
+  socialAspects: {
+    title: "Aspectos sociais",
+    description: "Informe os aspectos sociais da persona",
+  },
+  softwareAspects: {
+    title: "Aspectos de software",
+    description: "Informe os aspectos de software da persona",
+  },
 };
 
 export const STRESS_ACTIVITIES_MOCK = [
@@ -29,4 +41,25 @@ export const CALM_ACTIVITIES_MOCK = [
   "Ouvir música",
   "Ficar sozinho",
   "Ficar em silêncio",
+];
+
+export const STEREOTYPES_MOCK = [
+  "Sensível a luz",
+  "Sensível a barulho",
+  "Sensível a toque",
+  "Sensível a cheiro",
+];
+
+export const SOCIAL_ASPECTS_MOCK = [
+  "Gosta de festas",
+  "Gosta de sair",
+  "Gosta de conversar",
+  "Gosta de ajudar",
+];
+
+export const SOFTWARE_ASPECTS_MOCK = [
+  "Gosta de jogos",
+  "Gosta de redes sociais",
+  "Gosta de aplicativos de música",
+  "Gosta de aplicativos de leitura",
 ];

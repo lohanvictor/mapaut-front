@@ -21,6 +21,10 @@ export default function PersonasList() {
     setPage(newPage);
   }
 
+  function handleNewPersona() {
+    router.push("/personas/create");
+  }
+
   async function fetchPersonas() {
     let response = await (await fetch(`/api/personas?page=${page}`)).json();
     setPersonaList(response as PersonaModelList);
@@ -54,7 +58,7 @@ export default function PersonasList() {
               <Search />
             </IconButton>
           </div>
-          <Button variant="contained">Nova Persona</Button>
+          <Button onClick={handleNewPersona} variant="contained">Nova Persona</Button>
         </div>
       </div>
 

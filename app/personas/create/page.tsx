@@ -9,6 +9,11 @@ import { PersonaModel } from "@/app/@types/persona.type";
 import CalmActivities from "@/app/_components/PersonaSteps/CalmActivities";
 import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
 import AboutPersona from "@/app/_components/PersonaSteps/AboutPersona";
+import Stereotypes from "@/app/_components/PersonaSteps/Stereotypes";
+import SocialAspects from "@/app/_components/PersonaSteps/SocialAspects";
+import SoftwareAspects from "@/app/_components/PersonaSteps/SoftwareAspects";
+import ViewCreatedPersona from "./_components/ViewCreatedPersona";
+
 export default function PersonasCreate() {
   const [currentStep, setCurrentStep] = useState(0);
   const [totalSteps, setTotalSteps] = useState(0);
@@ -39,6 +44,14 @@ export default function PersonasCreate() {
     id: "",
   });
 
+  function previousStep() {
+    setCurrentStep((prev) => prev - 1);
+  }
+
+  function nextStep() {
+    setCurrentStep((prev) => prev + 1);
+  }
+
   function onChooseModel(model: string) {
     setPersonaModel((prev) => ({ ...prev, modelo: model }));
     setTotalSteps(model === "1" ? 7 : 3);
@@ -62,11 +75,7 @@ export default function PersonasCreate() {
       file: form.imgFile,
       link: form.imgLink,
     });
-    setCurrentStep(2);
-  }
-
-  function onReturnGeneralCharacteristics() {
-    setCurrentStep(1);
+    nextStep();
   }
 
   function onNextGeneralCharacteristics(form: {
@@ -79,11 +88,7 @@ export default function PersonasCreate() {
       nivel_autismo: form.autism,
     }));
 
-    setCurrentStep(3);
-  }
-
-  function onReturnStressActivities() {
-    setCurrentStep(2);
+    nextStep();
   }
 
   function onNextStressActivites(activities: string[]) {
@@ -91,15 +96,15 @@ export default function PersonasCreate() {
       ...prev,
       atividades_estressam: activities,
     }));
-    setCurrentStep(4);
+    nextStep();
   }
 
-  function onReturnCalmActivities() {
-    setCurrentStep(3);
-  }
-
-  function onReturnAboutPersona() {
-    setCurrentStep(2);
+  function onNextCalmActivities(activities: string[]) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      atividades_acalmam: activities,
+    }));
+    nextStep();
   }
 
   function onNextAboutPersona(text: string) {
@@ -109,17 +114,67 @@ export default function PersonasCreate() {
     }));
   }
 
+  function onNextStereotypes(activities: string[]) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      manias: activities,
+    }));
+    nextStep();
+  }
+
+  function onNextSocialAspects(activities: string[]) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      aspectos_sociais: activities,
+    }));
+    nextStep();
+  }
+
+  function onNextSoftwareAspects(activities: string[]) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      aspectos_software: activities,
+    }));
+    nextStep();
+  }
+
+  function onCancelCreation() {
+    setPersonaModel({
+      nome: "",
+      idade: 0,
+      genero: "",
+      linguagem: "",
+      sensibilidade_som: false,
+      nivel_autismo: "",
+      modelo: "",
+      atividades_estressam: [],
+      atividades_acalmam: [],
+      manias: [],
+      aspectos_software: [],
+      aspectos_sociais: [],
+      sobre: "",
+      foto: "",
+      id: "",
+    });
+    setCurrentStep(0);
+    setTotalSteps(0);
+  }
+
+  function onSave() {
+    console.log("Save", personaModel);
+  }
+
   return (
     <div className="flex-1 flex flex-col items-center p-6">
       {/* DEBUG DE SENIOR */}
-      <span className="text-black">{JSON.stringify(personaModel)}</span>
+      {/* <span className="text-black">{JSON.stringify(personaModel)}</span> */}
 
       {currentStep === 0 && <ChooseModel onChooseModel={onChooseModel} />}
       {currentStep === 1 && (
         <DemographicCharacteristics
           state="create"
           step={textStep}
-          onReturn={() => null}
+          onReturn={previousStep}
           onNext={onNextDemoCharacteristics}
           form={{
             age: personaModel.idade,
@@ -138,7 +193,7 @@ export default function PersonasCreate() {
             autism: personaModel.nivel_autismo,
           }}
           state="create"
-          onReturn={onReturnGeneralCharacteristics}
+          onReturn={previousStep}
           onNext={onNextGeneralCharacteristics}
         />
       )}
@@ -146,7 +201,7 @@ export default function PersonasCreate() {
         <StressActivities
           step={textStep}
           activities={personaModel.atividades_estressam}
-          onReturn={onReturnStressActivities}
+          onReturn={previousStep}
           onNext={onNextStressActivites}
         />
       ) : null}
@@ -154,18 +209,50 @@ export default function PersonasCreate() {
         <AboutPersona
           name={personaModel.nome}
           step={textStep}
-          onReturn={onReturnAboutPersona}
+          onReturn={previousStep}
           onNext={onNextAboutPersona}
         />
       ) : null}
       {currentStep === 4 && (
         <CalmActivities
           step={textStep}
-          onReturn={onReturnCalmActivities}
-          onNext={console.log}
+          activities={personaModel.atividades_acalmam}
+          onReturn={previousStep}
+          onNext={onNextCalmActivities}
         />
       )}
-      {currentStep > 7 && <ViewDetailsPersona persona={personaModel} />}
+      {currentStep === 5 && (
+        <Stereotypes
+          step={textStep}
+          activities={personaModel.manias}
+          onReturn={previousStep}
+          onNext={onNextStereotypes}
+        />
+      )}
+      {currentStep === 6 && (
+        <SocialAspects
+          step={textStep}
+          activities={personaModel.aspectos_sociais}
+          onReturn={previousStep}
+          onNext={onNextSocialAspects}
+        />
+      )}
+      {currentStep === 7 && (
+        <SoftwareAspects
+          step={textStep}
+          activities={personaModel.aspectos_software}
+          onReturn={previousStep}
+          onNext={onNextSoftwareAspects}
+        />
+      )}
+      {currentStep > 7 && (
+        <ViewCreatedPersona
+          onBack={previousStep}
+          onCancel={onCancelCreation}
+          onSave={onSave}
+          persona={personaModel}
+        />
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ type ViewDetailsPersonaProps = {
   persona: PersonaModel;
 };
 
-export default async function ViewDetailsPersona({
+export default function ViewDetailsPersona({
   persona,
 }: ViewDetailsPersonaProps) {
   return (

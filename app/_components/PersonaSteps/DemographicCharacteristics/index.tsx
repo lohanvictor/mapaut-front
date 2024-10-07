@@ -118,7 +118,6 @@ export default function DemographicCharacteristics(
   }
 
   function handleGenderChange(value: string) {
-    console.log(value);
     setGender(value);
   }
 
@@ -227,15 +226,10 @@ export default function DemographicCharacteristics(
         </div>
       </div>
       <div className="w-full flex flex-row justify-between">
-        <div>
-          {props.state === "edit" ? (
-            <Button variant="contained" onClick={props.onReturn}>
-              Voltar
-            </Button>
-          ) : (
-            <></>
-          )}
-        </div>
+        <Button variant="contained" onClick={props.onReturn}>
+          Voltar
+        </Button>
+        {/* <div>{props.state === "edit" ? null : <></>}</div> */}
         <Button variant="contained" onClick={onNext}>
           Prosseguir
         </Button>

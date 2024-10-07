@@ -5,22 +5,23 @@ import LayoutPersona from "../../LayoutPersona";
 import {
   CALM_ACTIVITIES_MOCK,
   STEPS_PERSONA_DATA,
+  STEREOTYPES_MOCK,
 } from "@/app/_constants/steps.constant";
 
-type CalmActivitiesProps = {
+type StereotypesProps = {
   step: string;
-  onReturn: () => void;
   activities: string[];
+  onReturn: () => void;
   onNext: (activities: string[]) => void;
 };
 
-export default function CalmActivities(props: CalmActivitiesProps) {
+export default function Stereotypes(props: StereotypesProps) {
   const [selectedActivityIndex, setSelectedActivityIndex] = useState(-1);
   const [selectedGuideAutActivityIndex, setSelectedGuideAutActivityIndex] =
     useState(-1);
 
   const [guideAutActivities, setGuideAutActivities] =
-    useState(CALM_ACTIVITIES_MOCK);
+    useState(STEREOTYPES_MOCK);
   const [activities, setActivities] = useState<string[]>(props.activities);
   const [activityInput, setActivityInput] = useState("");
   const [errors, setErrors] = useState({
@@ -44,7 +45,7 @@ export default function CalmActivities(props: CalmActivitiesProps) {
       let error = "";
 
       if (!activities.length) {
-        error = "Adicione pelo menos uma atividade";
+        error = "Adicione pelo menos um estereótipo ou mania";
       }
 
       setErrors((prev) => ({ ...prev, activities: error }));
@@ -103,14 +104,14 @@ export default function CalmActivities(props: CalmActivitiesProps) {
   return (
     <LayoutPersona
       step={props.step}
-      title={STEPS_PERSONA_DATA.calmActivities.title}
-      description={STEPS_PERSONA_DATA.calmActivities.description}
+      title={STEPS_PERSONA_DATA.stereotypes.title}
+      description={STEPS_PERSONA_DATA.stereotypes.description}
     >
       <div className="w-full flex flex-row gap-4">
         <div className="flex-1 flex flex-row gap-2">
           <div className="flex-1">
             <TextField
-              placeholder="Escreva uma atividade que acalma"
+              placeholder="Escreva um estereótipo ou mania"
               value={activityInput}
               onChange={(event) => setActivityInput(event.target.value)}
               variant="outlined"
@@ -130,7 +131,9 @@ export default function CalmActivities(props: CalmActivitiesProps) {
       </div>
       <div className="w-full flex flex-row h-96">
         <div className="flex-1 flex flex-col gap-1">
-          <h2 className="text-sm text-slate-950">Atividades do GuideAut</h2>
+          <h2 className="text-sm text-slate-950">
+            Estereotipos/Manias do GuideAut
+          </h2>
           <div className="flex-1 flex flex-col border-2 overflow-y-auto border-slate-700">
             {guideAutActivities.map((selectedActivity, index) => (
               <button
