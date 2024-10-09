@@ -247,14 +247,20 @@ export default function PersonasCreate() {
           onNext={onNextSoftwareAspects}
         />
       )}
-      {currentStep > 7 ||
-        (personaModel.modelo === "2" && currentStep === 4 && (
-          <ViewCreatedPersona
-            onBack={previousStep}
-            onCancel={onCancelCreation}
-            persona={{ ...personaModel, foto: img.link }}
-          />
-        ))}
+      {currentStep > 7 && personaModel.modelo === "1" && (
+        <ViewCreatedPersona
+          onBack={previousStep}
+          onCancel={onCancelCreation}
+          persona={{ ...personaModel, foto: img.link }}
+        />
+      )}
+      {currentStep === 4 && personaModel.modelo === "2" && (
+        <ViewCreatedPersona
+          onBack={previousStep}
+          onCancel={onCancelCreation}
+          persona={{ ...personaModel, foto: img.link }}
+        />
+      )}
     </div>
   );
 }
