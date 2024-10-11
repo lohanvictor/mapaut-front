@@ -1,5 +1,5 @@
 import { Button, FormControl, TextField } from "@mui/material";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AddActivityButton } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
 import {
@@ -21,14 +21,23 @@ export default function SocialAspects(props: SocialAspectsProps) {
   const [selectedGuideAutActivityIndex, setSelectedGuideAutActivityIndex] =
     useState(-1);
 
-  const [guideAutActivities, setGuideAutActivities] =
-    useState(SOCIAL_ASPECTS_MOCK);
+  const [guideAutActivities, setGuideAutActivities] = useState<string[]>([]);
   const [activities, setActivities] = useState<string[]>(props.activities);
   const [activityInput, setActivityInput] = useState("");
   const [errors, setErrors] = useState({
     activityInput: "",
     activities: "",
   });
+
+  useEffect(() => {
+    async function getActivity() {
+      const response = await fetch(`/api/guideaut?section=aspectos_sociais`);
+      const data = await response.json();
+
+      setGuideAutActivities(data);
+    }
+    getActivity();
+  }, []);
 
   const valid = {
     activityInput: () => {

@@ -31,7 +31,7 @@ export default function PersonaModel2HelpModal(props: TextModalProps) {
               nível de autismo e o tipo de linguagem.
             </li>
             <li>
-              Sobre: usado para descrever as informações da persona de forma
+              Sobre: usado para condensar as informações da persona de forma
               mais flexível em forma de história.
             </li>
           </ul>
