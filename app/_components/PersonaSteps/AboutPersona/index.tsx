@@ -1,17 +1,22 @@
-import { Close, QuestionMark } from "@mui/icons-material";
+import { QuestionMark } from "@mui/icons-material";
 import {
   Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   IconButton,
+  LinearProgress,
+  linearProgressClasses,
   TextField,
-  Typography,
 } from "@mui/material";
-import { useState } from "react";
-import styledComponents from "styled-components";
+import { useMemo, useState } from "react";
 import { styled } from "@mui/material/styles";
 import AboutPersonaModal from "../../Modal/custom/AboutPersonaModal";
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 16,
+  borderRadius: 8,
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 8,
+  },
+}));
 
 type AboutProps = {
   step: string;
@@ -23,14 +28,11 @@ type AboutProps = {
   onNext: (text: string) => void;
 };
 
-const Span = styledComponents.span`
-  display: block;
-  padding: 4px 8px;
-  background-color: #1976d2;
-  border-radius: 8px;
-`;
-
 export default function AboutPersona(props: AboutProps) {
+  const progressValue = useMemo(() => {
+    const [step, total] = props.step.split("/");
+    return (Number(step) / Number(total)) * 100;
+  }, []);
   const [openModal, setOpenModal] = useState(false);
   const [about, setAbout] = useState(props.form?.about || "");
   const [errors, setErrors] = useState({
@@ -75,8 +77,11 @@ export default function AboutPersona(props: AboutProps) {
           </div>
           <p className="m-0 text-slate-950">Que não sei oq não sei oq lá</p>
         </div>
-        <div className="text-xl">
-          <Span className="text-white">{props.step}</Span>
+        <div className="flex flex-col-reverse items-start gap-1 h-fit">
+          <div className="w-40">
+            <BorderLinearProgress variant="determinate" value={progressValue} />
+          </div>
+          <span className="text-sm text-slate-950">Passos {props.step}</span>
         </div>
       </div>
       <div className="w-full">

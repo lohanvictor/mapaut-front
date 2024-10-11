@@ -1,23 +1,29 @@
 "use client";
 
+import PersonaModel1HelpModal from "@/app/_components/Modal/custom/PersonaModel1HelpModal";
+import PersonaModel2HelpModal from "@/app/_components/Modal/custom/PersonaModel2HelpModal";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { IconButton } from "@mui/material";
+import { useState } from "react";
 
 type ChooseModelProps = {
   onChooseModel: (model: ModelType) => void;
 };
 type ModelType = "1" | "2";
 
+const buttonStyle =
+  "flex-1 flex flex-row justify-center items-center cursor-pointer relative select-none bg-guidaut-blue hover:bg-[#0a7dd8] rounded-md";
+const helpStyle = "absolute top-2 right-2 rounded-full bg-white w-12 h-12";
+
 export default function ChooseModel(props: ChooseModelProps) {
-  const buttonStyle =
-    "flex-1 flex flex-row justify-center items-center cursor-pointer relative select-none bg-guidaut-blue hover:bg-[#0a7dd8] rounded-md";
-  const helpStyle = "absolute top-2 right-2 rounded-full bg-white w-12 h-12";
+  const [modalState, setModalState] = useState("none");
 
   function onClickHelp(
     event: React.MouseEvent<HTMLButtonElement>,
     model: ModelType
   ) {
     event.stopPropagation();
+    setModalState(model);
   }
 
   function onClickModel(
@@ -63,6 +69,13 @@ export default function ChooseModel(props: ChooseModelProps) {
           </span>
         </div>
       </div>
+
+      {modalState === "1" ? (
+        <PersonaModel1HelpModal onClose={() => setModalState("none")} />
+      ) : null}
+      {modalState === "2" ? (
+        <PersonaModel2HelpModal onClose={() => setModalState("none")} />
+      ) : null}
     </div>
   );
 }
