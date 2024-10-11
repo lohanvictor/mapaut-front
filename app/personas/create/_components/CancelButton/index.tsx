@@ -1,4 +1,4 @@
-import Modal from "@/app/_components/Modal/Modal";
+import OptionModal from "@/app/_components/Modal/OptionModal";
 import { Button } from "@mui/material";
 import { useState } from "react";
 
@@ -19,7 +19,7 @@ export default function CancelButton(props: CancelButtonProps) {
         Cancelar
       </Button>
 
-      <Modal
+      <OptionModal
         isOpen={isOpenModal}
         onCancel={toggleModal}
         onProceed={props.onCancel}

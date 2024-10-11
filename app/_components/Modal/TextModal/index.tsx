@@ -5,7 +5,6 @@ import {
   DialogTitle,
   IconButton,
   styled,
-  Typography,
 } from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -17,16 +16,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-type AboutPersonaModalProps = {
+type TextModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  name: string;
+  title: string;
+  children?: React.ReactNode;
 };
 
-export default function AboutPersonaModal(props: AboutPersonaModalProps) {
+export default function TextModal(props: TextModalProps) {
   return (
     <BootstrapDialog open={props.isOpen} onClose={props.onClose}>
-      <DialogTitle>Sobre {props.name}</DialogTitle>
+      <DialogTitle>{props.title}</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={props.onClose}
@@ -41,21 +41,7 @@ export default function AboutPersonaModal(props: AboutPersonaModalProps) {
       </IconButton>
 
       {/* Modal */}
-      <DialogContent dividers>
-        <Typography variant="body1">
-          Esta seção é para você descrever sobre a persona em forma de história,
-          itens como:
-        </Typography>
-        <Typography style={{ paddingLeft: 16 }}>
-          <ul style={{ listStyleType: "'- '" }}>
-            <li>Atividades que acalmam</li>
-            <li>Atividades que estressam</li>
-            <li>Aspectos sociais e familiares</li>
-            <li>Aspectos tecnológicos de software</li>
-            <li>Esteriotipias e Manias</li>
-          </ul>
-        </Typography>
-      </DialogContent>
+      <DialogContent dividers>{props.children}</DialogContent>
     </BootstrapDialog>
   );
 }

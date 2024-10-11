@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import styledComponents from "styled-components";
 import { styled } from "@mui/material/styles";
-import AboutPersonaModal from "../../Modal/AboutPersonaModal";
+import AboutPersonaModal from "../../Modal/custom/AboutPersonaModal";
 
 type AboutProps = {
   step: string;
@@ -103,11 +103,9 @@ export default function AboutPersona(props: AboutProps) {
         </Button>
       </div>
 
-      <AboutPersonaModal
-        isOpen={openModal}
-        name={props.name}
-        onClose={toggleModal}
-      />
+      {openModal ? (
+        <AboutPersonaModal name={props.name} onClose={toggleModal} />
+      ) : null}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "@/app/_components/Modal/Modal";
+import OptionModal from "@/app/_components/Modal/OptionModal";
 import { Button } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -25,7 +25,7 @@ export default function CancelButton() {
         Cancelar
       </Button>
 
-      <Modal
+      <OptionModal
         isOpen={isOpenModal}
         onCancel={toggleModal}
         onProceed={() => null}

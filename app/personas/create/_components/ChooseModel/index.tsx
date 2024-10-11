@@ -10,8 +10,8 @@ type ModelType = "1" | "2";
 
 export default function ChooseModel(props: ChooseModelProps) {
   const buttonStyle =
-    "flex-1 flex flex-row justify-center items-center bg-zinc-400 hover:bg-zinc-500 cursor-pointer relative select-none";
-  const helpStyle = "absolute top-1 right-1 rounded-full bg-white w-12 h-12";
+    "flex-1 flex flex-row justify-center items-center cursor-pointer relative select-none bg-guidaut-blue hover:bg-[#0a7dd8] rounded-md";
+  const helpStyle = "absolute top-2 right-2 rounded-full bg-white w-12 h-12";
 
   function onClickHelp(
     event: React.MouseEvent<HTMLButtonElement>,
@@ -44,7 +44,9 @@ export default function ChooseModel(props: ChooseModelProps) {
           >
             <QuestionMarkIcon />
           </IconButton>
-          <span>Modelo 1</span>
+          <span className="text-white text-2xl">
+            <strong>Modelo 1</strong>
+          </span>
         </div>
         <div
           className={`${buttonStyle} `}
@@ -56,7 +58,9 @@ export default function ChooseModel(props: ChooseModelProps) {
           >
             <QuestionMarkIcon />
           </IconButton>
-          <span>Modelo 2</span>
+          <span className="text-white text-2xl">
+            <strong>Modelo 2</strong>
+          </span>
         </div>
       </div>
     </div>

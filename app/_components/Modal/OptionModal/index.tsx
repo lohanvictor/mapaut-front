@@ -16,7 +16,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-type DangerModalProps = {
+type OptionModalProps = {
   isOpen: boolean;
   text: string;
   onCancel: () => void;
@@ -24,13 +24,13 @@ type DangerModalProps = {
   type?: "danger" | "normal" | "info";
 };
 
-export default function Modal({
+export default function OptionModal({
   isOpen,
   onCancel,
   onProceed,
   text,
   type = "danger",
-}: DangerModalProps) {
+}: OptionModalProps) {
   const color = useMemo(() => {
     if (type === "danger") return "error";
     if (type === "info") return "info";
