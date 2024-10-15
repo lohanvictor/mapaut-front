@@ -25,10 +25,9 @@ export async function GET(request: NextRequest) {
   const section = searchParams.get("section") ?? "";
   const url = GuideAutUtils.getPath(section);
 
-  console.log(url);
   await mockFn();
 
-  if (Object.values(mapGuideAut).includes([section])) {
+  if (Object.keys(mapGuideAut).includes(section)) {
     return NextResponse.json(mapGuideAut[section as GuideAutSection]);
   }
 

@@ -1,4 +1,9 @@
-import { Button, FormControl, TextField } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  FormControl,
+  TextField,
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { AddActivityButton } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
@@ -7,6 +12,7 @@ import {
   STEPS_PERSONA_DATA,
   STEREOTYPES_MOCK,
 } from "@/app/_constants/steps.constant";
+import { useFetch } from "@/app/_hooks/fetch";
 
 type StereotypesProps = {
   step: string;
@@ -20,23 +26,15 @@ export default function Stereotypes(props: StereotypesProps) {
   const [selectedGuideAutActivityIndex, setSelectedGuideAutActivityIndex] =
     useState(-1);
 
-  const [guideAutActivities, setGuideAutActivities] = useState<string[]>([]);
+  const { data: guideAutActivities, loading: guideAutLoading } = useFetch<
+    string[]
+  >("/api/guideaut?section=manias", []);
   const [activities, setActivities] = useState<string[]>(props.activities);
   const [activityInput, setActivityInput] = useState("");
   const [errors, setErrors] = useState({
     activityInput: "",
     activities: "",
   });
-
-  useEffect(() => {
-    async function getActivity() {
-      const response = await fetch(`/api/guideaut?section=manias`);
-      const data = await response.json();
-
-      setGuideAutActivities(data);
-    }
-    getActivity();
-  }, []);
 
   const valid = {
     activityInput: () => {
@@ -144,20 +142,24 @@ export default function Stereotypes(props: StereotypesProps) {
             Estereotipos/Manias do GuideAut
           </h2>
           <div className="flex-1 flex flex-col border-2 overflow-y-auto border-slate-700">
-            {guideAutActivities.map((selectedActivity, index) => (
-              <button
-                key={index}
-                onClick={() => handleSelectGuideAutActivity(index)}
-                className={
-                  "flex flex-row p-2 w-full justify-start items-center border-b-2 hover:bg-slate-200 " +
-                  (index === selectedGuideAutActivityIndex
-                    ? "bg-slate-400"
-                    : "")
-                }
-              >
-                <span className="text-slate-800">{selectedActivity}</span>
-              </button>
-            ))}
+            {guideAutLoading ? (
+              <CircularProgress className="self-center justify-self-center" />
+            ) : (
+              guideAutActivities.map((selectedActivity, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSelectGuideAutActivity(index)}
+                  className={
+                    "flex flex-row p-2 w-full justify-start items-center border-b-2 hover:bg-slate-200 " +
+                    (index === selectedGuideAutActivityIndex
+                      ? "bg-slate-400"
+                      : "")
+                  }
+                >
+                  <span className="text-slate-800">{selectedActivity}</span>
+                </button>
+              ))
+            )}
           </div>
           <div style={{ height: "20px" }}></div>
         </div>

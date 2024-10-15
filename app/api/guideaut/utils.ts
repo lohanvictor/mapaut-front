@@ -7,14 +7,15 @@ export class GuideAutUtils {
 
   static getPath(section: string): string {
     const mapPath = {
-      [GuideAutUtils.AtividadesEstressam]: "/atividades-estressam",
-      [GuideAutUtils.AtividadesAcalmam]: "/atividades-acalmam",
+      [GuideAutUtils.AtividadesEstressam]: "/atividades_estressam",
+      [GuideAutUtils.AtividadesAcalmam]: "/atividades_acalmam",
       [GuideAutUtils.Manias]: "/manias",
-      [GuideAutUtils.AspectosSoftware]: "/aspectos-software",
-      [GuideAutUtils.AspectosSociais]: "/aspectos-sociais",
+      [GuideAutUtils.AspectosSoftware]: "/aspectos_software",
+      [GuideAutUtils.AspectosSociais]: "/aspectos_sociais",
     };
 
-    const guideAutURL = process.env.GUIDEAUT_API || "";
-    return guideAutURL + mapPath;
+    const guideAutURL = "";
+    // const guideAutURL = process.env.GUIDEAUT_API || "";
+    return guideAutURL + mapPath[section];
   }
 }
