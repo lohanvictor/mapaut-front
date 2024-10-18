@@ -23,15 +23,15 @@ export default function PersonaModel2HelpModal(props: TextModalProps) {
         <Typography style={{ paddingLeft: 16 }}>
           <ul style={{ listStyleType: "'- '" }}>
             <li>
-              Características demográficas: usado nos modelos tradicionais,
+              <strong>Características demográficas:</strong> usado nos modelos tradicionais,
               composto por nome, idade, gênero e foto.
             </li>
             <li>
-              Características gerais: é composto por informações gerais sobre o
+              <strong>Características gerais:</strong> é composto por informações gerais sobre o
               nível de autismo e o tipo de linguagem.
             </li>
             <li>
-              Sobre: usado para condensar as informações da persona de forma
+              <strong>Sobre:</strong> usado para condensar as informações da persona de forma
               mais flexível em forma de história.
             </li>
           </ul>

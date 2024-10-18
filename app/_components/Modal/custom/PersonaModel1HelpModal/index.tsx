@@ -23,32 +23,32 @@ export default function PersonaModel1HelpModal(props: TextModalProps) {
         <Typography style={{ paddingLeft: 16 }}>
           <ul style={{ listStyleType: "'- '" }}>
             <li>
-              Características demográficas: usado nos modelos tradicionais,
+              <strong>Características demográficas:</strong> usado nos modelos tradicionais,
               composto por nome, idade, gênero e foto.
             </li>
             <li>
-              Características gerais: é composto por informações gerais sobre o
+              <strong>Características gerais:</strong> é composto por informações gerais sobre o
               nível de autismo e o tipo de linguagem.
             </li>
             <li>
-              Atividades que acalmam: lista de atividades ou situações que fazem
+              <strong>Atividades que acalmam:</strong> lista de atividades ou situações que fazem
               o autista ficar calmo.
             </li>
             <li>
-              Atividades que estressam: lista de atividades ou situações que
+              <strong>Atividades que estressam:</strong> lista de atividades ou situações que
               fazem o autista ficar estressado.
             </li>
             <li>
-              Aspectos sociais e familiares: descreve a relação do autista com
+              <strong>Aspectos sociais e familiares:</strong> descreve a relação do autista com
               os pais, demais familiares, terapeutas, colegas de escola e demais
               aspectos sociais e afins.
             </li>
             <li>
-              Aspectos tecnológicos de software: descreve a relação do autista
+              <strong>Aspectos tecnológicos de software:</strong> descreve a relação do autista
               com as tecnologias e suas afinidades.
             </li>
             <li>
-              Esteriotipias e Manias: para descrever as manias e estereotipias
+              <strong>Esteriotipias e Manias:</strong> para descrever as manias e estereotipias
               do comportamento do autista.
             </li>
           </ul>
