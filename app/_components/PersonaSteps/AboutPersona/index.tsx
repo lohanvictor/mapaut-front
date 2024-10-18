@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { styled } from "@mui/material/styles";
-import AboutPersonaModal from "../../Modal/custom/AboutPersonaModal";
+import AboutPersonaModal from "../../_modal/custom/AboutPersonaModal";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 16,

@@ -1,12 +1,12 @@
 import { PersonaModel } from "@/app/@types/persona.type";
-import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
+import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import CancelButton from "../CancelButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/app/_lib/api";
-import LoadingModal from "@/app/_components/Modal/LoadingModal";
+import LoadingModal from "@/app/_components/_modal/LoadingModal";
 
 type ViewCreatedPersona = {
   persona: PersonaModel;

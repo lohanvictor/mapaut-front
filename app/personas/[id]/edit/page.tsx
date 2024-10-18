@@ -5,7 +5,7 @@ import CancelButton from "./_components/CancelButton";
 import SaveButton from "./_components/SaveButton";
 import { PersonaModel } from "@/app/@types/persona.type";
 import { LocalStorageUtils } from "@/app/_utils/localStorage.util";
-import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
+import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 
 type PersonasEditPageProps = {
   params: {

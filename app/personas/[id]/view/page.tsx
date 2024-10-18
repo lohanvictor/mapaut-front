@@ -1,7 +1,7 @@
 "use client";
 
 import { PersonaModel } from "@/app/@types/persona.type";
-import ViewDetailsPersona from "@/app/_components/DetailsPersona/ViewDetailsPersona";
+import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 import { useEffect, useState } from "react";
 import BackButton from "./_components/BackButton";
 import DeleteButton from "./_components/DeleteButton";

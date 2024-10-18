@@ -1,7 +1,7 @@
 "use client";
 
-import PersonaModel1HelpModal from "@/app/_components/Modal/custom/PersonaModel1HelpModal";
-import PersonaModel2HelpModal from "@/app/_components/Modal/custom/PersonaModel2HelpModal";
+import PersonaModel1HelpModal from "@/app/_components/_modal/custom/PersonaModel1HelpModal";
+import PersonaModel2HelpModal from "@/app/_components/_modal/custom/PersonaModel2HelpModal";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { IconButton } from "@mui/material";
 import { useState } from "react";

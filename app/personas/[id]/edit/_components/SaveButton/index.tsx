@@ -1,6 +1,6 @@
 "use client";
 
-import OptionModal from "@/app/_components/Modal/OptionModal";
+import OptionModal from "@/app/_components/_modal/OptionModal";
 import { Button } from "@mui/material";
 import { useState } from "react";
 
