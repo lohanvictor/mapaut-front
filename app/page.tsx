@@ -1,6 +1,6 @@
 "use client";
 
-import { VGA } from "./_components/PersonaSteps/VGA";
+import { VGA } from "./_components/_personaSteps/VGA";
 
 export default function Home() {
   return (

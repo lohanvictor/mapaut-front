@@ -2,17 +2,17 @@
 
 import { useMemo, useState } from "react";
 import ChooseModel from "./_components/ChooseModel";
-import DemographicCharacteristics from "../../_components/PersonaSteps/DemographicCharacteristics";
-import GeneralCharacteristics from "@/app/_components/PersonaSteps/GeneralCharacteristics";
-import StressActivities from "@/app/_components/PersonaSteps/StressActivities";
+import DemographicCharacteristics from "../../_components/_personaSteps/DemographicCharacteristics";
+import GeneralCharacteristics from "@/app/_components/_personaSteps/GeneralCharacteristics";
+import StressActivities from "@/app/_components/_personaSteps/StressActivities";
 import { PersonaModel } from "@/app/@types/persona.type";
-import CalmActivities from "@/app/_components/PersonaSteps/CalmActivities";
-import AboutPersona from "@/app/_components/PersonaSteps/AboutPersona";
-import Stereotypes from "@/app/_components/PersonaSteps/Stereotypes";
-import SocialAspects from "@/app/_components/PersonaSteps/SocialAspects";
-import SoftwareAspects from "@/app/_components/PersonaSteps/SoftwareAspects";
+import CalmActivities from "@/app/_components/_personaSteps/CalmActivities";
+import AboutPersona from "@/app/_components/_personaSteps/AboutPersona";
+import Stereotypes from "@/app/_components/_personaSteps/Stereotypes";
+import SocialAspects from "@/app/_components/_personaSteps/SocialAspects";
+import SoftwareAspects from "@/app/_components/_personaSteps/SoftwareAspects";
 import ViewCreatedPersona from "./_components/ViewCreatedPersona";
-import { VGA } from "@/app/_components/PersonaSteps/VGA";
+import { VGA } from "@/app/_components/_personaSteps/VGA";
 import { CreateWelcome } from "./_components/CreateWelcome";
 
 export default function PersonasCreate() {

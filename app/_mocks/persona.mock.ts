@@ -48,7 +48,11 @@ export const PERSONA_MOCK: PersonaModel = {
   nivel_autismo: AutismTypes.soft,
   sensibilidade_som: true,
   sobre: "",
-  id: '421'
+  id: "421",
+  cognicao: [false, false, false, true, true, false, true, false, false],
+  comportamento: [false, false, false, true, false, false, false, false, false],
+  comunicacao: [false, false, false, true, false, false, false, false, false, true, false, false],
+  interacao: [false, true, false, true, true, true, true, true, true],
 };
 
 export const LIST_PERSONAS_MOCK: PersonaModelList = {
@@ -96,7 +100,11 @@ export const LIST_PERSONAS_MOCK: PersonaModelList = {
       nivel_autismo: AutismTypes.moderate,
       sensibilidade_som: true,
       sobre: "",
-      id: '321'
+      id: "321",
+      cognicao: [],
+      comportamento: [],
+      comunicacao: [],
+      interacao: [],
     },
     {
       aspectos_sociais: [],
@@ -114,7 +122,11 @@ export const LIST_PERSONAS_MOCK: PersonaModelList = {
       sobre:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in lacus et quam dictum ultrices. Phasellus justo augue, cursus vitae lorem in, rutrum semper felis. In mattis ipsum vitae laoreet dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In semper varius neque, vitae vehicula lacus consectetur quis. Sed commodo efficitur venenatis. Nulla fringilla in ligula quis rhoncus. Nulla at elit sed odio rhoncus convallis sit amet non nibh. Nunc in lacinia elit. Morbi lacus arcu, cursus cursus sollicitudin ut, pulvinar quis diam. Nunc tellus ipsum, mollis quis suscipit ac, tempus at arcu.",
       nome: "Arroz de Festa",
-      id: '123'
+      id: "123",
+      cognicao: [],
+      comportamento: [],
+      comunicacao: [],
+      interacao: [],
     },
   ],
   totalItems: 3,
