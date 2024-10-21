@@ -1,6 +1,8 @@
 import MainCharacteristics from "../MainCharacteristics";
 import LayoutActivity from "../LayoutActivity";
 import { PersonaModel } from "@/app/@types/persona.type";
+import { GraphVGA } from "../../GraphVGA";
+import { useMemo } from "react";
 
 type ViewDetailsPersonaProps = {
   persona: PersonaModel;
@@ -12,14 +14,36 @@ export default function ViewDetailsPersona({
   const aboutName = persona.nome.split(" ");
   const about = persona.sobre.split("\n");
 
+  const vgaData = useMemo<[number, number, number, number]>(() => {
+    const interacao = persona.interacao.reduce(
+      (acc, curr) => (curr ? acc + 1 : acc),
+      0
+    );
+    const comunicacao = persona.comunicacao.reduce(
+      (acc, curr) => (curr ? acc + 1 : acc),
+      0
+    );
+    const comportamento = persona.comportamento.reduce(
+      (acc, curr) => (curr ? acc + 1 : acc),
+      0
+    );
+    const cognicao = persona.cognicao.reduce(
+      (acc, curr) => (curr ? acc + 1 : acc),
+      0
+    );
+    return [
+      interacao * 100 / persona.interacao.length,
+      comunicacao * 100 / persona.comunicacao.length,
+      comportamento * 100 / persona.comportamento.length,
+      cognicao * 100 / persona.cognicao.length,
+    ];
+  }, []);
+
   return (
     <div className="w-full flex flex-col gap-8">
       <div className="w-full flex flex-row gap-2 items-center">
         <MainCharacteristics persona={persona} />
-        <div
-          style={{ width: 300 }}
-          className="h-full bg-slate-800 rounded-lg"
-        ></div>
+        <GraphVGA data={vgaData} />
       </div>
       {persona.modelo === "1" && (
         <div className="grid grid-cols-2 gap-3 pb-6">
