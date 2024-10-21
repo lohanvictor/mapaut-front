@@ -7,15 +7,16 @@ import GeneralCharacteristics from "@/app/_components/PersonaSteps/GeneralCharac
 import StressActivities from "@/app/_components/PersonaSteps/StressActivities";
 import { PersonaModel } from "@/app/@types/persona.type";
 import CalmActivities from "@/app/_components/PersonaSteps/CalmActivities";
-import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 import AboutPersona from "@/app/_components/PersonaSteps/AboutPersona";
 import Stereotypes from "@/app/_components/PersonaSteps/Stereotypes";
 import SocialAspects from "@/app/_components/PersonaSteps/SocialAspects";
 import SoftwareAspects from "@/app/_components/PersonaSteps/SoftwareAspects";
 import ViewCreatedPersona from "./_components/ViewCreatedPersona";
+import { VGA } from "@/app/_components/PersonaSteps/VGA";
+import { CreateWelcome } from "./_components/CreateWelcome";
 
 export default function PersonasCreate() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(-2);
   const [totalSteps, setTotalSteps] = useState(0);
 
   const textStep = useMemo(() => {
@@ -42,6 +43,10 @@ export default function PersonasCreate() {
     sobre: "",
     foto: "",
     id: "",
+    cognicao: [],
+    comportamento: [],
+    comunicacao: [],
+    interacao: [],
   });
 
   function previousStep() {
@@ -52,13 +57,29 @@ export default function PersonasCreate() {
     setCurrentStep((prev) => prev + 1);
   }
 
-  function onChooseModel(model: string) {
+  function handleVGA(vga: {
+    interacao: boolean[];
+    comunicacao: boolean[];
+    comportamento: boolean[];
+    cognicao: boolean[];
+  }) {
+    setPersonaModel((prev) => ({
+      ...prev,
+      cognicao: vga.cognicao,
+      comportamento: vga.comportamento,
+      comunicacao: vga.comunicacao,
+      interacao: vga.interacao,
+    }));
+    nextStep();
+  }
+
+  function handleChooseModel(model: string) {
     setPersonaModel((prev) => ({ ...prev, modelo: model }));
     setTotalSteps(model === "1" ? 7 : 3);
     setCurrentStep(1);
   }
 
-  function onNextDemoCharacteristics(form: {
+  function handleNextDemoCharacteristics(form: {
     name: string;
     age: number;
     gender: string;
@@ -78,7 +99,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextGeneralCharacteristics(form: {
+  function handleNextGeneralCharacteristics(form: {
     language: string;
     autism: string;
   }) {
@@ -91,7 +112,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextStressActivites(activities: string[]) {
+  function handleNextStressActivites(activities: string[]) {
     setPersonaModel((prev) => ({
       ...prev,
       atividades_estressam: activities,
@@ -99,7 +120,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextCalmActivities(activities: string[]) {
+  function handleNextCalmActivities(activities: string[]) {
     setPersonaModel((prev) => ({
       ...prev,
       atividades_acalmam: activities,
@@ -107,7 +128,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextAboutPersona(text: string) {
+  function handleNextAboutPersona(text: string) {
     setPersonaModel((prev) => ({
       ...prev,
       sobre: text,
@@ -115,7 +136,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextStereotypes(activities: string[]) {
+  function handleNextStereotypes(activities: string[]) {
     setPersonaModel((prev) => ({
       ...prev,
       manias: activities,
@@ -123,7 +144,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextSocialAspects(activities: string[]) {
+  function handleNextSocialAspects(activities: string[]) {
     setPersonaModel((prev) => ({
       ...prev,
       aspectos_sociais: activities,
@@ -131,7 +152,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onNextSoftwareAspects(activities: string[]) {
+  function handleNextSoftwareAspects(activities: string[]) {
     setPersonaModel((prev) => ({
       ...prev,
       aspectos_software: activities,
@@ -139,7 +160,7 @@ export default function PersonasCreate() {
     nextStep();
   }
 
-  function onCancelCreation() {
+  function handleCancelCreation() {
     setPersonaModel({
       nome: "",
       idade: 0,
@@ -156,27 +177,30 @@ export default function PersonasCreate() {
       sobre: "",
       foto: "",
       id: "",
+      cognicao: [],
+      comportamento: [],
+      comunicacao: [],
+      interacao: [],
     });
-    setCurrentStep(0);
+    setCurrentStep(-1);
     setTotalSteps(0);
   }
 
-  function onSave() {
+  function handleSave() {
     console.log("Save", personaModel);
   }
 
   return (
     <div className="flex-1 flex flex-col items-center p-6">
-      {/* DEBUG DE SENIOR */}
-      {/* <span className="text-black">{JSON.stringify(personaModel)}</span> */}
-
-      {currentStep === 0 && <ChooseModel onChooseModel={onChooseModel} />}
+      {currentStep === -2 && <CreateWelcome onNext={nextStep} />}
+      {currentStep === -1 && <VGA onReturn={previousStep} onNext={handleVGA} />}
+      {currentStep === 0 && <ChooseModel onChooseModel={handleChooseModel} />}
       {currentStep === 1 && (
         <DemographicCharacteristics
           state="create"
           step={textStep}
           onReturn={previousStep}
-          onNext={onNextDemoCharacteristics}
+          onNext={handleNextDemoCharacteristics}
           form={{
             age: personaModel.idade,
             gender: personaModel.genero,
@@ -195,7 +219,7 @@ export default function PersonasCreate() {
           }}
           state="create"
           onReturn={previousStep}
-          onNext={onNextGeneralCharacteristics}
+          onNext={handleNextGeneralCharacteristics}
         />
       )}
       {currentStep === 3 && personaModel.modelo === "1" ? (
@@ -203,16 +227,7 @@ export default function PersonasCreate() {
           step={textStep}
           activities={personaModel.atividades_estressam}
           onReturn={previousStep}
-          onNext={onNextStressActivites}
-        />
-      ) : null}
-      {currentStep === 3 && personaModel.modelo === "2" ? (
-        <AboutPersona
-          name={personaModel.nome}
-          step={textStep}
-          form={{ about: personaModel.sobre }}
-          onReturn={previousStep}
-          onNext={onNextAboutPersona}
+          onNext={handleNextStressActivites}
         />
       ) : null}
       {currentStep === 4 && personaModel.modelo === "1" && (
@@ -220,7 +235,7 @@ export default function PersonasCreate() {
           step={textStep}
           activities={personaModel.atividades_acalmam}
           onReturn={previousStep}
-          onNext={onNextCalmActivities}
+          onNext={handleNextCalmActivities}
         />
       )}
       {currentStep === 5 && personaModel.modelo === "1" && (
@@ -228,7 +243,7 @@ export default function PersonasCreate() {
           step={textStep}
           activities={personaModel.manias}
           onReturn={previousStep}
-          onNext={onNextStereotypes}
+          onNext={handleNextStereotypes}
         />
       )}
       {currentStep === 6 && personaModel.modelo === "1" && (
@@ -236,7 +251,7 @@ export default function PersonasCreate() {
           step={textStep}
           activities={personaModel.aspectos_sociais}
           onReturn={previousStep}
-          onNext={onNextSocialAspects}
+          onNext={handleNextSocialAspects}
         />
       )}
       {currentStep === 7 && personaModel.modelo === "1" && (
@@ -244,20 +259,29 @@ export default function PersonasCreate() {
           step={textStep}
           activities={personaModel.aspectos_software}
           onReturn={previousStep}
-          onNext={onNextSoftwareAspects}
+          onNext={handleNextSoftwareAspects}
         />
       )}
       {currentStep > 7 && personaModel.modelo === "1" && (
         <ViewCreatedPersona
           onBack={previousStep}
-          onCancel={onCancelCreation}
+          onCancel={handleCancelCreation}
           persona={{ ...personaModel, foto: img.link }}
         />
       )}
+      {currentStep === 3 && personaModel.modelo === "2" ? (
+        <AboutPersona
+          name={personaModel.nome}
+          step={textStep}
+          form={{ about: personaModel.sobre }}
+          onReturn={previousStep}
+          onNext={handleNextAboutPersona}
+        />
+      ) : null}
       {currentStep === 4 && personaModel.modelo === "2" && (
         <ViewCreatedPersona
           onBack={previousStep}
-          onCancel={onCancelCreation}
+          onCancel={handleCancelCreation}
           persona={{ ...personaModel, foto: img.link }}
         />
       )}

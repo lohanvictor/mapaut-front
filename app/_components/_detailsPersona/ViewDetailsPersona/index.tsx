@@ -56,20 +56,6 @@ export default function ViewDetailsPersona({
             ))}
           </div>
         </div>
-        // <TextField
-        //   id="standard-textarea"
-        //   label="Descrição"
-        //   placeholder="Descreva a persona"
-        //   multiline
-        //   value={persona.sobre}
-        //   rows={8}
-        //   fullWidth
-        //   slotProps={{
-        //     input: {
-        //       readOnly: true,
-        //     },
-        //   }}
-        // />
       )}
     </div>
   );

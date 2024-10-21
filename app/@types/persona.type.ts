@@ -14,6 +14,10 @@ export type PersonaModel = {
   aspectos_sociais: string[]; // Passo 7
   sobre: string; // Passo 3
   id: string;
+  cognicao: boolean[];
+  comportamento: boolean[];
+  comunicacao: boolean[];
+  interacao: boolean[];
 };
 export enum LanguageTypes {
   verbal = "Verbal",

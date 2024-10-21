@@ -1,4 +1,8 @@
-import { VGA_INTERACAO } from "@/app/_constants/vga.constant";
+import {
+  VGA_COMPORTAMENTO,
+  VGA_COMUNICACAO,
+  VGA_INTERACAO,
+} from "@/app/_constants/vga.constant";
 import { CheckboxButton } from "../../CheckboxButton";
 import { useState } from "react";
 import { Button } from "@mui/material";
@@ -9,14 +13,12 @@ type Props = {
   textsSelected: boolean[];
 };
 
-export function InteracaoStep(props: Props) {
+export function ComportamentoStep(props: Props) {
   const [selected, setSelected] = useState(
     props.textsSelected.length
       ? props.textsSelected
       : Array.from({ length: VGA_INTERACAO.length }, () => false)
   );
-
-  console.log('selected', selected)
 
   function handleButton(value: boolean, i: number) {
     setSelected((prev) => {
@@ -33,14 +35,14 @@ export function InteracaoStep(props: Props) {
   return (
     <div className="max-h-full w-full overflow-y-auto flex flex-col gap-4">
       <div className="w-full flex flex-col gap-2">
-        <h1 className="text-3xl font-bold text-slate-950">Interação Social</h1>
+        <h1 className="text-3xl font-bold text-slate-950">Comportamento</h1>
         <p className="m-0 text-slate-950">
           Caracterize a persona selecionando as opções abaixo
         </p>
       </div>
 
       <div className="w-full flex flex-col gap-2 max-h-full overflow-y-auto">
-        {VGA_INTERACAO.map(([text1, text2], index) => (
+        {VGA_COMPORTAMENTO.map(([text1, text2], index) => (
           <CheckboxButton
             key={index}
             texts={[text1, text2]}
