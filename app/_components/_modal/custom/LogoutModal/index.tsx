@@ -1,5 +1,6 @@
 import { useSession } from "@/app/_contexts/sessionContext";
 import OptionModal from "../../OptionModal";
+import { useRouter } from "next/navigation";
 
 type Props = {
   onClose: () => void;
@@ -7,9 +8,11 @@ type Props = {
 
 export function LogoutModal(props: Props) {
   const { handleLogout } = useSession();
+  const route = useRouter();
 
-  function handleClick() {
-    handleLogout();
+  async function handleClick() {
+    await handleLogout();
+    route.replace("/");
     props.onClose();
   }
 

@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import TextModal from "../../TextModal";
 import { useState } from "react";
 import { useSession } from "@/app/_contexts/sessionContext";
+import { useRouter } from "next/navigation";
 
 type Props = {
   onClose: () => void;
@@ -9,6 +10,7 @@ type Props = {
 
 export function LoginModal(props: Props) {
   const { handleLogin } = useSession();
+  const route = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,12 +56,14 @@ export function LoginModal(props: Props) {
     valid.password();
   }
 
-  function handleClick() {
+  async function handleClick() {
     if (valid.email() && valid.password()) {
-      // Do login
-      handleLogin(email, password);
-      props.onClose();
+      return;
     }
+    await handleLogin(email, password);
+    route.push("/personas");
+
+    props.onClose();
   }
 
   return (

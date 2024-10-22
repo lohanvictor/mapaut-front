@@ -1,4 +1,5 @@
-import { LineChart, lineElementClasses } from "@mui/x-charts";
+import { LineChart } from "@mui/x-charts";
+import { Container } from "./styled";
 
 const labels = ["Interação", "Comunicação", "Comportamento", "Cognição"];
 
@@ -8,7 +9,7 @@ type Props = {
 
 export function GraphVGA(props: Props) {
   return (
-    <div className="w-auto relative">
+    <Container>
       <LineChart
         width={500}
         height={200}
@@ -23,7 +24,7 @@ export function GraphVGA(props: Props) {
         xAxis={[{ data: labels, scaleType: "point" }]}
       />
 
-      <div className="absolute top-0 left-0 w-full h-full bg-slate-400 rounded-md"></div>
-    </div>
+      {/* <div className="absolute top-0 left-0 w-full h-full bg-slate-400 rounded-md container-hover"></div> */}
+    </Container>
   );
 }

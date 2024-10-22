@@ -11,7 +11,7 @@ export function LogoutButton() {
     <>
       <button
         onClick={toggleModal}
-        className="text-red-600 hover:text-white hover:bg-red-600 p-2 rounded-md w-32"
+        className="text-red-600 hover:text-white hover:bg-red-600 p-2 rounded-md w-full"
       >
         <span>Sair</span>
       </button>

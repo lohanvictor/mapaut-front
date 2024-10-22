@@ -10,7 +10,7 @@ export function LoginButton() {
     <>
       <button
         onClick={toggleModal}
-        className="text-slate-950 hover:bg-slate-400 hover:text-white p-2 rounded-md w-32"
+        className="text-slate-950 hover:bg-slate-400 hover:text-white p-2 rounded-md w-full"
       >
         <span>Fazer Login</span>
       </button>

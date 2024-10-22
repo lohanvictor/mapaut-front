@@ -2,8 +2,7 @@
 
 import { createContext, use, useState } from "react";
 import { LocalStorageUtils } from "../_utils/localStorage.util";
-
-const accessTokenStorageKey = "mapaut:accessToken";
+import { ACCESS_TOKEN_STORAGE_KEY } from "../_constants/keys.constants";
 
 type SessionContextProps = {
   handleLogin(email: string, password: string): Promise<void>;
@@ -20,19 +19,19 @@ const SessionContext = createContext<SessionContextProps>(
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [login, setLogin] = useState(() => {
-    const accessToken = LocalStorageUtils.get(accessTokenStorageKey) || "";
+    const accessToken = LocalStorageUtils.get(ACCESS_TOKEN_STORAGE_KEY) || "";
     return { accessToken, name: "" };
   });
 
   async function handleLogin(email: string, password: string) {
     const accessToken = "123456";
 
-    LocalStorageUtils.set(accessTokenStorageKey, accessToken);
+    LocalStorageUtils.set(ACCESS_TOKEN_STORAGE_KEY, accessToken);
     setLogin({ name: "Arroz", accessToken });
   }
 
   async function handleLogout() {
-    LocalStorageUtils.delete(accessTokenStorageKey);
+    LocalStorageUtils.delete(ACCESS_TOKEN_STORAGE_KEY);
     setLogin({ accessToken: "", name: "" });
   }
 

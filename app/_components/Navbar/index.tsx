@@ -7,6 +7,7 @@ import { LogoutButton } from "./LogoutButton";
 import { LoginButton } from "./LoginButton";
 import { useMemo } from "react";
 import { useSession } from "@/app/_contexts/sessionContext";
+import { AccountCircle } from "@mui/icons-material";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -43,8 +44,18 @@ export const Navbar = () => {
           ) : null
         )}
       </div>
-      <div className="flex justify-center mt-auto p-2">
-        {isLogged ? <LogoutButton /> : <LoginButton />}
+      <div className="flex flex-col items-center justify-center gap-2 mt-auto p-2">
+        {isLogged ? (
+          <>
+            <button className="w-full flex flex-row gap-2 items-center justify-center text-sky-800 hover:text-white hover:bg-sky-800 p-2 rounded-md">
+              <AccountCircle />
+              <strong>Conta</strong>
+            </button>
+            <LogoutButton />
+          </>
+        ) : (
+          <LoginButton />
+        )}
       </div>
     </nav>
   );

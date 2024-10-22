@@ -69,6 +69,7 @@ export default function PersonasCreate() {
       comportamento: vga.comportamento,
       comunicacao: vga.comunicacao,
       interacao: vga.interacao,
+      sensibilidade_som: vga.comportamento[8] || !vga.comportamento[9],
     }));
     nextStep();
   }
