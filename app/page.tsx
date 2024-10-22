@@ -1,7 +1,5 @@
 "use client";
 
-import { VGA } from "./_components/_personaSteps/VGA";
-
 export default function Home() {
   return (
     <div className="flex flex-col w-full h-full gap-4 p-6">
