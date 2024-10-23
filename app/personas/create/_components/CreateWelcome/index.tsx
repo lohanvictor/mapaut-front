@@ -12,7 +12,7 @@ export function CreateWelcome(props: Props) {
   const route = useRouter();
 
   function handleBack() {
-    route.push('/personas');
+    route.replace('/personas');
   }
 
   return (

@@ -18,6 +18,10 @@ export const Navbar = () => {
     [login.accessToken]
   );
 
+  if (!isLogged) {
+    return null;
+  }
+
   return (
     <nav className="flex flex-col w-2/12 h-full bg-transparent gap-1 max-w-56 min-w-56 border-r border-gray-400">
       <div className="flex flex-col items-center justify-center w-full pb-4 pt-4">

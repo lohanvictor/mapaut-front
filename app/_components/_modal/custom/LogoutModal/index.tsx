@@ -12,7 +12,7 @@ export function LogoutModal(props: Props) {
 
   async function handleClick() {
     await handleLogout();
-    route.replace("/");
+    route.replace("/login");
     props.onClose();
   }
 

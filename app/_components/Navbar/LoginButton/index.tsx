@@ -1,21 +1,20 @@
-import { useState } from "react";
-import { LoginModal } from "../../_modal/custom/LoginModal";
+import { useRouter } from "next/navigation";
 
 export function LoginButton() {
-  const [openModal, setOpenModal] = useState(false);
+  const route = useRouter();
 
-  const toggleModal = () => setOpenModal((prev) => !prev);
+  function handleClick() {
+    route.push("/login");
+  }
 
   return (
     <>
       <button
-        onClick={toggleModal}
+        onClick={handleClick}
         className="text-slate-950 hover:bg-slate-400 hover:text-white p-2 rounded-md w-full"
       >
         <span>Fazer Login</span>
       </button>
-
-      {openModal && <LoginModal onClose={toggleModal} />}
     </>
   );
 }

@@ -8,7 +8,7 @@ export default function BackButton() {
   const router = useRouter();
 
   function handleBack() {
-    router.push("/personas");
+    router.replace("/personas");
   }
   return (
     <IconButton onClick={handleBack} size="medium">
