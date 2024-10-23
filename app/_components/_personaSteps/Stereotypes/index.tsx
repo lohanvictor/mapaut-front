@@ -12,7 +12,7 @@ import {
   STEPS_PERSONA_DATA,
   STEREOTYPES_MOCK,
 } from "@/app/_constants/steps.constant";
-import { useFetch } from "@/app/_hooks/fetch";
+import { useFetch } from "@/app/_hooks/useFetch";
 
 type StereotypesProps = {
   step: string;

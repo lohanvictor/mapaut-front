@@ -58,7 +58,9 @@ export default function PersonasList() {
               <Search />
             </IconButton>
           </div>
-          <Button onClick={handleNewPersona} variant="contained">Nova Persona</Button>
+          <Button onClick={handleNewPersona} variant="contained">
+            Nova Persona
+          </Button>
         </div>
       </div>
 

@@ -11,7 +11,7 @@ import {
   STEPS_PERSONA_DATA,
   STRESS_ACTIVITIES_MOCK,
 } from "@/app/_constants/steps.constant";
-import { useFetch } from "@/app/_hooks/fetch";
+import { useFetch } from "@/app/_hooks/useFetch";
 
 type StressActivitiesProps = {
   step: string;

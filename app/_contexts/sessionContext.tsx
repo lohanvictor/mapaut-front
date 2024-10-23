@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, use, useState } from "react";
+import { createContext, use, useEffect, useMemo, useState } from "react";
 import { LocalStorageUtils } from "../_utils/localStorage.util";
 import { ACCESS_TOKEN_STORAGE_KEY } from "../_constants/keys.constants";
 
@@ -11,6 +11,7 @@ type SessionContextProps = {
     accessToken: string;
     name: string;
   };
+  isLogged: boolean;
 };
 
 const SessionContext = createContext<SessionContextProps>(
@@ -18,10 +19,19 @@ const SessionContext = createContext<SessionContextProps>(
 );
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
-  const [login, setLogin] = useState(() => {
-    const accessToken = LocalStorageUtils.get(ACCESS_TOKEN_STORAGE_KEY) || "";
-    return { accessToken, name: "" };
+  const [login, setLogin] = useState({
+    accessToken: "",
+    name: "",
   });
+
+  const isLogged = useMemo(() => !!login.accessToken, [login.accessToken]);
+
+  useEffect(() => {
+    const accessToken = LocalStorageUtils.get(ACCESS_TOKEN_STORAGE_KEY) || "";
+    if (accessToken) {
+      setLogin({ accessToken, name: "Arroz" });
+    }
+  }, []);
 
   async function handleLogin(email: string, password: string) {
     const accessToken = "123456";
@@ -36,7 +46,9 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <SessionContext.Provider value={{ handleLogin, handleLogout, login }}>
+    <SessionContext.Provider
+      value={{ handleLogin, handleLogout, login, isLogged }}
+    >
       {children}
     </SessionContext.Provider>
   );

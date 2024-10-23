@@ -11,7 +11,7 @@ import {
   CALM_ACTIVITIES_MOCK,
   STEPS_PERSONA_DATA,
 } from "@/app/_constants/steps.constant";
-import { useFetch } from "@/app/_hooks/fetch";
+import { useFetch } from "@/app/_hooks/useFetch";
 
 type CalmActivitiesProps = {
   step: string;
