@@ -229,7 +229,6 @@ export default function DemographicCharacteristics(
         <Button variant="contained" onClick={props.onReturn}>
           Voltar
         </Button>
-        {/* <div>{props.state === "edit" ? null : <></>}</div> */}
         <Button variant="contained" onClick={onNext}>
           Prosseguir
         </Button>

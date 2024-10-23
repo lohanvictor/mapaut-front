@@ -12,14 +12,20 @@ type Props = {
     comportamento: boolean[];
     cognicao: boolean[];
   }) => void;
+  form?: {
+    interacao: boolean[];
+    comunicacao: boolean[];
+    comportamento: boolean[];
+    cognicao: boolean[];
+  };
 };
 
 export function VGA(props: Props) {
   const [steps, setSteps] = useState({
-    interacao: [] as boolean[],
-    comunicacao: [] as boolean[],
-    comportamento: [] as boolean[],
-    cognicao: [] as boolean[],
+    interacao: props.form?.interacao || ([] as boolean[]),
+    comunicacao: props.form?.comunicacao || ([] as boolean[]),
+    comportamento: props.form?.comportamento || ([] as boolean[]),
+    cognicao: props.form?.cognicao || ([] as boolean[]),
   });
   const [currentStep, setCurrentStep] = useState(1);
 

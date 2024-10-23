@@ -16,7 +16,7 @@ export default function CancelButton() {
   }
 
   function onProceed() {
-    router.push(`/personas/${params.id}/view`);
+    router.replace(`/personas/${params.id}/view`);
   }
 
   return (
@@ -28,7 +28,7 @@ export default function CancelButton() {
       <OptionModal
         isOpen={isOpenModal}
         onCancel={toggleModal}
-        onProceed={() => null}
+        onProceed={onProceed}
         text="Você quer realmente cancelar a ediçao desta persona?"
         type="normal"
       />

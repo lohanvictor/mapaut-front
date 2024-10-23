@@ -39,3 +39,14 @@ export type PersonaModelList = {
     page: number;
   };
 };
+
+export type PersonaSection =
+  | "none"
+  | "demographic"
+  | "vga"
+  | "about"
+  | "calm"
+  | "stress"
+  | "social"
+  | "software"
+  | "stereotypes";
