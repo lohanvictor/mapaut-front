@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NavbarButton } from "./NavbarButton";
 import { NAVBAR_ITEMS } from "@/app/_constants/navbar.constant";
 import { LogoutButton } from "./LogoutButton";
@@ -12,6 +12,7 @@ import { AccountCircle } from "@mui/icons-material";
 export const Navbar = () => {
   const pathname = usePathname();
   const { login } = useSession();
+  const route = useRouter();
 
   const isLogged = useMemo(
     () => Boolean(login.accessToken),
@@ -51,7 +52,10 @@ export const Navbar = () => {
       <div className="flex flex-col items-center justify-center gap-2 mt-auto p-2">
         {isLogged ? (
           <>
-            <button className="w-full flex flex-row gap-2 items-center justify-center text-sky-800 hover:text-white hover:bg-sky-800 p-2 rounded-md">
+            <button
+              onClick={() => route.push("/account")}
+              className="w-full flex flex-row gap-2 items-center justify-center text-sky-800 hover:text-white hover:bg-sky-800 p-2 rounded-md"
+            >
               <AccountCircle />
               <strong>Conta</strong>
             </button>

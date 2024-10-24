@@ -4,6 +4,7 @@ import { ArrowBack, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, IconButton, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { PasswordInput } from "../_components/PasswordInput";
 
 export default function SignUp() {
   const route = useRouter();
@@ -11,7 +12,6 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -61,20 +61,6 @@ export default function SignUp() {
 
       return Boolean(error);
     },
-  };
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
-  const handleMouseUpPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
   };
 
   async function handleClick() {
@@ -134,57 +120,17 @@ export default function SignUp() {
           className="bg-white"
         />
 
-        <div className="relative flex flex-row w-full">
-          <TextField
-            id="outlined-adornment-password"
-            placeholder="Senha"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            fullWidth
-            required
-            onChange={(event) => setPassword(event.target.value)}
-            className="bg-white"
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-          <IconButton
-            aria-label={
-              showPassword ? "hide the password" : "display the password"
-            }
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}
-            onMouseUp={handleMouseUpPassword}
-            className="absolute right-1 self-center"
-          >
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
-        </div>
+        <PasswordInput
+          error={errors.password}
+          password={password}
+          setPassword={setPassword}
+        />
 
-        <div className="relative flex flex-row w-full">
-          <TextField
-            id="outlined-adornment-password"
-            placeholder="Confirmar senha"
-            type={showPassword ? "text" : "password"}
-            value={confirmedPassword}
-            fullWidth
-            required
-            onChange={(event) => setConfirmedPassword(event.target.value)}
-            className="bg-white"
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-          <IconButton
-            aria-label={
-              showPassword ? "hide the password" : "display the password"
-            }
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}
-            onMouseUp={handleMouseUpPassword}
-            className="absolute right-1 self-center"
-          >
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
-        </div>
+        <PasswordInput
+          error={errors.password}
+          password={confirmedPassword}
+          setPassword={setConfirmedPassword}
+        />
 
         <Button onClick={handleClick} fullWidth variant="contained">
           Registrar

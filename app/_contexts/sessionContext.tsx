@@ -10,6 +10,7 @@ type SessionContextProps = {
   login: {
     accessToken: string;
     name: string;
+    email: string;
   };
   isLogged: boolean;
 };
@@ -22,6 +23,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [login, setLogin] = useState({
     accessToken: "",
     name: "",
+    email: "",
   });
 
   const isLogged = useMemo(() => !!login.accessToken, [login.accessToken]);
@@ -29,7 +31,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const accessToken = LocalStorageUtils.get(ACCESS_TOKEN_STORAGE_KEY) || "";
     if (accessToken) {
-      setLogin({ accessToken, name: "Arroz" });
+      setLogin({ accessToken, name: "Arroz", email: "arroz@gmail.com" });
     }
   }, []);
 
@@ -37,12 +39,12 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     const accessToken = "123456";
 
     LocalStorageUtils.set(ACCESS_TOKEN_STORAGE_KEY, accessToken);
-    setLogin({ name: "Arroz", accessToken });
+    setLogin({ name: "Arroz", accessToken, email });
   }
 
   async function handleLogout() {
     LocalStorageUtils.delete(ACCESS_TOKEN_STORAGE_KEY);
-    setLogin({ accessToken: "", name: "" });
+    setLogin({ accessToken: "", name: "", email: "" });
   }
 
   return (

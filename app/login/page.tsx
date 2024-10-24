@@ -13,13 +13,14 @@ import {
 import { useState } from "react";
 import { useSession } from "../_contexts/sessionContext";
 import { useRouter } from "next/navigation";
+import { PasswordInput } from "../_components/PasswordInput";
 
 export default function Login() {
   const { handleLogin } = useSession();
   const route = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -57,19 +58,6 @@ export default function Login() {
   function onChangeEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
-  const handleMouseUpPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
 
   async function handleClick() {
     const validationErrors = [valid.email(), valid.password()];
@@ -105,31 +93,12 @@ export default function Login() {
           helperText={errors.email}
           className="bg-white"
         />
-        <div className="relative flex flex-row">
-          <TextField
-            id="outlined-adornment-password"
-            placeholder="Senha"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            fullWidth
-            required
-            onChange={(event) => setPassword(event.target.value)}
-            className="bg-white"
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-          <IconButton
-            aria-label={
-              showPassword ? "hide the password" : "display the password"
-            }
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}
-            onMouseUp={handleMouseUpPassword}
-            className="absolute right-1 self-center"
-          >
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
-        </div>
+
+        <PasswordInput
+          error={errors.password}
+          password={password}
+          setPassword={setPassword}
+        />
 
         <Button onClick={() => null} size="small">
           Esqueci minha senha
