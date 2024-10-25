@@ -1,7 +1,6 @@
 "use client";
 
 import { PersonaModel } from "@/app/@types/persona.type";
-import { ptBr } from "@/app/_lang/ptBr";
 import { LocalStorageUtils } from "@/app/_utils/localStorage.util";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";

@@ -1,24 +1,19 @@
 "use client";
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Button,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Skeleton,
-  TextField,
-} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useSession } from "../_contexts/sessionContext";
 import { useRouter } from "next/navigation";
 import { PasswordInput } from "../_components/PasswordInput";
+import LoadingModal from "../_components/_modal/LoadingModal";
 
 export default function Login() {
   const { handleLogin } = useSession();
   const route = useRouter();
+
+  const [openModal, setOpenModal] = useState(false);
+  const toggleModal = () => setOpenModal((prev) => !prev);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -67,9 +62,15 @@ export default function Login() {
       return;
     }
 
-    await handleLogin(email, password);
-
-    route.push("/");
+    toggleModal();
+    try {
+      await handleLogin(email, password);
+      toggleModal();
+      route.push("/");
+    } catch (error) {
+      toggleModal();
+      console.error(error);
+    }
   }
 
   function handleSignUp() {
@@ -108,6 +109,8 @@ export default function Login() {
         <Button onClick={handleClick} variant="contained">
           Logar
         </Button>
+
+        {openModal && <LoadingModal text="Entrando no sistema..." />}
       </div>
     </div>
   );

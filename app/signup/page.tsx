@@ -5,9 +5,16 @@ import { Button, IconButton, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PasswordInput } from "../_components/PasswordInput";
+import api from "../_lib/api";
+import { RegisterModel } from "../@types/login.type";
+import LoadingModal from "../_components/_modal/LoadingModal";
 
 export default function SignUp() {
   const route = useRouter();
+
+  const [openModal, setOpenModal] = useState(false);
+  const toggleModal = () => setOpenModal((prev) => !prev);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +77,19 @@ export default function SignUp() {
       return;
     }
 
-    route.replace("/login");
+    toggleModal();
+    try {
+      await api.post("/api/register", {
+        name,
+        email,
+        password,
+      } as RegisterModel);
+      toggleModal();
+      route.replace("/login");
+    } catch (error) {
+      toggleModal();
+      console.error(error);
+    }
   }
 
   function handleBack() {
@@ -136,6 +155,8 @@ export default function SignUp() {
           Registrar
         </Button>
       </div>
+
+      {openModal && <LoadingModal text="Criando conta..." />}
     </div>
   );
 }

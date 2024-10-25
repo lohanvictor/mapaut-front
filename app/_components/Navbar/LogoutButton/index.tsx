@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LoginModal } from "../../_modal/custom/LoginModal";
 import { LogoutModal } from "../../_modal/custom/LogoutModal";
 
 export function LogoutButton() {
