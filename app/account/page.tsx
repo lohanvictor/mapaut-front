@@ -2,21 +2,25 @@
 
 import { AccountCircle } from "@mui/icons-material";
 import { DeleteAccountButton } from "./_components/DeleteAccountButton";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useSession } from "../_contexts/sessionContext";
 import { useEffect, useMemo, useState } from "react";
 import { PasswordInput } from "../_components/PasswordInput";
+import LoadingModal from "../_components/_modal/LoadingModal";
 
 export default function Account() {
-  const { login } = useSession();
+  const { login, updateAccount } = useSession();
   const firstName = useMemo(() => {
     if (!login.name) return "";
     const firstName = login.name.split(" ")[0];
     return firstName.at(0)?.toUpperCase() + firstName.slice(1);
-  }, []);
+  }, [login.name]);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen((open) => !open);
 
   const [account, setAccount] = useState({
-    name: login.name,
+    name: "",
     password: "",
     confirmedPassword: "",
   });
@@ -40,9 +44,6 @@ export default function Account() {
     },
     password: () => {
       let error = "";
-      if (!!account.password || !!account.confirmedPassword) {
-        error = "Senha é obrigatória";
-      }
       if (account.password && account.password !== account.confirmedPassword) {
         error = "As senhas não coincidem";
       }
@@ -55,6 +56,12 @@ export default function Account() {
       return Boolean(error);
     },
   };
+  useEffect(() => {
+    setAccount((account) => ({
+      ...account,
+      name: login.name,
+    }));
+  }, [login.name]);
 
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setAccount((account) => ({
@@ -77,6 +84,22 @@ export default function Account() {
     }));
   }
 
+  async function handleUpdateAccount() {
+    const errors = [valid.name(), valid.password()];
+    if (errors.some((error) => error)) {
+      return;
+    }
+
+    toggleModal();
+    try {
+      await updateAccount(account.name, account.password);
+    } catch (error) {
+      console.error("Erro ao atualizar conta", error);
+    } finally {
+      toggleModal();
+    }
+  }
+
   return (
     <div className="flex-1 flex flex-col items-center gap-4 p-6 overflow-y-auto">
       <div className="w-full flex flex-row justify-between">
@@ -92,7 +115,7 @@ export default function Account() {
 
       <TextField
         label="E-mail"
-        defaultValue={login.email}
+        value={login.email}
         variant="standard"
         slotProps={{
           input: {
@@ -106,6 +129,7 @@ export default function Account() {
         placeholder="Nome completo"
         label="Nome completo"
         value={account.name}
+        defaultValue={login.name}
         onChange={handleNameChange}
         error={!!errors.name}
         helperText={errors.name}
@@ -117,14 +141,21 @@ export default function Account() {
         error={errors.password}
         password={account.password}
         setPassword={handlePasswordChange}
+        placeholder="Nova senha"
       />
 
       <PasswordInput
         error={errors.password}
         password={account.confirmedPassword}
         setPassword={handleConfirmedPasswordChange}
-        placeholder="Confirme a senha"
+        placeholder="Confirme a nova senha"
       />
+
+      <Button className="self-end" onClick={handleUpdateAccount}>
+        Atualizar conta
+      </Button>
+
+      {modalOpen && <LoadingModal text="Atualizando conta" />}
     </div>
   );
 }
