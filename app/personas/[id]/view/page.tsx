@@ -35,7 +35,7 @@ export default function PersonaView(props: PersonaViewProps) {
         <BackButton />
 
         <div className="flex flex-row gap-4">
-          <DeleteButton />
+          <DeleteButton persona={persona} />
           <EditButton persona={persona} />
         </div>
       </div>

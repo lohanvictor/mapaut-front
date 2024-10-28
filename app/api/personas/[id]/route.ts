@@ -31,12 +31,24 @@ export async function GET(request: NextRequest, options: GetOptions) {
 export async function PATCH(req: NextRequest) {
   const body = (await req.json()) as PersonaModel;
 
+  await PersonaService.update(body);
+  return NextResponse.json({ message: "Persona atualizada com sucesso" });
   try {
-    await PersonaService.update(body);
-    return NextResponse.json({ message: "Persona atualizada com sucesso" });
   } catch (error) {
     return NextResponse.json(
       { message: "Erro ao atualizar persona" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest, options: GetOptions) {
+  try {
+    await PersonaService.delete(options.params.id);
+    return NextResponse.json({ message: "Persona deletada com sucesso" });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Erro ao deletar persona" },
       { status: 500 }
     );
   }

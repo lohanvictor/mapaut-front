@@ -27,7 +27,7 @@ function mapDocToPersonaModel(doc: any): PersonaModel {
     nome: docData.nome,
     sensibilidade_som: docData.sensibilidade_som,
     sobre: docData.sobre,
-    foto: "",
+    foto: docData.foto,
   };
 }
 
@@ -39,7 +39,7 @@ export class PersonaService {
       FirebaseFirestore.DocumentData
     >;
     if (name) {
-      response = await q.where("nome", "<", name + "\uf8ff").get();
+      response = await q.where("nome", "==", name).get();
     } else {
       response = await q.get();
     }
@@ -64,13 +64,18 @@ export class PersonaService {
   }
 
   static async save(persona: PersonaModel): Promise<{ id: string }> {
-    const response = await firebaseDb.collection("personas").add(persona);
-    return { id: response.id };
+    const ref = firebaseDb.collection("personas").doc();
+    persona.id = ref.id;
+    await ref.set(persona);
+    return { id: ref.id };
   }
 
-  static async update(persona?: PersonaModel): Promise<void> {
-    if (!persona) return;
+  static async update(persona: PersonaModel): Promise<void> {
+    const ref = firebaseDb.collection("personas").doc(persona.id);
+    await ref.set(persona, { merge: true });
+  }
 
-    await firebaseDb.collection("personas").doc(persona.id).update(persona);
+  static async delete(id: string): Promise<void> {
+    await firebaseDb.collection("personas").doc(id).delete();
   }
 }

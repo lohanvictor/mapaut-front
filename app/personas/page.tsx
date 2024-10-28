@@ -9,6 +9,7 @@ import { PersonaModelList } from "../@types/persona.type";
 
 export default function PersonasList() {
   const [personaList, setPersonaList] = useState<PersonaModelList | null>(null);
+  const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
 
   const router = useRouter();
@@ -23,6 +24,15 @@ export default function PersonasList() {
 
   function handleNewPersona() {
     router.push("/personas/create");
+  }
+
+  async function handleFilter() {
+    if (!filter) return;
+
+    let response = await (
+      await fetch(`/api/personas?page=${page}&name=${filter}`)
+    ).json();
+    setPersonaList(response as PersonaModelList);
   }
 
   async function fetchPersonas() {
@@ -52,9 +62,11 @@ export default function PersonasList() {
               id="persona-search-input"
               label="Busque sua persona"
               variant="standard"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
               fullWidth
             />
-            <IconButton>
+            <IconButton onClick={handleFilter}>
               <Search />
             </IconButton>
           </div>

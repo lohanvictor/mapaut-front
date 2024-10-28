@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PersonaService } from "./_persona.service";
 import { PersonaModel } from "@/app/@types/persona.type";
 
-export const PAGES_PER_PAGE = 10;
+export const PAGES_PER_PAGE = 5;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

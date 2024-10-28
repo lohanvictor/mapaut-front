@@ -22,15 +22,15 @@ export default function SaveButton(props: Props) {
   }
 
   async function handleSave() {
-    toggleModal();
+    setIsOpenModal(false)
     try {
       setIsLoading(true);
-      const response = await api.post<{ id: string }>(
-        `/api/personas`,
+      await api.patch<{ id: string }>(
+        `/api/personas/${props.persona.id}`,
         props.persona
       );
       setIsLoading(false);
-      route.push(`/personas/${response.data.id}/view`);
+      route.push(`/personas/${props.persona.id}/view`);
     } catch (error) {
       setIsLoading(false);
     }
