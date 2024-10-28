@@ -19,6 +19,7 @@ type SessionContextProps = {
   handleLogin(email: string, password: string): Promise<void>;
   handleLogout(): Promise<void>;
   updateAccount(name: string, password: string): Promise<void>;
+  handleDeleteAccount(): Promise<void>;
   login: {
     accessToken: string;
     name: string;
@@ -86,9 +87,22 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     }));
   }
 
+  async function handleDeleteAccount() {
+    await api.delete("/api/register/" + login.uid);
+    resetToken();
+    resetLogin();
+  }
+
   return (
     <SessionContext.Provider
-      value={{ handleLogin, handleLogout, login, isLogged, updateAccount }}
+      value={{
+        handleLogin,
+        handleLogout,
+        login,
+        isLogged,
+        updateAccount,
+        handleDeleteAccount,
+      }}
     >
       {children}
     </SessionContext.Provider>

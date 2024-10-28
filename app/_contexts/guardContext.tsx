@@ -4,11 +4,11 @@ import { createContext, ReactNode, useEffect, useLayoutEffect } from "react";
 import { useSession } from "./sessionContext";
 import { usePathname, useRouter } from "next/navigation";
 
-const AuthContext = createContext(undefined);
+const GuardContext = createContext(undefined);
 
 const publicRoutes = ["/login", "/signup"];
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function GuardProvider({ children }: { children: ReactNode }) {
   const { isLogged } = useSession();
   const route = useRouter();
   const pathname = usePathname();
@@ -28,6 +28,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [isLogged]);
 
   return (
-    <AuthContext.Provider value={undefined}>{children}</AuthContext.Provider>
+    <GuardContext.Provider value={undefined}>{children}</GuardContext.Provider>
   );
 }

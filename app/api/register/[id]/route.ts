@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { firebaseAdmin } from "../../_lib/firebase";
 import { createHash } from "crypto";
 
-type PatchOptions = {
+type Options = {
   params: {
     id: string;
   };
@@ -13,7 +13,7 @@ type PatchOptions = {
 
 const auth = getAuth(firebaseAdmin);
 
-export async function PUT(req: NextRequest, options: PatchOptions) {
+export async function PUT(req: NextRequest, options: Options) {
   const body = (await req.json()) as RegisterModel;
   const patchRegister: Record<string, string> = {
     displayName: body.name,
@@ -28,6 +28,15 @@ export async function PUT(req: NextRequest, options: PatchOptions) {
 
   try {
     await auth.updateUser(options.params.id, patchRegister);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });
+  }
+}
+
+export async function DELETE(req: NextRequest, options: Options) {
+  try {
+    await auth.deleteUser(options.params.id);
     return NextResponse.json({ ok: true });
   } catch (error) {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });

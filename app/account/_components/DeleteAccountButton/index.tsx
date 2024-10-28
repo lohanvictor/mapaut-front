@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import { useSession } from "@/app/_contexts/sessionContext";
 import { Delete } from "@mui/icons-material";
@@ -8,19 +9,21 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function DeleteAccountButton() {
-  const [openModal, setOpenModal] = useState(false);
-  const { handleLogout } = useSession();
+  const [openQuestionModal, setOpenQuestionModal] = useState(false);
+  const [openLoadingModal, setOpenLoadingModal] = useState(false);
+  const { handleDeleteAccount } = useSession();
   const route = useRouter();
 
   function toggleModal() {
-    setOpenModal((prev) => !prev);
+    setOpenQuestionModal((prev) => !prev);
   }
 
-  function handleClick() {
-    alert("Conta deletada");
-    handleLogout();
+  async function handleClick() {
     toggleModal();
-    route.replace("/login");
+
+    setOpenLoadingModal(true);
+    await handleDeleteAccount();
+    setOpenLoadingModal(false);
   }
 
   return (
@@ -35,12 +38,14 @@ export function DeleteAccountButton() {
       </Button>
 
       <OptionModal
-        isOpen={openModal}
+        isOpen={openQuestionModal}
         onCancel={toggleModal}
         text="Você tem certeza que deseja deletar sua conta?"
         type="danger"
         onProceed={handleClick}
       />
+
+      {openLoadingModal && <LoadingModal text="Deletando conta..." />}
     </>
   );
 }

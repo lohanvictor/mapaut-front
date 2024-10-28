@@ -30,7 +30,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex flex-col w-2/12 h-full bg-transparent gap-1 max-w-56 min-w-56 border-r border-gray-400">
+    <div className="flex flex-col w-2/12 h-full bg-transparent gap-1 max-w-56 min-w-56 border-r border-gray-400">
       <div className="flex flex-col items-center justify-center w-full pb-4 pt-4">
         <span className="text-slate-950 text-4xl">
           <strong>MapAut</strong>
@@ -71,6 +71,6 @@ export const Navbar = () => {
           <LoginButton />
         )}
       </div>
-    </nav>
+    </div>
   );
 };
