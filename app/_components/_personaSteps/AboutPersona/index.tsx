@@ -75,7 +75,9 @@ export default function AboutPersona(props: AboutProps) {
               <QuestionMark />
             </IconButton>
           </div>
-          <p className="m-0 text-slate-950">Que não sei oq não sei oq lá</p>
+          <p className="m-0 text-slate-950">
+            Descreva a persona com mais detalhe
+          </p>
         </div>
         <div className="flex flex-col-reverse items-start gap-1 h-fit">
           <div className="w-40">

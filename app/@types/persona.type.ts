@@ -31,13 +31,15 @@ export enum AutismTypes {
   severe = "Severo",
 }
 
+export type Pagination = {
+  page: number;
+  pages: number;
+};
+
 export type PersonaModelList = {
   items: PersonaModel[];
   totalItems: number;
-  pagination: {
-    pages: number;
-    page: number;
-  };
+  pagination: Pagination;
 };
 
 export type PersonaSection =

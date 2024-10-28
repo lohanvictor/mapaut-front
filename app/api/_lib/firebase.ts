@@ -33,9 +33,13 @@ export const firebaseClient = getApps().length
   ? getAppClient("client")
   : initializeAppClient(firebaseClientConfig, "client");
 
-export const firebaseAdmin = admin.apps.length ? admin.app('admin') : admin.initializeApp(
-  {
-    credential: admin.credential.cert(firebaseAdminConfig),
-  },
-  "admin"
-);
+export const firebaseAdmin = admin.apps.length
+  ? admin.app("admin")
+  : admin.initializeApp(
+      {
+        credential: admin.credential.cert(firebaseAdminConfig),
+      },
+      "admin"
+    );
+
+export const firebaseDb = firebaseAdmin.firestore();

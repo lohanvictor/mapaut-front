@@ -122,7 +122,7 @@ export default function PersonasEditPage({ params }: PersonasEditPageProps) {
           <div className="flex flex-row justify-end items-center">
             <div className="flex flex-row gap-4">
               <CancelButton />
-              <SaveButton />
+              <SaveButton persona={persona} />
             </div>
           </div>
           <EditDetailsPersona persona={persona} onClickEdit={handleClickEdit} />

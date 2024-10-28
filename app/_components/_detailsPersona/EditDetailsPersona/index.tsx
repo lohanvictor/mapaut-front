@@ -113,16 +113,20 @@ export default function EditDetailsPersona({
         </div>
       )}
       {persona.modelo === "2" && (
-        <div className="w-full flex-1 flex flex-col">
-          <span className="text-slate-950 text-md ">Sobre {aboutName[0]}</span>
-          <div className="w-full h-full flex-1 border-2 border-slate-300 rounded-md p-2">
-            {about.map((paragrafo, index) => (
-              <p key={index} className="text-slate-950">
-                {paragrafo}
-              </p>
-            ))}
+        <EditContainer onClick={() => onClickEdit("about")}>
+          <div className="w-full flex-1 flex flex-col">
+            <span className="text-slate-950 text-md ">
+              Sobre {aboutName[0]}
+            </span>
+            <div className="w-full h-full flex-1 border-2 border-slate-300 rounded-md p-2">
+              {about.map((paragrafo, index) => (
+                <p key={index} className="text-slate-950">
+                  {paragrafo}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
+        </EditContainer>
       )}
     </div>
   );

@@ -187,10 +187,6 @@ export default function PersonasCreate() {
     setTotalSteps(0);
   }
 
-  function handleSave() {
-    console.log("Save", personaModel);
-  }
-
   return (
     <div className="flex-1 flex flex-col items-center p-6">
       {currentStep === -2 && <CreateWelcome onNext={nextStep} />}
