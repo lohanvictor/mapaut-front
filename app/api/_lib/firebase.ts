@@ -1,12 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import admin from "firebase-admin";
+import {
+  getApp as getAppClient,
+  getApps,
+  initializeApp as initializeAppClient,
+} from "firebase/app";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const firebaseClientConfig = {
   apiKey: process.env.FIREBASE_API_KEY || "",
   authDomain: process.env.FIREBASE_AUTH_DOMAIN || "",
   projectId: process.env.FIREBASE_PROJECT_ID || "",
@@ -16,7 +21,21 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID || "",
 };
 
-// Initialize Firebase
-const firebase = initializeApp(firebaseConfig);
+const firebaseAdminConfig = {
+  clientEmail: process.env.FIREBASE_ADMIN_EMAIL || "",
+  privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY || "",
+  projectId: process.env.FIREBASE_PROJECT_ID || "",
+};
 
-export default firebase
+// Initialize Firebase;
+
+export const firebaseClient = getApps().length
+  ? getAppClient("client")
+  : initializeAppClient(firebaseClientConfig, "client");
+
+export const firebaseAdmin = admin.apps.length ? admin.app('admin') : admin.initializeApp(
+  {
+    credential: admin.credential.cert(firebaseAdminConfig),
+  },
+  "admin"
+);

@@ -2,9 +2,15 @@
 
 import { createContext, use, useEffect, useMemo, useState } from "react";
 import cookies from "js-cookie";
-import { ACCESS_TOKEN_STORAGE_KEY } from "../_constants/keys.constants";
+import {
+  ACCESS_TOKEN_STORAGE_KEY,
+  EMAIL_STORAGE_KEY,
+  NAME_STORAGE_KEY,
+  UID_STORAGE_KEY,
+} from "../_constants/keys.constants";
 import api from "../_lib/api";
 import { LoginResponse } from "../@types/login.type";
+import { usePathname, useRouter } from "next/navigation";
 
 const mockFn = () =>
   new Promise<string>((resolve) => setTimeout(() => resolve(""), 1000));
@@ -27,29 +33,27 @@ const SessionContext = createContext<SessionContextProps>(
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [login, setLogin] = useState({
-    accessToken: "",
-    name: "",
-    email: "",
+    accessToken: cookies.get(ACCESS_TOKEN_STORAGE_KEY) || "",
+    name: cookies.get(NAME_STORAGE_KEY) || "",
+    email: cookies.get(EMAIL_STORAGE_KEY) || "",
+    uid: cookies.get(UID_STORAGE_KEY) || "",
   });
-
   const isLogged = useMemo(() => !!login.accessToken, [login.accessToken]);
 
-  async function getUserByToken(token: string) {
-    await api.get("/api/register", {params: {token}});
-
+  function resetToken() {
+    cookies.remove(ACCESS_TOKEN_STORAGE_KEY);
+    cookies.remove(EMAIL_STORAGE_KEY);
+    cookies.remove(NAME_STORAGE_KEY);
+    cookies.remove(UID_STORAGE_KEY);
   }
 
-  useEffect(() => {
-    const accessToken = cookies.get(ACCESS_TOKEN_STORAGE_KEY);
-    if (accessToken) {
-      getUserByToken(accessToken)
-      setLogin({ accessToken, name: "Arroz", email: "arroz@gmail.com" });
-    }
-  }, []);
+  function resetLogin() {
+    setLogin({ accessToken: "", name: "", email: "", uid: "" });
+  }
 
   async function handleLogin(email: string, password: string) {
     const {
-      data: { name, token: accessToken },
+      data: { name, token: accessToken, uid },
     } = await api.post<LoginResponse>("/api/login", {
       email,
       password,
@@ -57,19 +61,29 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 
     api.defaults.headers.Authorization = `Bearer ${accessToken}`;
     cookies.set(ACCESS_TOKEN_STORAGE_KEY, accessToken, { expires: 7 });
-    setLogin({ name, accessToken, email });
+    cookies.set(EMAIL_STORAGE_KEY, email, { expires: 7 });
+    cookies.set(NAME_STORAGE_KEY, name, { expires: 7 });
+    cookies.set(UID_STORAGE_KEY, uid, { expires: 7 });
+    setLogin({ name, accessToken, email, uid });
   }
 
   async function handleLogout() {
     await api.delete("/api/login");
-    cookies.remove(ACCESS_TOKEN_STORAGE_KEY);
-    setLogin({ accessToken: "", name: "", email: "" });
+    resetToken();
+    resetLogin();
   }
 
   async function updateAccount(name: string, password: string) {
-    if (password) {
-    }
-    await mockFn();
+    await api.put("/api/register/" + login.uid, {
+      name,
+      password,
+    });
+
+    cookies.set(NAME_STORAGE_KEY, name, { expires: 7 });
+    setLogin((login) => ({
+      ...login,
+      name,
+    }));
   }
 
   return (

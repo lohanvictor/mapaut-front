@@ -57,6 +57,10 @@ export default function SignUp() {
         error = "Senha é obrigatória";
       }
 
+      if (password.length < 6 || confirmedPassword.length < 6) {
+        error = "A senha deve ter no mínimo 6 caracteres";
+      }
+
       if (password !== confirmedPassword) {
         error = "As senhas não coincidem";
       }

@@ -44,7 +44,16 @@ export default function Account() {
     },
     password: () => {
       let error = "";
-      if (account.password && account.password !== account.confirmedPassword) {
+
+      if (!account.password && !account.confirmedPassword) {
+        return false;
+      }
+
+      if (account.password.length < 6 || account.confirmedPassword.length < 6) {
+        error = "A senha deve ter no mínimo 6 caracteres";
+      }
+
+      if (account.password !== account.confirmedPassword) {
         error = "As senhas não coincidem";
       }
 
@@ -129,7 +138,6 @@ export default function Account() {
         placeholder="Nome completo"
         label="Nome completo"
         value={account.name}
-        defaultValue={login.name}
         onChange={handleNameChange}
         error={!!errors.name}
         helperText={errors.name}

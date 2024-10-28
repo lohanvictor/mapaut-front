@@ -1,21 +1,30 @@
-import { RegisterModel } from "@/app/@types/login.type";
+import { RegisterModel, RegisterResponse } from "@/app/@types/login.type";
 import { HttpStatusCode } from "axios";
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  getAdditionalUserInfo,
-} from "firebase/auth";
-import firebase from "../_lib/firebase";
+import { getAuth } from "firebase-admin/auth";
 import { createHash } from "crypto";
-import { ACCESS_TOKEN_STORAGE_KEY } from "@/app/_constants/keys.constants";
+import { firebaseAdmin } from "../_lib/firebase";
+
+const auth = getAuth(firebaseAdmin);
 
 export async function GET(request: NextRequest) {
-  const cookieFromRequest = request.nextUrl.searchParams.get("token");
+  const uid = request.nextUrl.searchParams.get("uid");
 
-  const auth = getAuth(firebase);
-  return NextResponse.json({ ok: true });
+  try {
+    if (!uid) throw new Error("uid is required");
+
+    const user = await auth.getUser(uid);
+    const response: RegisterResponse = {
+      email: user.email || "",
+      name: user.displayName || "",
+    };
+    return NextResponse.json(response);
+  } catch (error) {
+    return NextResponse.json(
+      { status: "Erro ao recuperar informação do usuário" },
+      { status: HttpStatusCode.UnprocessableEntity }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -38,12 +47,14 @@ export async function POST(request: NextRequest) {
   const hashedPassword = createHash("sha256")
     .update(body.password)
     .digest("hex");
-  console.log(hashedPassword);
 
-  const auth = getAuth(firebase);
   try {
-    await createUserWithEmailAndPassword(auth, body.email, hashedPassword);
-    await updateProfile(auth.currentUser!, { displayName: body.name });
+    await auth.createUser({
+      displayName: body.name,
+      email: body.email,
+      emailVerified: true,
+      password: hashedPassword,
+    });
     return NextResponse.json({ ok: true }, { status: HttpStatusCode.Created });
   } catch (error) {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });

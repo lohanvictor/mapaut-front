@@ -2,8 +2,8 @@ import { LoginModel, LoginResponse } from "@/app/@types/login.type";
 import { HttpStatusCode } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import firebase from "../_lib/firebase";
-import { FirebaseError } from "firebase/app";
+import { firebaseClient } from "../_lib/firebase";
+import { FirebaseError } from "firebase-admin";
 import { createHash } from "crypto";
 
 function handleErrorMessage(error: FirebaseError) {
@@ -25,14 +25,11 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  console.log(body);
-
   const hashedPassword = createHash("sha256")
     .update(body.password)
     .digest("hex");
-  console.log(hashedPassword);
 
-  const auth = getAuth(firebase);
+  const auth = getAuth(firebaseClient);
 
   try {
     const { user } = await signInWithEmailAndPassword(
@@ -44,6 +41,7 @@ export async function POST(request: NextRequest) {
       name: user.displayName || "",
       email: user.email || "",
       token: await user.getIdToken(),
+      uid: user.uid,
     };
     return NextResponse.json(response, { status: HttpStatusCode.Accepted });
   } catch (error) {
@@ -57,7 +55,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const auth = getAuth(firebase);
+  const auth = getAuth(firebaseClient);
   await auth.signOut();
   return NextResponse.json({ ok: true });
 }

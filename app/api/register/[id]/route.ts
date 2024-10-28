@@ -1,0 +1,35 @@
+import { RegisterModel } from "@/app/@types/login.type";
+import { HttpStatusCode } from "axios";
+import { getAuth } from "firebase-admin/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { firebaseAdmin } from "../../_lib/firebase";
+import { createHash } from "crypto";
+
+type PatchOptions = {
+  params: {
+    id: string;
+  };
+};
+
+const auth = getAuth(firebaseAdmin);
+
+export async function PUT(req: NextRequest, options: PatchOptions) {
+  const body = (await req.json()) as RegisterModel;
+  const patchRegister: Record<string, string> = {
+    displayName: body.name,
+    email: body.email,
+  };
+  if (body.password) {
+    const hashedPassword = createHash("sha256")
+      .update(body.password)
+      .digest("hex");
+    patchRegister.password = hashedPassword;
+  }
+
+  try {
+    await auth.updateUser(options.params.id, patchRegister);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });
+  }
+}
