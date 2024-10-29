@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 const GuardContext = createContext(undefined);
 
-const publicRoutes = ["/login", "/signup"];
+const publicRoutes = ["/login", "/signup", "/forgot-password"];
 
 export function GuardProvider({ children }: { children: ReactNode }) {
   const { isLogged } = useSession();

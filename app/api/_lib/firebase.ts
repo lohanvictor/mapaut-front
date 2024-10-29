@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import admin from "firebase-admin";
+import { getStorage } from "firebase-admin/storage";
 import {
   getApp as getAppClient,
   getApps,
@@ -38,8 +39,10 @@ export const firebaseAdmin = admin.apps.length
   : admin.initializeApp(
       {
         credential: admin.credential.cert(firebaseAdminConfig),
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "",
       },
       "admin"
     );
 
 export const firebaseDb = firebaseAdmin.firestore();
+export const firebaseStorage = getStorage(firebaseAdmin).bucket();
