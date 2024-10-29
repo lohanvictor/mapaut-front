@@ -8,6 +8,7 @@ import { PasswordInput } from "../_components/PasswordInput";
 import api from "../_lib/api";
 import { RegisterModel } from "../@types/login.type";
 import LoadingModal from "../_components/_modal/LoadingModal";
+import { Notification } from "../_lib/notification";
 
 export default function SignUp() {
   const route = useRouter();
@@ -88,11 +89,12 @@ export default function SignUp() {
         email,
         password,
       } as RegisterModel);
+      Notification.success("Conta criada com sucesso!");
       toggleModal();
       route.replace("/login");
     } catch (error) {
+      Notification.error("Erro ao criar conta");
       toggleModal();
-      console.error(error);
     }
   }
 

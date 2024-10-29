@@ -5,6 +5,7 @@ import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import api from "../_lib/api";
+import { Notification } from "../_lib/notification";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ export default function ForgotPassword() {
 
   async function handleClick() {
     await api.post("/api/login/reset-password", { email });
+    Notification.info("Verifique seu e-mail para redefinir sua senha.");
     route.replace("/login");
   }
 

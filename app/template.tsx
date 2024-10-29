@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Navbar } from "./_components/Navbar";
 import { GuardProvider } from "./_contexts/guardContext";
 import { SessionProvider } from "./_contexts/sessionContext";
@@ -14,6 +15,7 @@ export default function RootTemplate(props: RootTemplateProps) {
           <Navbar />
           <div className="flex-1 flex overflow-y-auto">{props.children}</div>
         </div>
+        <Toaster />
       </GuardProvider>
     </SessionProvider>
   );

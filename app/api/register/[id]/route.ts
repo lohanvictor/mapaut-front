@@ -2,7 +2,7 @@ import { RegisterModel } from "@/app/@types/login.type";
 import { HttpStatusCode } from "axios";
 import { getAuth } from "firebase-admin/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { firebaseAdmin } from "../../_lib/firebase";
+import { firebaseAdmin, firebaseDb } from "../../_lib/firebase";
 import { createHash } from "crypto";
 
 type Options = {
@@ -37,6 +37,13 @@ export async function PUT(req: NextRequest, options: Options) {
 export async function DELETE(req: NextRequest, options: Options) {
   try {
     await auth.deleteUser(options.params.id);
+    const personasFromUser = await firebaseDb
+      .collection("personas")
+      .where("usuarioId", "==", options.params.id)
+      .get();
+    for (const doc of personasFromUser.docs) {
+      await doc.ref.delete();
+    }
     return NextResponse.json({ ok: true });
   } catch (error) {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });

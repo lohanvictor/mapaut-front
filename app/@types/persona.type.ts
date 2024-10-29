@@ -18,6 +18,9 @@ export type PersonaModel = {
   comportamento: boolean[];
   comunicacao: boolean[];
   interacao: boolean[];
+  usuarioId: string;
+  createdAt: string;
+  updatedAt: string;
 };
 export enum LanguageTypes {
   verbal = "Verbal",

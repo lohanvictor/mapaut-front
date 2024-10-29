@@ -6,6 +6,7 @@ import { useSession } from "../_contexts/sessionContext";
 import { useRouter } from "next/navigation";
 import { PasswordInput } from "../_components/PasswordInput";
 import LoadingModal from "../_components/_modal/LoadingModal";
+import { Notification } from "../_lib/notification";
 
 export default function Login() {
   const { handleLogin } = useSession();
@@ -65,11 +66,12 @@ export default function Login() {
     toggleModal();
     try {
       await handleLogin(email, password);
+      Notification.info("Redirecionando para a página inicial");
       toggleModal();
       route.push("/");
     } catch (error) {
+      Notification.error("Erro ao efetuar login");
       toggleModal();
-      console.error(error);
     }
   }
 

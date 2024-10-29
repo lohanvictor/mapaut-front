@@ -24,6 +24,7 @@ type SessionContextProps = {
     accessToken: string;
     name: string;
     email: string;
+    uid: string
   };
   isLogged: boolean;
 };

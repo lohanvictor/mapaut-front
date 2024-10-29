@@ -7,6 +7,7 @@ import { useSession } from "../_contexts/sessionContext";
 import { useEffect, useMemo, useState } from "react";
 import { PasswordInput } from "../_components/PasswordInput";
 import LoadingModal from "../_components/_modal/LoadingModal";
+import { Notification } from "../_lib/notification";
 
 export default function Account() {
   const { login, updateAccount } = useSession();
@@ -102,8 +103,9 @@ export default function Account() {
     toggleModal();
     try {
       await updateAccount(account.name, account.password);
+      Notification.success("Conta atualizada com sucesso!");
     } catch (error) {
-      console.error("Erro ao atualizar conta", error);
+      Notification.error("Erro ao atualizar conta");
     } finally {
       toggleModal();
     }

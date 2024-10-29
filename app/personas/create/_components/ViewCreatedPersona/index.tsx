@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/app/_lib/api";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
+import { Notification } from "@/app/_lib/notification";
 
 type ViewCreatedPersona = {
   persona: PersonaModel;
@@ -25,10 +26,12 @@ export default function ViewCreatedPersona(props: ViewCreatedPersona) {
   async function handleSave() {
     try {
       setIsLoading(true);
-      const { data } = await api.post<PostResponse>(
-        `/api/personas`,
-        props.persona
-      );
+      const { data } = await api.post<PostResponse>(`/api/personas`, {
+        ...props.persona,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+      Notification.success("Persona criada com sucesso!");
       route.push(`/personas/${data.id}/view`);
     } catch (error) {
       console.error(error);

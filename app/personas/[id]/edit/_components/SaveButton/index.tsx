@@ -4,6 +4,7 @@ import { PersonaModel } from "@/app/@types/persona.type";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import api from "@/app/_lib/api";
+import { Notification } from "@/app/_lib/notification";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -22,16 +23,18 @@ export default function SaveButton(props: Props) {
   }
 
   async function handleSave() {
-    setIsOpenModal(false)
+    setIsOpenModal(false);
     try {
       setIsLoading(true);
-      await api.patch<{ id: string }>(
-        `/api/personas/${props.persona.id}`,
-        props.persona
-      );
+      await api.patch<{ id: string }>(`/api/personas/${props.persona.id}`, {
+        ...props.persona,
+        updatedAt: new Date().toISOString(),
+      });
+      Notification.success("Persona editada com sucesso!");
       setIsLoading(false);
       route.push(`/personas/${props.persona.id}/view`);
     } catch (error) {
+      Notification.error("Erro ao editar persona!");
       setIsLoading(false);
     }
   }

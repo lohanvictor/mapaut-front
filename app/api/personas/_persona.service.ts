@@ -28,6 +28,9 @@ function mapDocToPersonaModel(doc: any): PersonaModel {
     sensibilidade_som: docData.sensibilidade_som,
     sobre: docData.sobre,
     foto: docData.foto,
+    createdAt: docData.createdAt,
+    updatedAt: docData.updatedAt,
+    usuarioId: docData.usuarioId,
   };
 }
 
@@ -39,7 +42,7 @@ export class PersonaService {
       FirebaseFirestore.DocumentData
     >;
     if (name) {
-      response = await q.where("nome", "==", name).get();
+      response = await q.where("nome", ">=", name).get();
     } else {
       response = await q.get();
     }

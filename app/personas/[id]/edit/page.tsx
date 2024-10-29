@@ -105,6 +105,7 @@ export default function PersonasEditPage({ params }: PersonasEditPageProps) {
             comunicacao: vga.comunicacao,
             comportamento: vga.comportamento,
             cognicao: vga.cognicao,
+            sensibilidade_som: vga.comportamento[8] || !vga.comportamento[9],
           }
         : null
     );

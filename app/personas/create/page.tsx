@@ -14,8 +14,10 @@ import SoftwareAspects from "@/app/_components/_personaSteps/SoftwareAspects";
 import ViewCreatedPersona from "./_components/ViewCreatedPersona";
 import { VGA } from "@/app/_components/_personaSteps/VGA";
 import { CreateWelcome } from "./_components/CreateWelcome";
+import { useSession } from "@/app/_contexts/sessionContext";
 
 export default function PersonasCreate() {
+  const { login } = useSession();
   const [currentStep, setCurrentStep] = useState(-2);
   const [totalSteps, setTotalSteps] = useState(0);
 
@@ -47,6 +49,9 @@ export default function PersonasCreate() {
     comportamento: [],
     comunicacao: [],
     interacao: [],
+    createdAt: "",
+    updatedAt: "",
+    usuarioId: login.uid,
   });
 
   function previousStep() {
@@ -182,6 +187,9 @@ export default function PersonasCreate() {
       comportamento: [],
       comunicacao: [],
       interacao: [],
+      createdAt: "",
+      updatedAt: "",
+      usuarioId: login.uid,
     });
     setCurrentStep(-1);
     setTotalSteps(0);

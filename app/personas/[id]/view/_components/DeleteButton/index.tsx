@@ -4,6 +4,7 @@ import { PersonaModel } from "@/app/@types/persona.type";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import api from "@/app/_lib/api";
+import { Notification } from "@/app/_lib/notification";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,9 +27,11 @@ export default function DeleteButton(props: Props) {
     try {
       setIsLoading(true);
       await api.delete(`/api/personas/${props.persona.id}`);
+      Notification.success("Persona excluída com sucesso!");
       setIsLoading(false);
       route.replace("/personas");
     } catch (error) {
+      Notification.error("Erro ao excluir persona!");
       setIsLoading(false);
     }
   }
