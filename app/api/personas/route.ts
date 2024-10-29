@@ -18,9 +18,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as PersonaModel;
-  body.foto =
-    "https://pm1.aminoapps.com/8018/ec9b52841ae5d91f60d28740147aa755418370a6r1-640-556v2_uhq.jpg";
-
   try {
     const response = await PersonaService.save(body);
     return NextResponse.json({

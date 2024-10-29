@@ -269,6 +269,7 @@ export default function PersonasCreate() {
       )}
       {currentStep > 7 && personaModel.modelo === "1" && (
         <ViewCreatedPersona
+          file={img.file as File}
           onBack={previousStep}
           onCancel={handleCancelCreation}
           persona={{ ...personaModel, foto: img.link }}
@@ -285,6 +286,7 @@ export default function PersonasCreate() {
       ) : null}
       {currentStep === 4 && personaModel.modelo === "2" && (
         <ViewCreatedPersona
+          file={img.file as File}
           onBack={previousStep}
           onCancel={handleCancelCreation}
           persona={{ ...personaModel, foto: img.link }}

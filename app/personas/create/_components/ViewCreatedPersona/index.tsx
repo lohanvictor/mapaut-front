@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation";
 import api from "@/app/_lib/api";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import { Notification } from "@/app/_lib/notification";
+import axios, { isAxiosError } from "axios";
 
 type ViewCreatedPersona = {
   persona: PersonaModel;
+  file: File;
   onBack: () => void;
   onCancel: () => void;
 };
@@ -24,17 +26,33 @@ export default function ViewCreatedPersona(props: ViewCreatedPersona) {
   const route = useRouter();
 
   async function handleSave() {
+    let id = "";
     try {
       setIsLoading(true);
+
       const { data } = await api.post<PostResponse>(`/api/personas`, {
         ...props.persona,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
-      Notification.success("Persona criada com sucesso!");
+      id = data.id;
+
+      try {
+        const formData = new FormData();
+        formData.set("file", props.file);
+        await api.post(`/api/personas/${data.id}/picture`, formData);
+        Notification.success("Persona criada com sucesso!");
+      } catch (error) {
+        if (isAxiosError(error) && error.response!.status === 500) {
+          Notification.info(
+            "A persona foi criada, porém a imagem não foi salva. Tente salvá-la na edição"
+          );
+        }
+      }
+
       route.push(`/personas/${data.id}/view`);
     } catch (error) {
-      console.error(error);
+      Notification.error("Erro ao criar persona");
     } finally {
       setIsLoading(false);
     }

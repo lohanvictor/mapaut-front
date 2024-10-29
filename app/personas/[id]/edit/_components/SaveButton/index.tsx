@@ -6,11 +6,13 @@ import OptionModal from "@/app/_components/_modal/OptionModal";
 import api from "@/app/_lib/api";
 import { Notification } from "@/app/_lib/notification";
 import { Button } from "@mui/material";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type Props = {
   persona: PersonaModel;
+  file: File | null;
 };
 
 export default function SaveButton(props: Props) {
@@ -30,12 +32,26 @@ export default function SaveButton(props: Props) {
         ...props.persona,
         updatedAt: new Date().toISOString(),
       });
+
+      if (props.file !== null) {
+        const formData = new FormData();
+        formData.set("file", props.file);
+        await api.post(`/api/personas/${props.persona.id}/picture`, formData);
+      }
+
       Notification.success("Persona editada com sucesso!");
       setIsLoading(false);
       route.push(`/personas/${props.persona.id}/view`);
     } catch (error) {
-      Notification.error("Erro ao editar persona!");
-      setIsLoading(false);
+      if (isAxiosError(error) && error.response!.status === 500) {
+        Notification.info(
+          "A persona foi editada, porém a imagem não foi salva. Tente salvá-la novamente."
+        );
+        route.push(`/personas/${props.persona.id}/view`);
+      } else {
+        Notification.error("Erro ao criar persona");
+        setIsLoading(false);
+      }
     }
   }
 

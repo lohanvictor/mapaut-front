@@ -6,8 +6,8 @@ export class Notification {
       duration: 2000,
       position: "top-right",
       style: {
-        background: "#fff",
-        color: "#3CB371",
+        background: "#3CB371",
+        color: "#fff",
         fontWeight: "normal",
       },
     });
@@ -17,8 +17,8 @@ export class Notification {
       duration: 2000,
       position: "top-right",
       style: {
-        background: "#fff",
-        color: "#F94144",
+        background: "#F94144",
+        color: "#fff",
       },
     });
   }
@@ -27,8 +27,8 @@ export class Notification {
       duration: 2000,
       position: "top-right",
       style: {
-        background: "#fff",
-        color: "#577590",
+        background: "#577590",
+        color: "#fff",
         fontWeight: 'normal'
       },
     });

@@ -73,9 +73,9 @@ export class PersonaService {
     return { id: ref.id };
   }
 
-  static async update(persona: PersonaModel): Promise<void> {
-    const ref = firebaseDb.collection("personas").doc(persona.id);
-    await ref.set(persona, { merge: true });
+  static async update(persona: Partial<PersonaModel>): Promise<void> {
+    const ref = firebaseDb.collection("personas").doc(persona.id!);
+    await ref.set({ ...persona }, { merge: true });
   }
 
   static async delete(id: string): Promise<void> {

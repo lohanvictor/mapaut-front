@@ -24,6 +24,7 @@ type PersonasEditPageProps = {
 export default function PersonasEditPage({ params }: PersonasEditPageProps) {
   const [persona, setPersona] = useState<PersonaModel | null>(null);
   const [editSection, setEditSection] = useState<PersonaSection>("none");
+  const [file, setFile] = useState<File | null>(null)
 
   useEffect(() => {
     async function fetchPersona() {
@@ -64,6 +65,7 @@ export default function PersonasEditPage({ params }: PersonasEditPageProps) {
           }
         : null
     );
+    setFile(form.file as File);
     setEditSection("none");
   }
 
@@ -123,7 +125,7 @@ export default function PersonasEditPage({ params }: PersonasEditPageProps) {
           <div className="flex flex-row justify-end items-center">
             <div className="flex flex-row gap-4">
               <CancelButton />
-              <SaveButton persona={persona} />
+              <SaveButton persona={persona} file={file} />
             </div>
           </div>
           <EditDetailsPersona persona={persona} onClickEdit={handleClickEdit} />
