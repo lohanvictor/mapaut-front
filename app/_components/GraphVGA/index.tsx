@@ -22,6 +22,7 @@ export function GraphVGA(props: Props) {
         ]}
         title="Visão Geral do Autista"
         xAxis={[{ data: labels, scaleType: "point" }]}
+        
       />
 
       {/* <div className="absolute top-0 left-0 w-full h-full bg-slate-400 rounded-md container-hover"></div> */}

@@ -22,7 +22,7 @@ export async function POST(req: NextResponse, options: Options) {
 
   const arrayBuffer = await image.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
-  const path = `personas/${id}`;
+  const path = `personas/${id}.jpeg`;
   const file = firebaseStorage.file(path);
 
   await file.save(buffer);

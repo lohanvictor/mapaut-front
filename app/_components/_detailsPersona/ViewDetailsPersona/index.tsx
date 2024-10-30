@@ -6,10 +6,12 @@ import { useMemo } from "react";
 
 type ViewDetailsPersonaProps = {
   persona: PersonaModel;
+  toPdf?: boolean;
 };
 
 export default function ViewDetailsPersona({
   persona,
+  toPdf = false,
 }: ViewDetailsPersonaProps) {
   const aboutName = persona.nome.split(" ");
   const about = persona.sobre.split("\n");
@@ -32,15 +34,15 @@ export default function ViewDetailsPersona({
       0
     );
     return [
-      interacao * 100 / persona.interacao.length,
-      comunicacao * 100 / persona.comunicacao.length,
-      comportamento * 100 / persona.comportamento.length,
-      cognicao * 100 / persona.cognicao.length,
+      (interacao * 100) / persona.interacao.length,
+      (comunicacao * 100) / persona.comunicacao.length,
+      (comportamento * 100) / persona.comportamento.length,
+      (cognicao * 100) / persona.cognicao.length,
     ];
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-8">
+    <div className="w-full flex flex-col gap-8" id={persona.id}>
       <div className="w-full flex flex-row gap-2 items-center">
         <MainCharacteristics persona={persona} />
         <GraphVGA data={vgaData} />
@@ -50,22 +52,27 @@ export default function ViewDetailsPersona({
           <LayoutActivity
             label="Atividades que acalmam"
             activities={persona.atividades_acalmam}
+            toPdf={toPdf}
           />
           <LayoutActivity
             label="Atividades que estressam"
             activities={persona.atividades_estressam}
+            toPdf={toPdf}
           />
           <LayoutActivity
             label="Aspectos sociais e familiares"
             activities={persona.aspectos_sociais}
+            toPdf={toPdf}
           />
           <LayoutActivity
             label="Aspectos de software"
             activities={persona.aspectos_software}
+            toPdf={toPdf}
           />
           <LayoutActivity
             label="Esteriotipias e Manias"
             activities={persona.manias}
+            toPdf={toPdf}
           />
         </div>
       )}
