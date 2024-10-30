@@ -18,6 +18,7 @@ type Props = {
     comportamento: boolean[];
     cognicao: boolean[];
   };
+  initialStep?: number;
 };
 
 export function VGA(props: Props) {
@@ -27,7 +28,7 @@ export function VGA(props: Props) {
     comportamento: props.form?.comportamento || ([] as boolean[]),
     cognicao: props.form?.cognicao || ([] as boolean[]),
   });
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(props.initialStep || 1);
 
   function nextStep() {
     setCurrentStep((prev) => prev + 1);

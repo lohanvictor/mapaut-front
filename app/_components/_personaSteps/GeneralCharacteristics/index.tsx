@@ -163,7 +163,7 @@ export default function GeneralCharacteristics(
       </div>
       <div className="w-full flex flex-row justify-between">
         <Button variant="contained" onClick={props.onReturn}>
-          Retornar
+          Voltar
         </Button>
         <Button variant="contained" onClick={onNext}>
           Prosseguir

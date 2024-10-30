@@ -20,6 +20,7 @@ export default function PersonasCreate() {
   const { login } = useSession();
   const [currentStep, setCurrentStep] = useState(-2);
   const [totalSteps, setTotalSteps] = useState(0);
+  const [vgaInitialStep, setVgaInitialStep] = useState(1);
 
   const textStep = useMemo(() => {
     return `${currentStep}/${totalSteps}`;
@@ -62,6 +63,11 @@ export default function PersonasCreate() {
     setCurrentStep((prev) => prev + 1);
   }
 
+  function handlePreviousStepDemographic() {
+    setVgaInitialStep(4);
+    previousStep();
+  }
+
   function handleVGA(vga: {
     interacao: boolean[];
     comunicacao: boolean[];
@@ -82,7 +88,8 @@ export default function PersonasCreate() {
   function handleChooseModel(model: string) {
     setPersonaModel((prev) => ({ ...prev, modelo: model }));
     setTotalSteps(model === "1" ? 7 : 3);
-    setCurrentStep(1);
+    setVgaInitialStep(1);
+    nextStep();
   }
 
   function handleNextDemoCharacteristics(form: {
@@ -198,13 +205,25 @@ export default function PersonasCreate() {
   return (
     <div className="flex-1 flex flex-col items-center p-6">
       {currentStep === -2 && <CreateWelcome onNext={nextStep} />}
-      {currentStep === -1 && <VGA onReturn={previousStep} onNext={handleVGA} />}
-      {currentStep === 0 && <ChooseModel onChooseModel={handleChooseModel} />}
+      {currentStep === -1 && <ChooseModel onChooseModel={handleChooseModel} />}
+      {currentStep === 0 && (
+        <VGA
+          onReturn={previousStep}
+          onNext={handleVGA}
+          initialStep={vgaInitialStep}
+          form={{
+            interacao: personaModel.interacao,
+            comunicacao: personaModel.comunicacao,
+            comportamento: personaModel.comportamento,
+            cognicao: personaModel.cognicao,
+          }}
+        />
+      )}
       {currentStep === 1 && (
         <DemographicCharacteristics
           state="create"
           step={textStep}
-          onReturn={previousStep}
+          onReturn={handlePreviousStepDemographic}
           onNext={handleNextDemoCharacteristics}
           form={{
             age: personaModel.idade,
