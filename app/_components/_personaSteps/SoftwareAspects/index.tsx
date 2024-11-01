@@ -127,6 +127,7 @@ export default function SoftwareAspects(props: SoftwareAspectsProps) {
               fullWidth
               error={!!errors.activityInput}
               helperText={errors.activityInput}
+              onKeyDown={(e) => e.key === "Enter" && handleAddActivity()}
             />
           </div>
           <AddActivityButton

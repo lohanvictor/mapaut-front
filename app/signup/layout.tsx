@@ -5,8 +5,8 @@ type SignUpLayoutProps = {
 };
 
 export const metadata: Metadata = {
-  title: "MapAut | Registro",
-  description: "Registro no sistema",
+  title: "MapAut | Cadastro",
+  description: "Cadastro no sistema",
 };
 
 export default function SignUpLayout({ children }: SignUpLayoutProps) {

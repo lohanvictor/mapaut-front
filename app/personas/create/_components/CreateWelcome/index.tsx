@@ -12,7 +12,7 @@ export function CreateWelcome(props: Props) {
   const route = useRouter();
 
   function handleBack() {
-    route.replace('/personas');
+    route.replace("/personas");
   }
 
   return (
@@ -30,7 +30,8 @@ export function CreateWelcome(props: Props) {
         Criar Persona
       </h1>
       <p className="text-left text-slate-950">
-        Para a criação da persona, primeiramente você marcará alguas opções
+        Para a criação da persona, primeiramente você escolherá qual o modelo de
+        persona para preencher os dados. Após a escolha, marcará alguas opções
         referentes a interação social, comunicação, comportamento e cognição da
         persona, sendo esses dados necessários para a criação do gráfico VGA
         (Visão Geral do Autista). Após isso, você poderá adicionar informações

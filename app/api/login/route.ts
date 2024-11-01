@@ -45,7 +45,6 @@ export async function POST(request: NextRequest) {
     };
     return NextResponse.json(response, { status: HttpStatusCode.Accepted });
   } catch (error) {
-    console.error(error);
     const message = handleErrorMessage(error as FirebaseError);
     return NextResponse.json(
       { error: message },

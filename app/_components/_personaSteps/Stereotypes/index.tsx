@@ -126,6 +126,7 @@ export default function Stereotypes(props: StereotypesProps) {
               fullWidth
               error={!!errors.activityInput}
               helperText={errors.activityInput}
+              onKeyDown={(e) => e.key === "Enter" && handleAddActivity()}
             />
           </div>
           <AddActivityButton

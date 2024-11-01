@@ -50,8 +50,8 @@ export default function Account() {
         return false;
       }
 
-      if (account.password.length < 6 || account.confirmedPassword.length < 6) {
-        error = "A senha deve ter no mínimo 6 caracteres";
+      if (account.password.length < 8 || account.confirmedPassword.length < 8) {
+        error = "A senha deve ter no mínimo 8 caracteres";
       }
 
       if (account.password !== account.confirmedPassword) {

@@ -21,6 +21,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [errors, setErrors] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -58,8 +59,8 @@ export default function SignUp() {
         error = "Senha é obrigatória";
       }
 
-      if (password.length < 6 || confirmedPassword.length < 6) {
-        error = "A senha deve ter no mínimo 6 caracteres";
+      if (password.length < 8 || confirmedPassword.length < 8) {
+        error = "A senha deve ter no mínimo 8 caracteres";
       }
 
       if (password !== confirmedPassword) {
@@ -76,7 +77,7 @@ export default function SignUp() {
   };
 
   async function handleClick() {
-    const validationErrors = [valid.email(), valid.password()];
+    const validationErrors = [valid.email(), valid.password(), valid.name()];
     const isValid = validationErrors.every((validation) => !validation);
     if (!isValid) {
       return;
@@ -104,7 +105,7 @@ export default function SignUp() {
 
   return (
     <div className="flex-1 flex flex-col justify-center items-center p-6 overflow-y-auto">
-      <div className="flex flex-col w-[600px] bg-slate-200 rounded-md p-6 items-center gap-2">
+      <div className="flex flex-col w-[600px] bg-slate-100 rounded-md p-6 items-center gap-2">
         <Button
           onClick={handleBack}
           variant="text"
@@ -114,8 +115,10 @@ export default function SignUp() {
           Voltar
         </Button>
 
-        <div className="flex flex-col items-center">
-          <h1 className="text-slate-950 text-4xl font-medium">Cadastro</h1>
+        <div className="flex flex-col items-center gap-4">
+          <h2 className="text-sky-800 text-4xl self-center font-bold">
+            MapAut | Cadastro
+          </h2>
           <span className="text-slate-700">
             Preencha todos os campos abaixo para criar sua conta no MapAut
           </span>
@@ -128,8 +131,8 @@ export default function SignUp() {
           variant="outlined"
           required
           fullWidth
-          error={!!errors.email}
-          helperText={errors.email}
+          error={!!errors.name}
+          helperText={errors.name}
           className="bg-white"
         />
 
@@ -155,6 +158,7 @@ export default function SignUp() {
           error={errors.password}
           password={confirmedPassword}
           setPassword={setConfirmedPassword}
+          placeholder="Confirme sua senha"
         />
 
         <Button onClick={handleClick} fullWidth variant="contained">

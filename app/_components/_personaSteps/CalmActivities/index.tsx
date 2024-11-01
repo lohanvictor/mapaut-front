@@ -125,6 +125,7 @@ export default function CalmActivities(props: CalmActivitiesProps) {
               fullWidth
               error={!!errors.activityInput}
               helperText={errors.activityInput}
+              onKeyDown={(e) => e.key === "Enter" && handleAddActivity()}
             />
           </div>
           <AddActivityButton

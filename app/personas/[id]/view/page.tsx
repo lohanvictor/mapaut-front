@@ -76,7 +76,7 @@ export default function PersonaView(props: PersonaViewProps) {
           <DeleteButton persona={persona} />
           <EditButton persona={persona} />
           <Button onClick={handlePrint} variant="contained" color="inherit">
-            Imprimir
+            Baixar
           </Button>
         </div>
       </div>
