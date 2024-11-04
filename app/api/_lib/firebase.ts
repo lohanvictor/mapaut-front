@@ -7,6 +7,8 @@ import {
   initializeApp as initializeAppClient,
 } from "firebase/app";
 
+const privateKey = JSON.parse(process.env.FIREBASE_ADMIN_PRIVATE_KEY || "");
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,7 +26,7 @@ const firebaseClientConfig = {
 
 const firebaseAdminConfig = {
   clientEmail: process.env.FIREBASE_ADMIN_EMAIL || "",
-  privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY || "",
+  privateKey: privateKey.key || "",
   projectId: process.env.FIREBASE_PROJECT_ID || "",
 };
 
