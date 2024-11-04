@@ -8,6 +8,10 @@ type Props = {
 };
 
 export function GraphVGA(props: Props) {
+  const labelsMapped = labels.map(
+    (label, index) => label + ": " + Math.trunc(props.data[index]) + "%"
+  );
+
   return (
     <Container>
       <LineChart
@@ -16,13 +20,19 @@ export function GraphVGA(props: Props) {
         series={[
           {
             data: props.data,
-            label: "Visão Geral do Autista",
+            label: "Visão Geral do Autista (níve de comprometimento)",
             curve: "linear",
+            showMark: false,
+            valueFormatter: (value) => `${Math.trunc(value!)}%`,
           },
         ]}
         title="Visão Geral do Autista"
-        xAxis={[{ data: labels, scaleType: "point" }]}
-        
+        xAxis={[
+          {
+            data: labelsMapped,
+            scaleType: "point",
+          },
+        ]}
       />
 
       {/* <div className="absolute top-0 left-0 w-full h-full bg-slate-400 rounded-md container-hover"></div> */}
