@@ -64,12 +64,12 @@ export default function SignUp() {
         error = "Senha é obrigatória";
       }
 
-      if (ValidationUtil.isPasswordLengthValid(password)) {
-        error = "A senha deve ter no mínimo 8 caracteres";
-      }
-
       if (password !== confirmedPassword) {
         error = "As senhas não coincidem";
+      }
+
+      if (!ValidationUtil.isPasswordLengthValid(password)) {
+        error = "A senha deve ter no mínimo 8 caracteres";
       }
 
       setErrors((errors) => ({
