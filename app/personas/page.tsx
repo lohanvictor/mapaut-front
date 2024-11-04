@@ -6,6 +6,7 @@ import { Search } from "@mui/icons-material";
 import PersonaListItem from "../_components/PersonaIListItem";
 import { useRouter } from "next/navigation";
 import { PersonaModelList } from "../_types/persona.type";
+import { Notification } from "../_lib/notification";
 
 export default function PersonasList() {
   const [personaList, setPersonaList] = useState<PersonaModelList | null>(null);
@@ -27,17 +28,30 @@ export default function PersonasList() {
   }
 
   async function handleFilter() {
-    if (!filter) return;
+    if (!filter) fetchPersonas();
 
-    const response = await (
-      await fetch(`/api/personas?page=${page}&name=${filter}`)
-    ).json();
-    setPersonaList(response as PersonaModelList);
+    setPage(1);
+    try {
+      const response = await (
+        await fetch(`/api/personas?page=1&name=${filter}`)
+      ).json();
+      setPersonaList(response as PersonaModelList);
+    } catch {
+      Notification.error("Erro ao buscar " + filter);
+    }
   }
 
   async function fetchPersonas() {
-    const response = await (await fetch(`/api/personas?page=${page}`)).json();
-    setPersonaList(response as PersonaModelList);
+    try {
+      const response = await (
+        await fetch(
+          `/api/personas?page=${page}${filter ? "&name=" + filter : ""}`
+        )
+      ).json();
+      setPersonaList(response as PersonaModelList);
+    } catch {
+      Notification.error("Erro ao buscar personas");
+    }
   }
 
   useEffect(() => {
