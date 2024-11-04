@@ -10,6 +10,7 @@ import EditButton from "./_components/EditButton";
 import { Button } from "@mui/material";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import jsPDF from "jspdf";
+import { useSession } from "@/app/_contexts/sessionContext";
 
 type PersonaViewProps = {
   params: {
@@ -18,6 +19,7 @@ type PersonaViewProps = {
 };
 
 export default function PersonaView(props: PersonaViewProps) {
+  const { login } = useSession();
   const [persona, setPersona] = useState<PersonaModel | null>(null);
   const [toPdf, setToPdf] = useState(false);
 
@@ -73,8 +75,12 @@ export default function PersonaView(props: PersonaViewProps) {
         <BackButton />
 
         <div className="flex flex-row gap-4">
-          <DeleteButton persona={persona} />
-          <EditButton persona={persona} />
+          {login.uid === persona.usuarioId ? (
+            <>
+              <DeleteButton persona={persona} />
+              <EditButton persona={persona} />
+            </>
+          ) : null}
           <Button onClick={handlePrint} variant="contained" color="inherit">
             Baixar
           </Button>
