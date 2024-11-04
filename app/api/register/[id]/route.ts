@@ -1,4 +1,4 @@
-import { RegisterModel } from "@/app/@types/login.type";
+import { RegisterModel } from "@/app/_types/login.type";
 import { HttpStatusCode } from "axios";
 import { getAuth } from "firebase-admin/auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -29,7 +29,7 @@ export async function PUT(req: NextRequest, options: Options) {
   try {
     await auth.updateUser(options.params.id, patchRegister);
     return NextResponse.json({ ok: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });
   }
 }
@@ -45,7 +45,7 @@ export async function DELETE(req: NextRequest, options: Options) {
       await doc.ref.delete();
     }
     return NextResponse.json({ ok: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });
   }
 }

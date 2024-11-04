@@ -1,7 +1,4 @@
 import { VGA_INTERACAO } from "@/app/_constants/vga.constant";
-import { CheckboxButton } from "../../CheckboxButton";
-import { useState } from "react";
-import { Button } from "@mui/material";
 import { VGAStepTemplate } from "../../VGAStepTemplate";
 
 type Props = {

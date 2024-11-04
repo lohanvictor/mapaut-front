@@ -1,4 +1,5 @@
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
+import Image from "next/image";
 import { useMemo } from "react";
 
 type MainCharacteristicsProps = {
@@ -8,7 +9,7 @@ type MainCharacteristicsProps = {
 export default function MainCharacteristics(props: MainCharacteristicsProps) {
   const description = useMemo(() => {
     return `${props.persona.genero}, ${props.persona.idade} anos`;
-  }, [props.persona.idade]);
+  }, [props.persona.idade, props.persona.genero]);
   const autismLevel = useMemo(() => {
     return `Nível de autismo: ${props.persona.nivel_autismo}`;
   }, [props.persona.nivel_autismo]);
@@ -24,7 +25,7 @@ export default function MainCharacteristics(props: MainCharacteristicsProps) {
 
   return (
     <div className="flex-1 flex flex-row gap-4 items-start">
-      <img
+      <Image
         className="aspect-square object-cover rounded-full bg-cover"
         width={175}
         height={175}

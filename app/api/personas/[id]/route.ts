@@ -1,7 +1,6 @@
-import { PERSONA_MOCK } from "@/app/_mocks/persona.mock";
 import { NextRequest, NextResponse } from "next/server";
 import { PersonaService } from "../_persona.service";
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import { firebaseStorage } from "../../_lib/firebase";
 
 type GetOptions = {
@@ -10,7 +9,7 @@ type GetOptions = {
   };
 };
 
-export async function GET(request: NextRequest, options: GetOptions) {
+export async function GET(_: NextRequest, options: GetOptions) {
   try {
     const response = await PersonaService.getById(options.params.id);
 
@@ -21,7 +20,7 @@ export async function GET(request: NextRequest, options: GetOptions) {
       );
 
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Erro ao buscar persona" },
       { status: 500 }
@@ -42,10 +41,10 @@ export async function DELETE(req: NextRequest, options: GetOptions) {
 
     try {
       await firebaseStorage.file(`personas/${options.params.id}`).delete();
-    } catch (err) {}
+    } catch {}
 
     return NextResponse.json({ message: "Persona deletada com sucesso" });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Erro ao deletar persona" },
       { status: 500 }

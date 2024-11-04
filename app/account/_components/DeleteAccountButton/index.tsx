@@ -5,14 +5,12 @@ import OptionModal from "@/app/_components/_modal/OptionModal";
 import { useSession } from "@/app/_contexts/sessionContext";
 import { Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function DeleteAccountButton() {
   const [openQuestionModal, setOpenQuestionModal] = useState(false);
   const [openLoadingModal, setOpenLoadingModal] = useState(false);
   const { handleDeleteAccount } = useSession();
-  const route = useRouter();
 
   function toggleModal() {
     setOpenQuestionModal((prev) => !prev);

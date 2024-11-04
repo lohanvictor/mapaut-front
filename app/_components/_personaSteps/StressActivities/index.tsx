@@ -1,16 +1,8 @@
-import {
-  Button,
-  CircularProgress,
-  FormControl,
-  TextField,
-} from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { Button, CircularProgress, TextField } from "@mui/material";
+import { useState } from "react";
 import { AddActivityButton } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
-import {
-  STEPS_PERSONA_DATA,
-  STRESS_ACTIVITIES_MOCK,
-} from "@/app/_constants/steps.constant";
+import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
 import { useFetch } from "@/app/_hooks/useFetch";
 
 type StressActivitiesProps = {

@@ -1,5 +1,5 @@
 import { firebaseStorage } from "@/app/api/_lib/firebase";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PersonaService } from "../../_persona.service";
 import { getDownloadURL } from "firebase-admin/storage";
 
@@ -9,7 +9,7 @@ type Options = {
   };
 };
 
-export async function POST(req: NextResponse, options: Options) {
+export async function POST(req: NextRequest, options: Options) {
   const { id } = options.params;
   const form = await req.formData();
   let image = form.get("file");

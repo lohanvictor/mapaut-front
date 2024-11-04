@@ -1,6 +1,6 @@
 "use client";
 
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import api from "@/app/_lib/api";

@@ -5,7 +5,7 @@ import { Button, IconButton, Pagination, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import PersonaListItem from "../_components/PersonaIListItem";
 import { useRouter } from "next/navigation";
-import { PersonaModelList } from "../@types/persona.type";
+import { PersonaModelList } from "../_types/persona.type";
 
 export default function PersonasList() {
   const [personaList, setPersonaList] = useState<PersonaModelList | null>(null);
@@ -29,14 +29,14 @@ export default function PersonasList() {
   async function handleFilter() {
     if (!filter) return;
 
-    let response = await (
+    const response = await (
       await fetch(`/api/personas?page=${page}&name=${filter}`)
     ).json();
     setPersonaList(response as PersonaModelList);
   }
 
   async function fetchPersonas() {
-    let response = await (await fetch(`/api/personas?page=${page}`)).json();
+    const response = await (await fetch(`/api/personas?page=${page}`)).json();
     setPersonaList(response as PersonaModelList);
   }
 

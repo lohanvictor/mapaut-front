@@ -1,5 +1,5 @@
 import { getAuth } from "firebase-admin/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { firebaseAdmin } from "../../_lib/firebase";
 
 const actionCodeSettings = {
@@ -8,7 +8,7 @@ const actionCodeSettings = {
   handleCodeInApp: true,
 };
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest) {
   const { email } = await req.json();
   const auth = getAuth(firebaseAdmin);
 

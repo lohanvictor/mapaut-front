@@ -5,7 +5,7 @@ import ChooseModel from "./_components/ChooseModel";
 import DemographicCharacteristics from "../../_components/_personaSteps/DemographicCharacteristics";
 import GeneralCharacteristics from "@/app/_components/_personaSteps/GeneralCharacteristics";
 import StressActivities from "@/app/_components/_personaSteps/StressActivities";
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import CalmActivities from "@/app/_components/_personaSteps/CalmActivities";
 import AboutPersona from "@/app/_components/_personaSteps/AboutPersona";
 import Stereotypes from "@/app/_components/_personaSteps/Stereotypes";

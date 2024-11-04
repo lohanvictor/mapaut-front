@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useLayoutEffect } from "react";
+import { createContext, ReactNode, useEffect } from "react";
 import { useSession } from "./sessionContext";
 import { usePathname, useRouter } from "next/navigation";
 

@@ -1,13 +1,10 @@
-import {
-  Pagination,
-  PersonaModel,
-  PersonaModelList,
-} from "@/app/@types/persona.type";
+import { PersonaModel, PersonaModelList } from "@/app/_types/persona.type";
 import { firebaseDb } from "../_lib/firebase";
-import { PAGES_PER_PAGE } from "./route";
 
-function mapDocToPersonaModel(doc: any): PersonaModel {
-  const docData = doc.data();
+export const PAGES_PER_PAGE = 5;
+
+function mapDocToPersonaModel(doc: unknown): PersonaModel {
+  const docData = (doc as any).data();
   return {
     aspectos_sociais: docData.aspectos_sociais,
     aspectos_software: docData.aspectos_software,
@@ -18,7 +15,7 @@ function mapDocToPersonaModel(doc: any): PersonaModel {
     comunicacao: docData.comunicacao,
     genero: docData.genero,
     idade: docData.idade,
-    id: doc.id,
+    id: (doc as any).id,
     interacao: docData.interacao,
     linguagem: docData.linguagem,
     manias: docData.manias,
@@ -36,7 +33,7 @@ function mapDocToPersonaModel(doc: any): PersonaModel {
 
 export class PersonaService {
   static async getAllBy(page: number, name: string): Promise<PersonaModelList> {
-    let q = firebaseDb.collection("personas");
+    const q = firebaseDb.collection("personas");
     let response: FirebaseFirestore.QuerySnapshot<
       FirebaseFirestore.DocumentData,
       FirebaseFirestore.DocumentData

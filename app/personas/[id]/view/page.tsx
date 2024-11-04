@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 import BackButton from "./_components/BackButton";
 import DeleteButton from "./_components/DeleteButton";
@@ -29,7 +29,7 @@ export default function PersonaView(props: PersonaViewProps) {
   }
 
   async function fetchPersona() {
-    let response = (await (
+    const response = (await (
       await fetch(`/api/personas/${props.params.id}`)
     ).json()) as PersonaModel;
     const imageFile = await urlToFile(response.foto, `${response.id}.jpeg`);

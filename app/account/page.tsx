@@ -104,7 +104,7 @@ export default function Account() {
     try {
       await updateAccount(account.name, account.password);
       Notification.success("Conta atualizada com sucesso!");
-    } catch (error) {
+    } catch {
       Notification.error("Erro ao atualizar conta");
     } finally {
       toggleModal();

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GuideAutUtils } from "./utils";
-import { GuideAutSection } from "@/app/@types/guideaut.type";
+import { GuideAutSection } from "@/app/_types/guideaut.type";
 import {
   CALM_ACTIVITIES_MOCK,
   SOCIAL_ASPECTS_MOCK,
@@ -23,7 +22,7 @@ const mapGuideAut: Record<GuideAutSection, string[]> = {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const section = searchParams.get("section") ?? "";
-  const url = GuideAutUtils.getPath(section);
+  // const url = GuideAutUtils.getPath(section);
 
   await mockFn();
 

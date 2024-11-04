@@ -1,4 +1,4 @@
-import { LoginModel, LoginResponse } from "@/app/@types/login.type";
+import { LoginModel, LoginResponse } from "@/app/_types/login.type";
 import { HttpStatusCode } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE() {
   const auth = getAuth(firebaseClient);
   await auth.signOut();
   return NextResponse.json({ ok: true });

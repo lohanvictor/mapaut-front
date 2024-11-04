@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import { styled } from "@mui/material/styles";
 import AboutPersonaModal from "../../_modal/custom/AboutPersonaModal";
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 16,
   borderRadius: 8,
   [`& .${linearProgressClasses.bar}`]: {
@@ -32,7 +32,7 @@ export default function AboutPersona(props: AboutProps) {
   const progressValue = useMemo(() => {
     const [step, total] = props.step.split("/");
     return (Number(step) / Number(total)) * 100;
-  }, []);
+  }, [props.step]);
   const [openModal, setOpenModal] = useState(false);
   const [about, setAbout] = useState(props.form?.about || "");
   const [errors, setErrors] = useState({

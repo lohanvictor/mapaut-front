@@ -12,7 +12,7 @@ type StepLayoutProps = {
   description: string;
 };
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 16,
   borderRadius: 8,
   [`& .${linearProgressClasses.bar}`]: {
@@ -24,7 +24,7 @@ export default function LayoutPersona(props: StepLayoutProps) {
   const progressValue = useMemo(() => {
     const [step, total] = props.step.split("/");
     return (Number(step) / Number(total)) * 100;
-  }, []);
+  }, [props.step]);
 
   return (
     <div className="max-h-full w-full overflow-y-auto flex flex-col gap-4">

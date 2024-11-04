@@ -1,14 +1,15 @@
 "use client";
 
-import { ArrowBack, Visibility, VisibilityOff } from "@mui/icons-material";
-import { Button, IconButton, TextField } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PasswordInput } from "../_components/PasswordInput";
 import api from "../_lib/api";
-import { RegisterModel } from "../@types/login.type";
+import { RegisterModel } from "../_types/login.type";
 import LoadingModal from "../_components/_modal/LoadingModal";
 import { Notification } from "../_lib/notification";
+import { ValidationUtil } from "../_utils/validation.util";
 
 export default function SignUp() {
   const route = useRouter();
@@ -46,6 +47,10 @@ export default function SignUp() {
         error = "Email é obrigatório";
       }
 
+      if (!ValidationUtil.isEmailValid(email)) {
+        error = "Email inválido";
+      }
+
       setErrors((errors) => ({
         ...errors,
         email: error,
@@ -59,7 +64,7 @@ export default function SignUp() {
         error = "Senha é obrigatória";
       }
 
-      if (password.length < 8 || confirmedPassword.length < 8) {
+      if (ValidationUtil.isPasswordLengthValid(password)) {
         error = "A senha deve ter no mínimo 8 caracteres";
       }
 
@@ -93,7 +98,7 @@ export default function SignUp() {
       Notification.success("Conta criada com sucesso!");
       toggleModal();
       route.replace("/login");
-    } catch (error) {
+    } catch {
       Notification.error("Erro ao criar conta");
       toggleModal();
     }

@@ -1,4 +1,4 @@
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import DemographicCharacteristics from "@/app/_components/_personaSteps/DemographicCharacteristics";
 import GeneralCharacteristics from "@/app/_components/_personaSteps/GeneralCharacteristics";
 import { useState } from "react";

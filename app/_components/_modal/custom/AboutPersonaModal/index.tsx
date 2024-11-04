@@ -1,22 +1,5 @@
-import { Close } from "@mui/icons-material";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  styled,
-  Typography,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 import TextModal from "../../TextModal";
-
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
 
 type AboutPersonaModalProps = {
   onClose: () => void;

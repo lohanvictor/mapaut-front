@@ -1,4 +1,4 @@
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import api from "@/app/_lib/api";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import { Notification } from "@/app/_lib/notification";
-import axios, { isAxiosError } from "axios";
+import { isAxiosError } from "axios";
 
 type ViewCreatedPersona = {
   persona: PersonaModel;
@@ -26,7 +26,6 @@ export default function ViewCreatedPersona(props: ViewCreatedPersona) {
   const route = useRouter();
 
   async function handleSave() {
-    let id = "";
     try {
       setIsLoading(true);
 
@@ -35,8 +34,7 @@ export default function ViewCreatedPersona(props: ViewCreatedPersona) {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
-      id = data.id;
-
+      
       try {
         const formData = new FormData();
         formData.set("file", props.file);
@@ -51,7 +49,7 @@ export default function ViewCreatedPersona(props: ViewCreatedPersona) {
       }
 
       route.push(`/personas/${data.id}/view`);
-    } catch (error) {
+    } catch {
       Notification.error("Erro ao criar persona");
     } finally {
       setIsLoading(false);

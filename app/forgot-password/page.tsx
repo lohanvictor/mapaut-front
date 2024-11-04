@@ -6,9 +6,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import api from "../_lib/api";
 import { Notification } from "../_lib/notification";
+import { ValidationUtil } from "../_utils/validation.util";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState("");
+
   const route = useRouter();
 
   function handleBack() {
@@ -16,6 +19,11 @@ export default function ForgotPassword() {
   }
 
   async function handleClick() {
+    if (!ValidationUtil.isEmailValid(email)) {
+      setEmailValid("Email inválido");
+      return;
+    }
+    setEmailValid("");
     await api.post("/api/login/reset-password", { email });
     Notification.info("Verifique seu e-mail para redefinir sua senha.");
     route.replace("/login");
@@ -40,7 +48,8 @@ export default function ForgotPassword() {
           <span className="text-slate-700">
             Preencha o campo abaixo com o e-mail que você deseja alterar para
             uma nova senha. Caso o e-mail exista, você receberá um link para
-            redefinir sua senha. A senha deve possui <strong>no mínimo 8 caracteres</strong>.
+            redefinir sua senha. A senha deve possui{" "}
+            <strong>no mínimo 8 caracteres</strong>.
           </span>
         </div>
 
@@ -52,6 +61,8 @@ export default function ForgotPassword() {
           required
           fullWidth
           className="bg-white"
+          helperText={emailValid}
+          error={!!emailValid}
         />
 
         <Button

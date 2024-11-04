@@ -8,9 +8,10 @@ import {
 } from "@mui/material";
 import { ImgContainer } from "./styled";
 import { useMemo, useState } from "react";
-import { AutismTypes, LanguageTypes } from "../../../@types/persona.type";
+import { AutismTypes, LanguageTypes } from "../../../_types/persona.type";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
+import Image from "next/image";
 
 type GeneralCharacteristicsProps = {
   step: string;
@@ -157,7 +158,7 @@ export default function GeneralCharacteristics(
         </div>
         <div className="flex-1 flex flex-row justify-center items-center">
           <ImgContainer className="bg-slate-400 h-96 aspect-square rounded-full cursor-pointer flex flex-row justify-center items-center">
-            <img id="demographic-characteristics-img" src={imgUrl} alt="" />
+            <Image id="demographic-characteristics-img" src={imgUrl} alt="" />
           </ImgContainer>
         </div>
       </div>

@@ -6,7 +6,7 @@ import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 16,
   borderRadius: 8,
   [`& .${linearProgressClasses.bar}`]: {
@@ -33,7 +33,7 @@ export function VGAStepTemplate(props: Props) {
   const progressValue = useMemo(() => {
     const [step, total] = props.step.split("/");
     return (Number(step) / Number(total)) * 100;
-  }, []);
+  }, [props.step]);
 
   function handleButton(value: boolean, i: number) {
     setSelected((prev) => {

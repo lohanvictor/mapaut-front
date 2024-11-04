@@ -8,6 +8,7 @@ import { PasswordInput } from "../_components/PasswordInput";
 import LoadingModal from "../_components/_modal/LoadingModal";
 import { Notification } from "../_lib/notification";
 import { isAxiosError } from "axios";
+import { ValidationUtil } from "../_utils/validation.util";
 
 export default function Login() {
   const { handleLogin } = useSession();
@@ -27,6 +28,11 @@ export default function Login() {
   const valid = {
     email: () => {
       let error = "";
+
+      if (!ValidationUtil.isEmailValid(email)) {
+        error = "Email inválido";
+      }
+
       if (!email) {
         error = "Email é obrigatório";
       }

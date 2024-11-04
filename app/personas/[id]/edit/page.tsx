@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import CancelButton from "./_components/CancelButton";
 import SaveButton from "./_components/SaveButton";
-import { PersonaModel, PersonaSection } from "@/app/@types/persona.type";
+import { PersonaModel, PersonaSection } from "@/app/_types/persona.type";
 import { LocalStorageUtils } from "@/app/_utils/localStorage.util";
 import EditDetailsPersona from "@/app/_components/_detailsPersona/EditDetailsPersona";
 import { DemographicAndGeneral } from "./_components/DemographicAndGeneral";

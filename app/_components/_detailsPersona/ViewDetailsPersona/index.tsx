@@ -1,6 +1,6 @@
 import MainCharacteristics from "../MainCharacteristics";
 import LayoutActivity from "../LayoutActivity";
-import { PersonaModel } from "@/app/@types/persona.type";
+import { PersonaModel } from "@/app/_types/persona.type";
 import { GraphVGA } from "../../GraphVGA";
 import { useMemo } from "react";
 
@@ -39,7 +39,12 @@ export default function ViewDetailsPersona({
       (comportamento * 100) / persona.comportamento.length,
       (cognicao * 100) / persona.cognicao.length,
     ];
-  }, []);
+  }, [
+    persona.cognicao,
+    persona.comunicacao,
+    persona.comportamento,
+    persona.interacao,
+  ]);
 
   return (
     <div className="w-full flex flex-col gap-8" id={persona.id}>

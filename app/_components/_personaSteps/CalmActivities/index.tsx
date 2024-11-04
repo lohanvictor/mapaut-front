@@ -1,14 +1,12 @@
 import {
   Button,
   CircularProgress,
-  FormControl,
   TextField,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { AddActivityButton } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
 import {
-  CALM_ACTIVITIES_MOCK,
   STEPS_PERSONA_DATA,
 } from "@/app/_constants/steps.constant";
 import { useFetch } from "@/app/_hooks/useFetch";

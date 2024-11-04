@@ -1,9 +1,6 @@
-import { LIST_PERSONAS_MOCK } from "@/app/_mocks/persona.mock";
 import { NextRequest, NextResponse } from "next/server";
 import { PersonaService } from "./_persona.service";
-import { PersonaModel } from "@/app/@types/persona.type";
-
-export const PAGES_PER_PAGE = 5;
+import { PersonaModel, PersonaModelList } from "@/app/_types/persona.type";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -13,7 +10,11 @@ export async function GET(request: NextRequest) {
     const response = await PersonaService.getAllBy(+page, name || "");
     return NextResponse.json(response);
   }
-  return NextResponse.json(LIST_PERSONAS_MOCK);
+  return NextResponse.json({
+    items: [],
+    pagination: { page: 1, pages: 1 },
+    totalItems: 0,
+  } as PersonaModelList);
 }
 
 export async function POST(request: NextRequest) {
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
       message: "Persona criada com sucesso",
       id: response.id,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { message: "Erro ao criar persona" },
       { status: 500 }

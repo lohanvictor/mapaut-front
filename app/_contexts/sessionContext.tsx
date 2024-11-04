@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, use, useEffect, useMemo, useState } from "react";
+import { createContext, use, useMemo, useState } from "react";
 import cookies from "js-cookie";
 import {
   ACCESS_TOKEN_STORAGE_KEY,
@@ -9,11 +9,7 @@ import {
   UID_STORAGE_KEY,
 } from "../_constants/keys.constants";
 import api from "../_lib/api";
-import { LoginResponse } from "../@types/login.type";
-import { usePathname, useRouter } from "next/navigation";
-
-const mockFn = () =>
-  new Promise<string>((resolve) => setTimeout(() => resolve(""), 1000));
+import { LoginResponse } from "../_types/login.type";
 
 type SessionContextProps = {
   handleLogin(email: string, password: string): Promise<void>;
@@ -24,7 +20,7 @@ type SessionContextProps = {
     accessToken: string;
     name: string;
     email: string;
-    uid: string
+    uid: string;
   };
   isLogged: boolean;
 };

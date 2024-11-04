@@ -1,4 +1,4 @@
-import { RegisterModel, RegisterResponse } from "@/app/@types/login.type";
+import { RegisterModel, RegisterResponse } from "@/app/_types/login.type";
 import { HttpStatusCode } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuth } from "firebase-admin/auth";
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
       name: user.displayName || "",
     };
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { status: "Erro ao recuperar informação do usuário" },
       { status: HttpStatusCode.UnprocessableEntity }
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       password: hashedPassword,
     });
     return NextResponse.json({ ok: true }, { status: HttpStatusCode.Created });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ status: HttpStatusCode.UnprocessableEntity });
   }
 }

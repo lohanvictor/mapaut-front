@@ -1,18 +1,14 @@
 import {
   Autocomplete,
   Button,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
   Slider,
   TextField,
 } from "@mui/material";
-import { ChangeEvent, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ImgContainer } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
+import Image from "next/image";
 
 const genderOptions = ["Masculino", "Feminino"];
 
@@ -219,7 +215,7 @@ export default function DemographicCharacteristics(
             onClick={handleImgClick}
             className="bg-slate-400 hover:bg-slate-600 h-96 aspect-square rounded-full cursor-pointer flex flex-row justify-center items-center"
           >
-            <img id="demographic-characteristics-img" src={img.link} alt="" />
+            <Image id="demographic-characteristics-img" src={img.link} alt="" />
             <span className="add">{imgHoverText}</span>
           </ImgContainer>
           <span className="text-red-400">{errors.img}</span>

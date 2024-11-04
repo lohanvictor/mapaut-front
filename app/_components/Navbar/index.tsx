@@ -23,7 +23,7 @@ export const Navbar = () => {
     route.prefetch("/");
     route.prefetch("/personas");
     route.prefetch("/account");
-  }, []);
+  }, [route]);
 
   if (!isLogged) {
     return null;
