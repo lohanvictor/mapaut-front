@@ -21,7 +21,7 @@ type LoadingModalProps = {
 
 export default function LoadingModal({ text }: LoadingModalProps) {
   return (
-    <BootstrapDialog open onClose={() => null}>
+    <BootstrapDialog id="loading-modal" open onClose={() => null}>
       <DialogContent dividers>
         <Typography variant="body1">{text}</Typography>
         <div className="w-full mt-2">

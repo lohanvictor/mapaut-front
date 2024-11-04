@@ -100,7 +100,7 @@ export default function Login() {
         <h2 className="text-sky-800 text-4xl self-center font-bold">
           MapAut | Login
         </h2>
-        <Button onClick={handleSignUp} size="small">
+        <Button id="sem-conta-button" onClick={handleSignUp} size="small">
           Não possui conta?
         </Button>
         <TextField
@@ -110,6 +110,7 @@ export default function Login() {
           variant="outlined"
           required
           fullWidth
+          id="email-input"
           error={!!errors.email}
           helperText={errors.email}
           className="bg-white"
@@ -121,11 +122,15 @@ export default function Login() {
           setPassword={setPassword}
         />
 
-        <Button onClick={handleForgotPassword} size="small">
+        <Button
+          id="esqueci-senha-button"
+          onClick={handleForgotPassword}
+          size="small"
+        >
           Esqueci minha senha
         </Button>
 
-        <Button onClick={handleClick} variant="contained">
+        <Button id="logar-button" onClick={handleClick} variant="contained">
           Logar
         </Button>
 
