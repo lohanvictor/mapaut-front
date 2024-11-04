@@ -1,7 +1,6 @@
 import { PersonaModel } from "@/app/_types/persona.type";
 import { Container } from "./styled";
 import { MoreVert } from "@mui/icons-material";
-import Image from "next/image";
 
 type PersonaListItemProps = {
   persona: PersonaModel;
@@ -11,7 +10,7 @@ type PersonaListItemProps = {
 export default function PersonaListItem(props: PersonaListItemProps) {
   return (
     <Container className="shadow-md hover:bg-slate-300" onClick={props.onClick}>
-      <Image src={props.persona.foto} alt={props.persona.nome} className="img" />
+      <img src={props.persona.foto} alt={props.persona.nome} className="img" />
 
       <div className="flex flex-col">
         <span className="text-slate-950 text-xl">{props.persona.nome}</span>

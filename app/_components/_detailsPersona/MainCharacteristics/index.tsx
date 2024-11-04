@@ -1,5 +1,4 @@
 import { PersonaModel } from "@/app/_types/persona.type";
-import Image from "next/image";
 import { useMemo } from "react";
 
 type MainCharacteristicsProps = {
@@ -25,7 +24,7 @@ export default function MainCharacteristics(props: MainCharacteristicsProps) {
 
   return (
     <div className="flex-1 flex flex-row gap-4 items-start">
-      <Image
+      <img
         className="aspect-square object-cover rounded-full bg-cover"
         width={175}
         height={175}
