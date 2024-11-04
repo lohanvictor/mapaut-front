@@ -5,12 +5,14 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
 } from "@mui/material";
 import { ImgContainer } from "./styled";
 import { useMemo, useState } from "react";
 import { AutismTypes, LanguageTypes } from "../../../_types/persona.type";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
+import TextModal from "../../_modal/TextModal";
 
 type GeneralCharacteristicsProps = {
   step: string;
@@ -37,6 +39,9 @@ export default function GeneralCharacteristics(
 
     return props.img.link;
   }, [props.img.file, props.img.link]);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen((prev) => !prev);
 
   const [language, setLanguage] = useState(props.form?.language || "");
   const [autism, setAutism] = useState(props.form?.autism || "");
@@ -130,6 +135,40 @@ export default function GeneralCharacteristics(
 
             <FormHelperText>{errors.language}</FormHelperText>
           </FormControl>
+
+          <Button onClick={toggleModal} variant="contained" color="inherit">
+            Dúvidas sobre linguagem da persona?
+          </Button>
+          <TextModal
+            isOpen={modalOpen}
+            onClose={toggleModal}
+            title="Linguagem da Persona"
+          >
+            <Typography variant="body1">
+              Os tipos de linguagem da persona são:
+            </Typography>
+            <Typography style={{ paddingLeft: 16 }}>
+              <ul style={{ listStyleType: "'- '" }}>
+                <li>
+                  <strong>Não verbal:</strong> dificuldade em expressar-se
+                  verbalmente ou oralmente, podendo não desenvolver a linguagem
+                  falada ou ter uma fala limitada. Se comunica por gestos ou
+                  expressões faciais.
+                </li>
+                <li>
+                  <strong>Verbal:</strong> utiliza a comunicação verbal, porém
+                  com certas peculiaridades, incluindo uma tendência a ser
+                  literal, dificuldade em entender metáforas e sarcasmo.
+                </li>
+                <li>
+                  <strong>Verbal Ecolálica:</strong> repetição de frases ou
+                  palavras que ouviu de outras pessoas ou de fontes externas
+                  (TV, músicas, etc.), estando dentro ou fora de contexto de uma
+                  conversa.
+                </li>
+              </ul>
+            </Typography>
+          </TextModal>
 
           <FormControl variant="standard" error={Boolean(errors.autism)}>
             <InputLabel id="general-characteristics-select-autism">
