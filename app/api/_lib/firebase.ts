@@ -26,7 +26,7 @@ const firebaseClientConfig = {
 
 const firebaseAdminConfig = {
   clientEmail: process.env.FIREBASE_ADMIN_EMAIL || "",
-  privateKey: privateKey.key || "",
+  privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, '\n') || "",
   projectId: process.env.FIREBASE_PROJECT_ID || "",
 };
 
