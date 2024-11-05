@@ -43,6 +43,7 @@ export default function ChooseModel(props: ChooseModelProps) {
         <div
           className={`${buttonStyle} `}
           onClick={(event) => onClickModel(event, "1")}
+          id="button-model-1"
         >
           <IconButton
             onClick={(event) => onClickHelp(event, "1")}
@@ -57,6 +58,7 @@ export default function ChooseModel(props: ChooseModelProps) {
         <div
           className={`${buttonStyle} `}
           onClick={(event) => onClickModel(event, "2")}
+          id="button-model-2"
         >
           <IconButton
             onClick={(event) => onClickHelp(event, "2")}

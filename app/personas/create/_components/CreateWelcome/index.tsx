@@ -45,6 +45,7 @@ export function CreateWelcome(props: Props) {
         className="bg-primary text-white font-bold py-2 px-4 rounded-full"
         onClick={props.onNext}
         variant="contained"
+        id="button-start-create-persona"
       >
         Começar
       </Button>

@@ -25,6 +25,7 @@ export default function Home() {
         </button>
         <button
           onClick={() => redirectTo("/personas/create")}
+          id="button-create-persona"
           className="flex-1 flex flex-row justify-center items-center cursor-pointer relative select-none h-40 bg-guidaut-blue hover:bg-[#0a7dd8] rounded-md"
         >
           <span className="text-white text-2xl">Criar nova persona</span>

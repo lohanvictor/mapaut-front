@@ -122,13 +122,19 @@ export default function GeneralCharacteristics(
               onChange={(event) => handleLanguageChange(event.target.value)}
               label="Linguagem da persona"
             >
-              <MenuItem value={LanguageTypes.nonVerbal}>
+              <MenuItem
+                value={LanguageTypes.nonVerbal}
+                id={LanguageTypes.nonVerbal}
+              >
                 {LanguageTypes.nonVerbal}
               </MenuItem>
-              <MenuItem value={LanguageTypes.verbal}>
+              <MenuItem value={LanguageTypes.verbal} id={LanguageTypes.verbal}>
                 {LanguageTypes.verbal}
               </MenuItem>
-              <MenuItem value={LanguageTypes.verbalEco}>
+              <MenuItem
+                value={LanguageTypes.verbalEco}
+                id={LanguageTypes.verbalEco}
+              >
                 {LanguageTypes.verbalEco}
               </MenuItem>
             </Select>
@@ -183,7 +189,7 @@ export default function GeneralCharacteristics(
               label="Nível do autismo"
             >
               <MenuItem value={AutismTypes.soft}>{AutismTypes.soft}</MenuItem>
-              <MenuItem value={AutismTypes.moderate}>
+              <MenuItem value={AutismTypes.moderate} id={AutismTypes.moderate}>
                 {AutismTypes.moderate}
               </MenuItem>
               <MenuItem value={AutismTypes.severe}>
@@ -204,7 +210,11 @@ export default function GeneralCharacteristics(
         <Button variant="contained" onClick={props.onReturn}>
           Voltar
         </Button>
-        <Button variant="contained" onClick={onNext}>
+        <Button
+          variant="contained"
+          onClick={onNext}
+          id="general-characteristics-next-button"
+        >
           Prosseguir
         </Button>
       </div>

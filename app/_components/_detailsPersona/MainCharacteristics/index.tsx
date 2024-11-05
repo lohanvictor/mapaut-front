@@ -23,7 +23,10 @@ export default function MainCharacteristics(props: MainCharacteristicsProps) {
   }, [props.persona.sensibilidade_som]);
 
   return (
-    <div className="flex-1 flex flex-row gap-4 items-start">
+    <div
+      className="flex-1 flex flex-row gap-4 items-start"
+      id="main-characteristics"
+    >
       <img
         className="aspect-square object-cover rounded-full bg-cover"
         width={175}

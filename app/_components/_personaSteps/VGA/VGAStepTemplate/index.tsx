@@ -81,7 +81,11 @@ export function VGAStepTemplate(props: Props) {
           Voltar
         </Button>
 
-        <Button variant="contained" onClick={handleNextStep}>
+        <Button
+          variant="contained"
+          onClick={handleNextStep}
+          id="vga-next-button"
+        >
           Prosseguir
         </Button>
       </div>

@@ -1,10 +1,5 @@
-import {
-  Autocomplete,
-  Button,
-  Slider,
-  TextField,
-} from "@mui/material";
-import { useMemo, useState } from "react";
+import { Autocomplete, Button, Slider, TextField } from "@mui/material";
+import { Ref, useMemo, useRef, useState } from "react";
 import { ImgContainer } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
@@ -39,6 +34,7 @@ export default function DemographicCharacteristics(
     file: null as unknown,
     link: props.form?.imgLink || "",
   });
+  const imgRef = useRef<HTMLInputElement | null>(null);
 
   const imgHoverText = useMemo(() => {
     if (img.link === "") {
@@ -130,11 +126,9 @@ export default function DemographicCharacteristics(
   }
 
   function handleImgClick() {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.onchange = (event) => getImage(event.target as HTMLInputElement);
-    input.click();
+    if (imgRef.current) {
+      imgRef.current.click();
+    }
   }
 
   function onNext() {
@@ -175,6 +169,7 @@ export default function DemographicCharacteristics(
             required
             error={!!errors.name}
             helperText={errors.name}
+            id="demographic-characteristics-name"
           />
 
           <div className="w-full flex flex-col gap-1">
@@ -197,6 +192,7 @@ export default function DemographicCharacteristics(
             }
             onBlur={valid.gender}
             value={gender}
+            id="demographic-characteristics-genero"
             renderInput={(params) => (
               <TextField
                 label="Gênero"
@@ -216,6 +212,14 @@ export default function DemographicCharacteristics(
           >
             <img id="demographic-characteristics-img" src={img.link} alt="" />
             <span className="add">{imgHoverText}</span>
+            <input
+              type="file"
+              accept="image/png,image/jpeg"
+              style={{ opacity: 0 }}
+              id="demographic-characteristics-img-input"
+              ref={imgRef}
+              onChange={(event) => getImage(event.target as HTMLInputElement)}
+            />
           </ImgContainer>
           <span className="text-red-400">{errors.img}</span>
         </div>
@@ -224,7 +228,11 @@ export default function DemographicCharacteristics(
         <Button variant="contained" onClick={props.onReturn}>
           Voltar
         </Button>
-        <Button variant="contained" onClick={onNext}>
+        <Button
+          variant="contained"
+          onClick={onNext}
+          id="demographic-characteristics-next-button"
+        >
           Prosseguir
         </Button>
       </div>

@@ -105,7 +105,7 @@ export default function AboutPersona(props: AboutProps) {
           Voltar
         </Button>
 
-        <Button variant="contained" onClick={onNext}>
+        <Button variant="contained" onClick={onNext} id="about-persona-next-button">
           Prosseguir
         </Button>
       </div>
