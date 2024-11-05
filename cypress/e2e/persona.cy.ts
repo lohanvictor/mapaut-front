@@ -124,13 +124,25 @@ describe("Persona suit", () => {
       "contain.text",
       "Nome de teste"
     );
+    cy.get("#main-characteristics > div > span:nth-child(2)").should(
+      "contain.text",
+      "Masculino, 10 anos"
+    );
     cy.get("#main-characteristics > div > span:nth-child(3)").should(
       "contain.text",
       "Nível de autismo: Moderado"
     );
+    cy.get("#main-characteristics > div > span:nth-child(4)").should(
+      "contain.text",
+      "Linguagem: Verbal"
+    );
     cy.get("#main-characteristics > div > span:nth-child(5)").should(
       "contain.text",
       "Possui sensibilidade ao som"
+    );
+    cy.get("#about-container > div > p:nth-child(1)").should(
+      "contain.text",
+      "Teste de descrição"
     );
   });
 });

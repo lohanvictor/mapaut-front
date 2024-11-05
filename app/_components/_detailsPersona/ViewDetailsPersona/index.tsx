@@ -82,7 +82,7 @@ export default function ViewDetailsPersona({
         </div>
       )}
       {persona.modelo === "2" && (
-        <div className="w-full flex-1 flex flex-col">
+        <div className="w-full flex-1 flex flex-col" id="about-container">
           <span className="text-slate-950 text-md ">Sobre {aboutName[0]}</span>
           <div className="w-full h-full flex-1 border-2 border-slate-300 rounded-md p-2">
             {about.map((paragrafo, index) => (
