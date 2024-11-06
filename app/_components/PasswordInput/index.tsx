@@ -1,6 +1,7 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, TextField } from "@mui/material";
 import { useState } from "react";
+import { PasswordInputContainer } from "./styled";
 
 type Props = {
   password: string;
@@ -27,7 +28,7 @@ export function PasswordInput(props: Props) {
     event.preventDefault();
   };
   return (
-    <div className="relative flex flex-row w-full">
+    <PasswordInputContainer>
       <TextField
         id="outlined-adornment-password"
         placeholder={props.placeholder || "Senha"}
@@ -45,10 +46,10 @@ export function PasswordInput(props: Props) {
         onClick={handleClickShowPassword}
         onMouseDown={handleMouseDownPassword}
         onMouseUp={handleMouseUpPassword}
-        className="absolute right-1 top-2"
+        className="eye"
       >
         {showPassword ? <VisibilityOff /> : <Visibility />}
       </IconButton>
-    </div>
+    </PasswordInputContainer>
   );
 }

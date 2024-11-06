@@ -5,6 +5,7 @@ import PersonaModel2HelpModal from "@/app/_components/_modal/custom/PersonaModel
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
+import { Container } from "./styled";
 
 type ChooseModelProps = {
   onChooseModel: (model: ModelType) => void;
@@ -13,7 +14,6 @@ type ModelType = "1" | "2";
 
 const buttonStyle =
   "flex-1 flex flex-row justify-center items-center cursor-pointer relative select-none bg-guidaut-blue hover:bg-[#0a7dd8] rounded-md";
-const helpStyle = "absolute top-2 right-2 rounded-full bg-white w-12 h-12";
 
 export default function ChooseModel(props: ChooseModelProps) {
   const [modalState, setModalState] = useState("none");
@@ -35,7 +35,7 @@ export default function ChooseModel(props: ChooseModelProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col gap-6 w-full">
+    <Container>
       <h1 className="text-slate-950">
         Escolha o modelo adequado para sua persona
       </h1>
@@ -47,7 +47,7 @@ export default function ChooseModel(props: ChooseModelProps) {
         >
           <IconButton
             onClick={(event) => onClickHelp(event, "1")}
-            className={helpStyle}
+            className="button"
           >
             <QuestionMarkIcon />
           </IconButton>
@@ -62,7 +62,7 @@ export default function ChooseModel(props: ChooseModelProps) {
         >
           <IconButton
             onClick={(event) => onClickHelp(event, "2")}
-            className={helpStyle}
+            className="button"
           >
             <QuestionMarkIcon />
           </IconButton>
@@ -78,6 +78,6 @@ export default function ChooseModel(props: ChooseModelProps) {
       {modalState === "2" ? (
         <PersonaModel2HelpModal onClose={() => setModalState("none")} />
       ) : null}
-    </div>
+    </Container>
   );
 }
