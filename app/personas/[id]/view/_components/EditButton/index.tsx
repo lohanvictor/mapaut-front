@@ -2,7 +2,7 @@
 
 import { PersonaModel } from "@/app/_types/persona.type";
 import { LocalStorageUtils } from "@/app/_utils/localStorage.util";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 
 type EditButtonProps = {

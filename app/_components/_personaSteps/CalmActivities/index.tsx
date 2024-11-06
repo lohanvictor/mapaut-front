@@ -1,8 +1,6 @@
-import {
-  Button,
-  CircularProgress,
-  TextField,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { AddActivityButton } from "./styled";
 import LayoutPersona from "../../LayoutPersona";

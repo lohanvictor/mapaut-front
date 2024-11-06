@@ -1,7 +1,8 @@
 import { PersonaModel } from "@/app/_types/persona.type";
 import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPersona";
-import { ArrowBack } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import CancelButton from "../CancelButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

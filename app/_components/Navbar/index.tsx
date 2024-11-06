@@ -7,7 +7,7 @@ import { LogoutButton } from "./LogoutButton";
 import { LoginButton } from "./LoginButton";
 import { useEffect, useMemo } from "react";
 import { useSession } from "@/app/_contexts/sessionContext";
-import { AccountCircle } from "@mui/icons-material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -31,7 +31,10 @@ export const Navbar = () => {
 
   return (
     <div className="flex flex-col w-2/12 h-full bg-transparent gap-1 max-w-56 min-w-56 border-r border-gray-400">
-      <div className="flex flex-col items-center justify-center w-full pb-4 pt-4" suppressHydrationWarning>
+      <div
+        className="flex flex-col items-center justify-center w-full pb-4 pt-4"
+        suppressHydrationWarning
+      >
         <span className="text-slate-950 text-4xl" suppressHydrationWarning>
           <strong>MapAut</strong>
         </span>
@@ -60,7 +63,11 @@ export const Navbar = () => {
           <>
             <button
               onClick={() => route.push("/account")}
-              className={`w-full flex flex-row gap-2 items-center justify-center p-2 rounded-md ${pathname === "/account" ? " text-white bg-sky-800" : " text-sky-800 hover:text-white hover:bg-sky-800"}`}
+              className={`w-full flex flex-row gap-2 items-center justify-center p-2 rounded-md ${
+                pathname === "/account"
+                  ? " text-white bg-sky-800"
+                  : " text-sky-800 hover:text-white hover:bg-sky-800"
+              }`}
             >
               <AccountCircle />
               <strong>Conta</strong>

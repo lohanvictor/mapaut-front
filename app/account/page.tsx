@@ -1,8 +1,9 @@
 "use client";
 
-import { AccountCircle } from "@mui/icons-material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { DeleteAccountButton } from "./_components/DeleteAccountButton";
-import { Button, TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { useSession } from "../_contexts/sessionContext";
 import { useEffect, useMemo, useState } from "react";
 import { PasswordInput } from "../_components/PasswordInput";

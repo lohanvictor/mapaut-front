@@ -1,11 +1,9 @@
-import { QuestionMark } from "@mui/icons-material";
-import {
-  Button,
-  IconButton,
-  LinearProgress,
-  linearProgressClasses,
-  TextField,
-} from "@mui/material";
+import QuestionMark from "@mui/icons-material/QuestionMark";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import LinearProgress from "@mui/material/LinearProgress";
+import { linearProgressClasses } from "@mui/material/LinearProgress";
+import TextField from "@mui/material/TextField";
 import { useMemo, useState } from "react";
 import { styled } from "@mui/material/styles";
 import AboutPersonaModal from "../../_modal/custom/AboutPersonaModal";

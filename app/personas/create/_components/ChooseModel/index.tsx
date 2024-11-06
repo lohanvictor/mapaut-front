@@ -3,7 +3,7 @@
 import PersonaModel1HelpModal from "@/app/_components/_modal/custom/PersonaModel1HelpModal";
 import PersonaModel2HelpModal from "@/app/_components/_modal/custom/PersonaModel2HelpModal";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { Container } from "./styled";
 

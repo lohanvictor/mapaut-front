@@ -4,7 +4,7 @@ import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import { useSession } from "@/app/_contexts/sessionContext";
 import { Delete } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 export function DeleteAccountButton() {

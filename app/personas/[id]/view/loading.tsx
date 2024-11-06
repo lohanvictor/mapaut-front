@@ -1,5 +1,7 @@
-import { ArrowBack } from "@mui/icons-material";
-import { Button, IconButton, Skeleton } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
 
 export default function PersonasViewLoading() {
   return (

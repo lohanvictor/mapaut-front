@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowBack } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 
 type Props = {

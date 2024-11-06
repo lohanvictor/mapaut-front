@@ -1,7 +1,7 @@
 "use client";
 
 import OptionModal from "@/app/_components/_modal/OptionModal";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 

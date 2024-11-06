@@ -1,6 +1,6 @@
 import { PersonaModel } from "@/app/_types/persona.type";
 import { Container } from "./styled";
-import { MoreVert } from "@mui/icons-material";
+import MoreVert from "@mui/icons-material/MoreVert";
 
 type PersonaListItemProps = {
   persona: PersonaModel;

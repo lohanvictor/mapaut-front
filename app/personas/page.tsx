@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, IconButton, Pagination, TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Pagination from "@mui/material/Pagination";
+import TextField from "@mui/material/TextField";
 import { Search } from "@mui/icons-material";
 import PersonaListItem from "../_components/PersonaIListItem";
 import { useRouter } from "next/navigation";

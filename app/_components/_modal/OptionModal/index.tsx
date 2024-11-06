@@ -1,10 +1,8 @@
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  styled,
-  Typography,
-} from "@mui/material";
+import { styled } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({

@@ -1,10 +1,8 @@
-import {
-  Dialog,
-  DialogContent,
-  LinearProgress,
-  styled,
-  Typography,
-} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import LinearProgress from "@mui/material/LinearProgress";
+import { styled } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {

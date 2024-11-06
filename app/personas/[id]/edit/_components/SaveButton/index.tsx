@@ -5,7 +5,7 @@ import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import OptionModal from "@/app/_components/_modal/OptionModal";
 import api from "@/app/_lib/api";
 import { Notification } from "@/app/_lib/notification";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

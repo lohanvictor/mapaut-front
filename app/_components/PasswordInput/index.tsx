@@ -1,5 +1,7 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { IconButton, TextField } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { PasswordInputContainer } from "./styled";
 

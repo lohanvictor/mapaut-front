@@ -7,7 +7,7 @@ import ViewDetailsPersona from "@/app/_components/_detailsPersona/ViewDetailsPer
 import BackButton from "./_components/BackButton";
 import DeleteButton from "./_components/DeleteButton";
 import EditButton from "./_components/EditButton";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import LoadingModal from "@/app/_components/_modal/LoadingModal";
 import jsPDF from "jspdf";
 import { useSession } from "@/app/_contexts/sessionContext";

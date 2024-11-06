@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { CheckboxButton } from "../CheckboxButton";
-import { Button, styled } from "@mui/material";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material";
 
 import LinearProgress, {
   linearProgressClasses,

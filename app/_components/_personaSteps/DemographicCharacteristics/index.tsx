@@ -1,4 +1,7 @@
-import { Autocomplete, Button, Slider, TextField } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import Slider from "@mui/material/Slider";
+import TextField from "@mui/material/TextField";
 import { useMemo, useRef, useState } from "react";
 import { ImgContainer } from "./styled";
 import LayoutPersona from "../../LayoutPersona";

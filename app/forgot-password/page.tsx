@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowBack } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import api from "../_lib/api";

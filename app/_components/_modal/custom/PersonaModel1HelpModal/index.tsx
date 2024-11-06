@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import TextModal from "../../TextModal";
 import styled from "styled-components";
 

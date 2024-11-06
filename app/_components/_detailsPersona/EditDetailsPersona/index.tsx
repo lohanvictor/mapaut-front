@@ -3,7 +3,7 @@ import LayoutActivity from "../LayoutActivity";
 import { PersonaModel, PersonaSection } from "@/app/_types/persona.type";
 import { GraphVGA } from "../../GraphVGA";
 import { useMemo } from "react";
-import { Edit } from "@mui/icons-material";
+import Edit from "@mui/icons-material/Edit";
 
 type EditContainerProps = {
   onClick: () => void;
