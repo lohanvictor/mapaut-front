@@ -1,5 +1,5 @@
 import { Autocomplete, Button, Slider, TextField } from "@mui/material";
-import { Ref, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ImgContainer } from "./styled";
 import LayoutPersona from "../../LayoutPersona";
 import { STEPS_PERSONA_DATA } from "@/app/_constants/steps.constant";
