@@ -215,17 +215,17 @@ export default function DemographicCharacteristics(
           >
             <img id="demographic-characteristics-img" src={img.link} alt="" />
             <span className="add">{imgHoverText}</span>
-            <input
-              type="file"
-              accept="image/png,image/jpeg"
-              style={{ opacity: 0 }}
-              id="demographic-characteristics-img-input"
-              ref={imgRef}
-              onChange={(event) => getImage(event.target as HTMLInputElement)}
-            />
           </ImgContainer>
           <span className="text-red-400">{errors.img}</span>
         </div>
+        <input
+          type="file"
+          accept="image/png,image/jpeg"
+          style={{ opacity: 0, position: "absolute", left: 0 }}
+          id="demographic-characteristics-img-input"
+          ref={imgRef}
+          onChange={(event) => getImage(event.target as HTMLInputElement)}
+        />
       </div>
       <div className="w-full flex flex-row justify-between">
         <Button variant="contained" onClick={props.onReturn}>
