@@ -137,6 +137,10 @@ export default function Account() {
         fullWidth
       />
 
+      <span className="text-slate-950 text-left self-start">
+        Para mudar o nome, alterar o campo abaixo.
+      </span>
+
       <TextField
         placeholder="Nome completo"
         label="Nome completo"
@@ -147,6 +151,11 @@ export default function Account() {
         className="bg-white"
         fullWidth
       />
+
+      <span className="text-slate-950 text-left self-start">
+        Para mudar a senha, colocar a nova senha abaixo e confirmação da nova
+        senha.
+      </span>
 
       <PasswordInput
         error={errors.password}
