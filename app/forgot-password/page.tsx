@@ -50,7 +50,9 @@ export default function ForgotPassword() {
             Preencha o campo abaixo com o e-mail que você deseja alterar para
             uma nova senha. Caso o e-mail exista, você receberá um link para
             redefinir sua senha. A senha deve possui{" "}
-            <strong>no mínimo 8 caracteres</strong>.
+            <strong>no mínimo 8 caracteres</strong>. Verifique sua caixa de span
+            ou lixo eletrônico, caso não tenha aparecido na caixa de entrada
+            principal.
           </span>
         </div>
 
