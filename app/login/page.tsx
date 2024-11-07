@@ -95,6 +95,10 @@ export default function Login() {
     route.push("/forgot-password");
   }
 
+  function handleAboutSystem() {
+    route.push("/about");
+  }
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto">
       <div className="flex flex-col w-96 gap-4 p-6 bg-slate-100 rounded-md">
@@ -137,6 +141,10 @@ export default function Login() {
 
         {openModal && <LoadingModal text="Entrando no sistema..." />}
       </div>
+
+      <Button onClick={handleAboutSystem} variant="text" className="mt-2">
+        Sobre o sistema
+      </Button>
     </div>
   );
 }

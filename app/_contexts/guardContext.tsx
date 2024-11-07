@@ -15,6 +15,8 @@ export function GuardProvider({ children }: { children: ReactNode }) {
 
   function handleRouteGuard() {
     const inPublicRoute = publicRoutes.includes(pathname);
+    if (pathname === "/about") return;
+
     if (!isLogged && !inPublicRoute) {
       route.replace("/login");
     }
