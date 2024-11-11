@@ -123,10 +123,10 @@ export default function SignUp() {
 
         <div className="flex flex-col items-center gap-4">
           <h2 className="text-sky-800 text-4xl self-center font-bold">
-            MapAut | Cadastro
+            PersonAut | Cadastro
           </h2>
           <span className="text-slate-700">
-            Preencha todos os campos abaixo para criar sua conta no MapAut
+            Preencha todos os campos abaixo para criar sua conta no PersonAut
           </span>
         </div>
 

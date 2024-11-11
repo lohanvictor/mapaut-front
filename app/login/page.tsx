@@ -103,7 +103,7 @@ export default function Login() {
     <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto">
       <div className="flex flex-col w-96 gap-4 p-6 bg-slate-100 rounded-md">
         <h2 className="text-sky-800 text-4xl self-center font-bold">
-          MapAut | Login
+          PersonAut | Login
         </h2>
         <Button id="sem-conta-button" onClick={handleSignUp} size="small">
           Não possui conta?

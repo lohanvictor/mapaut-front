@@ -36,7 +36,7 @@ export const Navbar = () => {
         suppressHydrationWarning
       >
         <span className="text-slate-950 text-4xl" suppressHydrationWarning>
-          <strong>MapAut</strong>
+          <strong>PersonAut</strong>
         </span>
       </div>
       <div className="pl-4 flex flex-col gap-2" suppressHydrationWarning>

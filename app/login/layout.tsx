@@ -5,7 +5,7 @@ type LoginLayoutProps = {
 };
 
 export const metadata: Metadata = {
-  title: "MapAut | Login",
+  title: "PersonAut | Login",
   description: "Login no sistema",
 };
 

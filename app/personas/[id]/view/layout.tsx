@@ -5,7 +5,7 @@ type PersonaViewLayoutProps = {
 };
 
 export const metadata: Metadata = {
-    title: "Persona | MapAut",
+    title: "Persona | PersonAut",
 }
 
 export default function PersonaViewLayout({

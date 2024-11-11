@@ -1,5 +1,5 @@
 describe("Login Page", () => {
-  xit("should authenticate on MapAut", () => {
+  xit("should authenticate on PersonAut", () => {
     cy.visit("http://localhost:3000");
 
     cy.get("#email-input").type("usuario2@hotmail.com");

@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MapAut",
+  title: "PersonAut",
   description: "by Lohan.",
 };
 

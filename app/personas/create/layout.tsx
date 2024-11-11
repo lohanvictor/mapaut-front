@@ -5,7 +5,7 @@ type PersonsCreateLayoutProps = {
 };
 
 export const metadata: Metadata = {
-  title: "MapAut | Criando Persona",
+  title: "PersonAut | Criando Persona",
   description: "Criar uma nova persona",
 };
 

@@ -31,14 +31,14 @@ export default function AboutPage() {
           Voltar
         </Button>
       )}
-      <h1 className="font-sans text-4xl text-slate-950">Sobre o MapAut</h1>
+      <h1 className="font-sans text-4xl text-slate-950">Sobre o PersonAut</h1>
       <p className="font-sans text-justify text-slate-950">
-        O MapAut é um software criado para facilitar a geração de personas
+        O PersonAut é um software criado para facilitar a geração de personas
         autistas, inspirado no modelo PersonAut, um dos artefatos do processo
         ProAut. O ProAut é uma metodologia voltada para o apoio no design de
         interfaces para pessoas com Transtorno do Espectro Autista (TEA). Embora
         o ProAut ofereça um conjunto completo de etapas e técnicas para a
-        criação de interfaces inclusivas, o MapAut se concentra em uma dessas
+        criação de interfaces inclusivas, o PersonAut se concentra em uma dessas
         ferramentas: a criação de personas autistas. Dessa forma, ele permite
         que desenvolvedores e designers gerem personas personalizadas com
         agilidade, sem necessariamente precisar seguir todas as etapas do
@@ -62,11 +62,11 @@ export default function AboutPage() {
       </p>
 
       <strong className="font-sans text-slate-950">
-        O que o MapAut oferece?
+        O que o PersonAut oferece?
       </strong>
 
       <p className="font-sans text-justify text-slate-950">
-        O MapAut oferece uma interface intuitiva que guia o usuário no
+        O PersonAut oferece uma interface intuitiva que guia o usuário no
         preenchimento dos dados para criar personas autistas detalhadas, com as
         seguintes funcionalidades:
         <ul className="list-disc pl-6">
@@ -94,11 +94,11 @@ export default function AboutPage() {
       </p>
 
       <strong className="font-sans text-slate-950">
-        Para quem é o MapAut?
+        Para quem é o PersonAut?
       </strong>
 
       <p className="font-sans text-justify text-slate-950">
-        O MapAut é ideal para profissionais de design e desenvolvimento que
+        O PersonAut é ideal para profissionais de design e desenvolvimento que
         desejam criar personas autistas com base no PersonAut, seja como parte
         de um processo completo do ProAut ou como uma ferramenta independente de
         geração de personas. Assim, ele atende a desenvolvedores e designers que
@@ -111,7 +111,7 @@ export default function AboutPage() {
       </strong>
 
       <p className="font-sans text-justify text-slate-950">
-        Em versões futuras, o MapAut poderá incluir recomendações automáticas
+        Em versões futuras, o PersonAut poderá incluir recomendações automáticas
         para ajudar no design de interfaces inclusivas, com base nas
         características das personas geradas. Além disso, será avaliando a
         possibilidade de integrar o sistema com plataformas mais robustas para

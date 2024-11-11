@@ -5,7 +5,7 @@ type SignUpLayoutProps = {
 };
 
 export const metadata: Metadata = {
-  title: "MapAut | Cadastro",
+  title: "PersonAut | Cadastro",
   description: "Cadastro no sistema",
 };
 
