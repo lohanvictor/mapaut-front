@@ -20,7 +20,7 @@ export function GraphVGA(props: Props) {
         series={[
           {
             data: props.data,
-            label: "Visão Geral do Autista (níve de comprometimento)",
+            label: "Visão Geral do Autista (nível de comprometimento)",
             curve: "linear",
             showMark: false,
             valueFormatter: (value) => `${Math.trunc(value!)}%`,
