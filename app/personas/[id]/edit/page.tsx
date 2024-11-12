@@ -24,7 +24,7 @@ type PersonasEditPageProps = {
 export default function PersonasEditPage({ params }: PersonasEditPageProps) {
   const [persona, setPersona] = useState<PersonaModel | null>(null);
   const [editSection, setEditSection] = useState<PersonaSection>("none");
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | null>(null);
 
   useEffect(() => {
     async function fetchPersona() {

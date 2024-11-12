@@ -64,12 +64,7 @@ export function DemographicAndGeneral(props: Props) {
   }
 
   function handleGeneralStep(form: { language: string; autism: string }) {
-    setDemographic((prev) => ({
-      ...prev,
-      language: form.language,
-      autism: form.autism,
-    }));
-    props.onSave(demographic)
+    props.onSave({ ...demographic, ...form });
   }
 
   if (demographicStep === 1) {
