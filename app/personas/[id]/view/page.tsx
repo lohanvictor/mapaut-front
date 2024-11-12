@@ -34,9 +34,13 @@ export default function PersonaView(props: PersonaViewProps) {
     const response = (await (
       await fetch(`/api/personas/${props.params.id}`)
     ).json()) as PersonaModel;
-    const imageFile = await urlToFile(response.foto, `${response.id}.jpeg`);
-    const imageUrl = URL.createObjectURL(imageFile);
-    response.foto = imageUrl;
+
+    if (!response.foto.includes("blob")) {
+      const imageFile = await urlToFile(response.foto, `${response.id}.jpeg`);
+      const imageUrl = URL.createObjectURL(imageFile);
+      response.foto = imageUrl;
+    }
+
     setPersona(response);
   }
 

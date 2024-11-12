@@ -220,7 +220,7 @@ export default function DemographicCharacteristics(
         </div>
         <input
           type="file"
-          accept="image/png,image/jpeg"
+          accept="image/png, image/jpeg"
           style={{ opacity: 0, position: "absolute", left: 0 }}
           id="demographic-characteristics-img-input"
           ref={imgRef}
