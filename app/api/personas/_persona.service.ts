@@ -44,6 +44,7 @@ export class PersonaService {
       response = await q.get();
     }
 
+    console.log("response.docs.length", response.docs.length);
     return {
       totalItems: response.size,
       pagination: {
@@ -51,7 +52,7 @@ export class PersonaService {
         pages: Math.ceil(response.size / PAGES_PER_PAGE),
       },
       items: response.docs
-        .slice(page - 1 * PAGES_PER_PAGE, page * PAGES_PER_PAGE)
+        .slice((page - 1) * PAGES_PER_PAGE, page * PAGES_PER_PAGE)
         .map(mapDocToPersonaModel),
     };
   }
