@@ -13,7 +13,7 @@ type TextModalProps = {
 
 export default function PersonaModel2HelpModal(props: TextModalProps) {
   return (
-    <TextModal isOpen onClose={props.onClose} title="Modelo 1">
+    <TextModal isOpen onClose={props.onClose} title="Modelo 2">
       <Container>
         <Typography variant="body1">
           O modelo 2 do PersonAut representa a persona com informações gerais,
